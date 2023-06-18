@@ -1,0 +1,9 @@
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\bin\Debug\negocios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\bin\Debug\negocios.pdb
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\bin\Debug\dominios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\bin\Debug\dominios.pdb
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\obj\Debug\negocios.csproj.AssemblyReference.cache
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\obj\Debug\negocios.csproj.CoreCompileInputs.cache
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\obj\Debug\negocios.csproj.CopyComplete
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\obj\Debug\negocios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\negocios\obj\Debug\negocios.pdb

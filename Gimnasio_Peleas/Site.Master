@@ -1,0 +1,90 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Gimnasio_Peleas.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %>Gimnasio</title>
+    <%--CSS--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <%--JAVASCRIPT--%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script defer src="https://kit.fontawesome.com/0c5b036370.js" crossorigin="anonymous"></script>
+
+    <style>
+        .navbar {
+            background-color: #0d6efd; /* Color de fondo azul oscuro */
+            font-family: "Montserrat", sans-serif; /* Fuente Roboto */
+            /*font-weight: bold;*/
+        }
+
+        .navbar-brand {
+            color: #fff; /* Color del texto del logo */
+        }
+
+        .navbar-nav {
+            margin: 0 auto; /* Centrar las pestañas */
+        }
+
+        .nav-link {
+            color: #fff; /* Color del texto de las pestañas */
+        }
+    </style>
+
+</head>
+<body>
+    <form runat="server">
+
+        <asp:ScriptManager ID="ScriptManger1" runat="Server">
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="/Default.aspx">
+                    <!-- Reemplaza "ruta-al-logo.png" con la ruta a tu logo -->
+                    <%--<img src="ruta-al-logo.png" alt="Logo" width="50" height="50">--%>
+                    Gimnasio
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Formularios/Peleadores/Peleadores.aspx">Peleadores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Formularios/Peleas/Peleas.aspx">Peleas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Dojos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user mx-1"></i>
+                                <asp:Label ID="usuario_navbar" runat="server"></asp:Label>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Formularios/Login/Login.aspx?a=3">Cerrar sesion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %></p>
+            </footer>
+        </div>
+
+    </form>
+</body>
+</html>
