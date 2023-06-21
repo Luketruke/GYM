@@ -12,10 +12,10 @@ namespace negocios
     {
         public List<Peleador> obtenerPeleadoresTodos()
         {
-            List<Peleador> lista = new List<Peleador>();
             ConexionSQL conexion = new ConexionSQL();
             try
             {
+                List<Peleador> lista = new List<Peleador>();
                 conexion.setearProcedure("ObtenerPeleadoresTodos");
                 conexion.ejecutarConexion();
 
@@ -50,66 +50,55 @@ namespace negocios
             }
             catch (Exception ex)
             {
-                lista = null;
-                return lista;
+                return null;
             }
             finally
             {
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerCategorias() //Para llenar dropdownlist de categorias
+        public Peleador obtenerPeleadorPorId(int IdPeleador)
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                {
-                    conexion.setearProcedure("ObtenerCategoriasPeleadores");
-                    dt.Load(conexion.ejecutarConexion());
-                }
-                return dt;
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerPeleadorPorId");
+                conexion.setearParametro("@IdPeleador", IdPeleador);
+                dt.Load(conexion.ejecutarConexion());
+
+                Peleador p = new Peleador();
+
+                p.Id = Convert.ToInt32(dt.Rows[0]["IdPeleador"]);
+                p.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
+                p.Nombre = dt.Rows[0]["Nombre"].ToString();
+                p.Apellido = dt.Rows[0]["Apellido"].ToString();
+                p.NombreCompleto = dt.Rows[0]["NombreCompleto"].ToString();
+                p.Peso = Convert.ToInt32(dt.Rows[0]["Peso"]);
+                p.Altura = Convert.ToInt32(dt.Rows[0]["Altura"]);
+                p.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleas"]);
+
+                p.Categoria = new Categoria();
+                p.Categoria.Descripcion = dt.Rows[0]["Categoria"].ToString();
+                p.Categoria.Id = Convert.ToInt32(dt.Rows[0]["IdCategoria"]);
+
+                p.Dojo = new Dojo();
+                p.Dojo.Nombre = dt.Rows[0]["Dojo"].ToString();
+                p.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
+
+                p.Genero = new Genero();
+                p.Genero.GeneroPersona = dt.Rows[0]["Genero"].ToString();
+                p.Genero.Id = Convert.ToInt32(dt.Rows[0]["IdGenero"]);
+
+                return p;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                dt = null;
-                return dt;
+                return null;
             }
-        }
-        public DataTable obtenerGeneros() //Para llenar dropdownlist de generos
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
+            finally
             {
-                {
-                    conexion.setearProcedure("ObtenerGenerosPeleadores");
-                    dt.Load(conexion.ejecutarConexion());
-                }
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
-            }
-        }
-        public DataTable obtenerPeleadores1Pelea() //Para llenar dropdownlist de peleador1 en PeleasABM
-        {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
-            try
-            {
-                {
-                    conexion.setearProcedure("obtenerPeleadores1Pelea");
-                    dt.Load(conexion.ejecutarConexion());
-                }
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                dt = null;
-                return dt;
+                conexion.cerrarConexion();
             }
         }
         public int agregarPeleador(Peleador p)
@@ -118,7 +107,7 @@ namespace negocios
             try
             {
                 conexion.setearProcedure("AgregarPeleador");
-                conexion.setearParametro("@Nombre", p.Nombre) ;
+                conexion.setearParametro("@Nombre", p.Nombre);
                 conexion.setearParametro("@Apellido", p.Apellido);
                 conexion.setearParametro("@Peso", p.Peso);
                 conexion.setearParametro("@Altura", p.Altura);
@@ -190,48 +179,36 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public Peleador obtenerPeleadorPorId(int IdPeleador)
+        public DataTable obtenerCategorias() //Para llenar dropdownlist de categorias
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                conexion.setearProcedure("ObtenerPeleadorPorId");
-                conexion.setearParametro("@IdPeleador", IdPeleador);
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerCategoriasPeleadores");
                 dt.Load(conexion.ejecutarConexion());
 
-                Peleador p = new Peleador();
-
-                p.Id = Convert.ToInt32(dt.Rows[0]["IdPeleador"]);
-                p.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
-                p.Nombre = dt.Rows[0]["Nombre"].ToString();
-                p.Apellido = dt.Rows[0]["Apellido"].ToString();
-                p.NombreCompleto = dt.Rows[0]["NombreCompleto"].ToString();
-                p.Peso = Convert.ToInt32(dt.Rows[0]["Peso"]);
-                p.Altura = Convert.ToInt32(dt.Rows[0]["Altura"]);
-                p.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleas"]);
-
-                p.Categoria = new Categoria();               
-                p.Categoria.Descripcion = dt.Rows[0]["Categoria"].ToString();
-                p.Categoria.Id = Convert.ToInt32(dt.Rows[0]["IdCategoria"]);
-
-                p.Dojo = new Dojo();
-                p.Dojo.Nombre = dt.Rows[0]["Dojo"].ToString();
-                p.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
-
-                p.Genero = new Genero();
-                p.Genero.GeneroPersona = dt.Rows[0]["Genero"].ToString();
-                p.Genero.Id = Convert.ToInt32(dt.Rows[0]["IdGenero"]);
-
-                return p;
+                return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
-            finally
+        }
+        public DataTable obtenerGeneros() //Para llenar dropdownlist de generos
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
             {
-                conexion.cerrarConexion();
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerGenerosPeleadores");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

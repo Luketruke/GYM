@@ -96,13 +96,13 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.DropDownList ddlPeleador2;
 
         /// <summary>
-        /// Control btnBuscarPeleadoresSimilares.
+        /// Control btnModalPeleadoresSimilares.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarPeleadoresSimilares;
+        protected global::System.Web.UI.WebControls.Button btnModalPeleadoresSimilares;
 
         /// <summary>
         /// Control txtFechaHora.
@@ -150,12 +150,12 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control dgvDojos.
+        /// Control dgvPeleadoresSimilares.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvDojos;
+        protected global::System.Web.UI.WebControls.GridView dgvPeleadoresSimilares;
     }
 }

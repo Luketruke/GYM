@@ -2490,7 +2490,8 @@ CREATE TABLE Peleas(
     Codigo int not null,
     IdPeleador1 int not null,
     IdPeleador2 int not null,
-	IdDojo int not null,
-	Observaciones VARCHAR(255),
+    IdDojo int not null,
+    Observaciones VARCHAR(255),
+    FechaPelea DATETIME NOT NULL,
     Estado int not null
 	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id));

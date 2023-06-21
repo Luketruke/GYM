@@ -118,7 +118,6 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
                 if (dn.agregarDojo(d))
                 {
-                    //Session["alerta"] = "agregado";
                     Response.Redirect("Dojos.aspx");
                 }
             }

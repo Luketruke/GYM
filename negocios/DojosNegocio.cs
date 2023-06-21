@@ -12,10 +12,10 @@ namespace negocios
     {
         public List<Dojo> obtenerDojosTodos() //Para llenar las tables
         {
-            List<Dojo> lista = new List<Dojo>();
             ConexionSQL conexion = new ConexionSQL();
             try
             {
+                List<Dojo> lista = new List<Dojo>();
                 conexion.setearProcedure("ObtenerDojosTodos");
                 conexion.ejecutarConexion();
 
@@ -41,31 +41,31 @@ namespace negocios
             }
             catch (Exception ex)
             {
-                lista = null;
-                return lista;
+                return null;
             }
             finally
             {
                 conexion.cerrarConexion();
             }
         }
-
         public DataTable obtenerDojos() //Para llenar los DropDownList
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                {
-                    conexion.setearProcedure("ObtenerDojosTodos");
-                    dt.Load(conexion.ejecutarConexion());
-                }
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerDojosTodos");
+                dt.Load(conexion.ejecutarConexion());
+
                 return dt;
             }
             catch (Exception ex)
             {
-                dt = null;
-                return dt;
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public bool agregarDojo(Dojo d)
@@ -78,9 +78,8 @@ namespace negocios
                 conexion.setearParametro("@Nombre", d.Nombre);
                 conexion.setearParametro("@Direccion", d.Direccion.DireccionDojo);
                 conexion.setearParametro("@Provincia", d.Direccion.Provincia);
-                conexion.setearParametro("@Localidad", d.Direccion.Localidad);        
+                conexion.setearParametro("@Localidad", d.Direccion.Localidad);
                 conexion.setearParametro("@Observaciones", d.Observaciones);
-
                 conexion.ejecutarConexion();
 
                 return true;
@@ -106,7 +105,6 @@ namespace negocios
                 conexion.setearParametro("@Provincia", d.Direccion.IdProvincia);
                 conexion.setearParametro("@Localidad", d.Direccion.IdLocalidad);
                 conexion.setearParametro("@Observaciones", d.Observaciones);
-
                 conexion.ejecutarConexion();
 
                 return true;
@@ -127,7 +125,6 @@ namespace negocios
             {
                 conexion.setearProcedure("EliminarDojo");
                 conexion.setearParametro("@IdDojo", IdDojo);
-
                 conexion.ejecutarConexion();
 
                 return true;
@@ -144,64 +141,70 @@ namespace negocios
         public DataTable obtenerProvincias()
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                {
-                    conexion.setearProcedure("ObtenerProvincias");
-                    dt.Load(conexion.ejecutarConexion());
-                }
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerProvincias");
+                dt.Load(conexion.ejecutarConexion());
+
                 return dt;
             }
             catch (Exception ex)
             {
-                dt = null;
-                return dt;
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public DataTable obtenerLocalidades(int IdProvincia)
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                {
-                    conexion.setearProcedure("ObtenerLocalidadesXProvincia");
-                    conexion.setearParametro("@IdProvincia", IdProvincia);
-                    dt.Load(conexion.ejecutarConexion());
-                }
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerLocalidadesXProvincia");
+                conexion.setearParametro("@IdProvincia", IdProvincia);
+                dt.Load(conexion.ejecutarConexion());
+
                 return dt;
             }
             catch (Exception ex)
             {
-                dt = null;
-                return dt;
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public DataTable obtenerLocalidades()
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
-                {
-                    conexion.setearProcedure("ObtenerLocalidades");
-                    dt.Load(conexion.ejecutarConexion());
-                }
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerLocalidades");
+                dt.Load(conexion.ejecutarConexion());
+
                 return dt;
             }
             catch (Exception ex)
             {
-                dt = null;
-                return dt;
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
         public Dojo obtenerDojoPorId(int IdDojo)
         {
             ConexionSQL conexion = new ConexionSQL();
-            DataTable dt = new DataTable();
             try
             {
+                DataTable dt = new DataTable();
                 conexion.setearProcedure("ObtenerDojoPorId");
                 conexion.setearParametro("@IdDojo", IdDojo);
                 dt.Load(conexion.ejecutarConexion());

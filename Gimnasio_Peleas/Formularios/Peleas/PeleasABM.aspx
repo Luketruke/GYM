@@ -83,7 +83,7 @@
 
                         <div style="display: flex;">
                             <asp:DropDownList ID="ddlPeleador2" CssClass="form-select mt-2" runat="server" AutoPostBack="true" ValidationGroup="ValidarPelea" Style="margin-right: 5px;"></asp:DropDownList>
-                            <asp:Button ID="btnBuscarPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnBuscarPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" />
+                            <asp:Button ID="btnModalPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnModalPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" />
                         </div>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador2"
                             ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="mb-0">
-                    <asp:Button ID="btnAgregar" ValidationGroup="ValidarPelea" runat="server" CssClass="btn btn-success" Text="Agregar" />
+                    <asp:Button ID="btnAgregar" ValidationGroup="ValidarPelea" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
                     <asp:Button ID="btnModificar" ValidationGroup="ValidarPelea" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
                     <asp:Button ID="btnCancelar" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
@@ -118,19 +118,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="miModalLabel">Seleccionar peleador</h5>
+                    <h5 class="modal-title" id="miModalLabel">Peleadores similares</h5>
                 </div>
                 <div class="modal-body">
                     <%--DataGridView--%>
-                    <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
+                    <asp:GridView runat="server" ID="dgvPeleadoresSimilares" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
                         <HeaderStyle CssClass="thead-dark" />
                         <Columns>
                             <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Localidad" DataField="Direccion.Localidad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Provincia" DataField="Direccion.Provincia" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
+                            <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" ItemStyle-Width="700" HeaderStyle-Width="700" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                            <asp:BoundField HeaderText="Peso" DataField="Peso" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                            <asp:BoundField HeaderText="Altura" DataField="Altura" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                            <asp:BoundField HeaderText="Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
+                            <asp:TemplateField HeaderText="Acción" ItemStyle-Width="50" HeaderStyle-Width="50" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnSeleccionarPeleadorSimilar" runat="server" OnClick="btnSeleccionarPeleadorSimilar_Click" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Seleccionar">
                     <i class="fa-solid fa-check"></i>

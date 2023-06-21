@@ -22,10 +22,11 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="txtSearch">Buscar:</label>
-                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid()" />
+                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" />
                 </div>
             </div>
             <br />
+
             <div class="row">
                 <div class="col-md-12">
                     <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
@@ -113,13 +114,20 @@
     </script>
 
     <script>
-        function disableEnterKey(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                return false;
+        function disableEnterKey(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode; // Para navegadores antiguos
+            else
+                key = e.which; // Para navegadores modernos
+
+            if (key === 13) { // 13 es el código de tecla para "Enter"
+                return false; // Cancela el comportamiento predeterminado del "Enter"
             }
         }
+        document.onkeydown = disableEnterKey; // Intercepta todas las pulsaciones de teclas
     </script>
+
 
     <script type="text/javascript">
         function normalize(text) {

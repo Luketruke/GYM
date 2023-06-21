@@ -25,7 +25,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 if (!IsPostBack)
                     Session["listaPeleas"] = null;
 
-                //Session.Add("listaPeleas", pn.obtenerPeleasTodas());
+                Session.Add("listaPeleas", pn.obtenerPeleasTodas());
                 dgvPeleas.DataSource = Session["listaPeleas"];
                 dgvPeleas.DataBind();
             }
