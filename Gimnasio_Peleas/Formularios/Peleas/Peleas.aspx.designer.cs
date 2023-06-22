@@ -21,7 +21,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregar;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
 
         /// <summary>
         /// Control dgvPeleas.

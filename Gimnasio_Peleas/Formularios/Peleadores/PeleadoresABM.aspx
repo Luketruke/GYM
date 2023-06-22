@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript">
+        document.title = 'PeleadoresABM';
+    </script>
+
     <style>
         .upload-btn {
             background-color: #4CAF50;
@@ -31,9 +35,7 @@
     </style>
 
     <br />
-    <h1 style="text-align: center;"><%: Title %>Peleadores</h1>
-
-    <br />
+    <h1 style="text-align: center;"><%: Title %>PeleadoresABM</h1>
 
     <div>
         <div class="row">
@@ -101,13 +103,24 @@
                     </div>
                 </div>
 
-                <div class="mb-0" style="display: flex; align-items: center;">
-                    <asp:FileUpload ID="fileUpload" runat="server" Style="display: none" />
-                    <button type="button" class="btn btn-primary" onclick="document.getElementById('<%= fileUpload.ClientID %>').click();">
-                        <i class="fa fa-upload"></i>Cargar foto
-                    </button>
-                    <span id="imagenSeleccionada" style="margin-left: 10px;"></span>
+                <div>
+                    <table style="width: 100%;">
+                        <tr style="width: 100%;">
+                            <td style="width: 100%;">
+                                <label for="fileUpload" class="form-label">Cargar foto</label>
+                            </td>
+                        </tr>
+                        <tr style="width: 100%;">
+                            <td style="width: 100%;">
+                                <div class="input-group" style="width: 100%;">
+                                    <asp:FileUpload ID="fileUpload" runat="server" CssClass="form-control" onchange="handleFileSelect(this)" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+
+
                 <br />
 
                 <div id="botones" style="margin-left: auto;">
@@ -166,4 +179,22 @@
             return (/^[a-zA-Z ]*$/.test(e.key));
         }
     </script>
+
+    <script>
+        function handleFileSelect(input) {
+            var fileUpload = document.getElementById('<%= fileUpload.ClientID %>');
+            var fileName = input.value;
+            var ext = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+
+            if (ext === "jpg") {
+                fileUpload.value = fileName;
+            } else {
+                alert("Por favor, seleccione un archivo JPG válido.");
+                input.value = "";
+                fileUpload.value = "";
+            }
+        }
+    </script>
+
+
 </asp:Content>

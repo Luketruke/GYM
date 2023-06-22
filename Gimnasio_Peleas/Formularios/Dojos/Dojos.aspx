@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript">
+        document.title = 'Dojos';
+    </script>
+
     <style>
         .btn-group {
             margin-bottom: 10px;
@@ -15,95 +19,114 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
 
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" Text="Nuevo dojo" onkeypress="return disableEnterKey(event)" />
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="txtSearch">Buscar:</label>
-                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" />
-                </div>
-            </div>
-            <br />
-
-            <div class="row">
-                <div class="col-md-12">
-                    <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
-                        <HeaderStyle CssClass="thead-dark" />
-                        <Columns>
-                            <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Nombre" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Localidad" DataField="Direccion.Localidad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Provincia" DataField="Direccion.Provincia" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="btnAbrirModalDojo" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalDojo_Click" CssClass="btn btn-info">
-                    <i class="fa-solid fa-search"></i>
-                                    </asp:LinkButton>
-
-                                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Modificar">
-                    <i class="fa-solid fa-pencil"></i>
-                                    </asp:LinkButton>
-
-                                    <asp:LinkButton ID="btnAbrirModalEliminarDojo" runat="server" OnClick="btnAbrirModalEliminarDojo_Click" CssClass="btn btn-info" ClientIDMode="Static">
-                    <i class="fa-solid fa-trash"></i>
-                                    </asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                </div>
-
-                <div class="modal fade" id="modalDojo" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="miModalLabel">Dojo</h5>
-                            </div>
-                            <div class="modal-body">
-                                <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                                <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-
-                                <label for="txtNombre" class="form-label">Dojo</label>
-                                <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
-
-                                <label for="txtDireccion" class="form-label">Direccion</label>
-                                <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" />
-
-                                <label for="txtProvincia" class="form-label">Provincia</label>
-                                <asp:TextBox runat="server" ID="txtProvincia" class="form-control" disabled="" />
-
-                                <label for="txtLocalidad" class="form-label">Localidad</label>
-                                <asp:TextBox runat="server" ID="txtLocalidad" class="form-control" disabled="" />
-
-                                <label for="txtObservaciones" class="form-label">Observaciones</label>
-                                <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget custom-border">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar dojos..." />
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nuevo peleador">
+                                        <i class="fa-solid fa-plus"></i>
+                                        </asp:LinkButton>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar a Excel">
+                                        <i class="fa-solid fa-download"></i>                                        
+                                        </asp:LinkButton>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
+                            <Columns>
+                                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Nombre" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Localidad" DataField="Direccion.Localidad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Provincia" DataField="Direccion.Provincia" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
+                                    <ItemTemplate>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <asp:LinkButton ID="btnAbrirModalDojo" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalDojo_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
+            <i class="fa-solid fa-search"></i>
+                                            </asp:LinkButton>
 
-                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
-                            </div>
-                            <div class="modal-body">
-                                ¿Estás seguro de que deseas eliminar el dojo?
-                            </div>
-                            <div class="modal-footer">
-                                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
-                                <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
-                            </div>
+                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+            <i class="fa-solid fa-pen-to-square"></i>
+                                            </asp:LinkButton>
+
+                                            <asp:LinkButton ID="btnAbrirModalEliminarDojo" runat="server" OnClick="btnAbrirModalEliminarDojo_Click" data-bs-toggle="tooltip" CssClass="btn btn-danger" ToolTip="Eliminar" ClientIDMode="Static">
+            <i class="fa-solid fa-trash"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+
+            <%--Modales--%>
+
+            <div class="modal fade" id="modalDojo" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="miModalLabel">Dojo</h5>
+                        </div>
+                        <div class="modal-body">
+                            <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
+                            <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
+
+                            <label for="txtNombre" class="form-label">Dojo</label>
+                            <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+
+                            <label for="txtDireccion" class="form-label">Direccion</label>
+                            <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" />
+
+                            <label for="txtProvincia" class="form-label">Provincia</label>
+                            <asp:TextBox runat="server" ID="txtProvincia" class="form-control" disabled="" />
+
+                            <label for="txtLocalidad" class="form-label">Localidad</label>
+                            <asp:TextBox runat="server" ID="txtLocalidad" class="form-control" disabled="" />
+
+                            <label for="txtObservaciones" class="form-label">Observaciones</label>
+                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que deseas eliminar el dojo?
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%--Modales--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 

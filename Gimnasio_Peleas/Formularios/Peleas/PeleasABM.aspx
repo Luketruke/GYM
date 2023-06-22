@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript">
+        document.title = 'PeleasABM';
+    </script>
+
     <style>
         .upload-btn {
             background-color: #4CAF50;

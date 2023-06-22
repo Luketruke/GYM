@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript">
+        document.title = 'DojosABM';
+    </script>
+
     <br />
 
     <h1 style="text-align: center;"><%: Title %>Dojos</h1>

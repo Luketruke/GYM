@@ -2,6 +2,10 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript">
+        document.title = 'Peleas';
+    </script>
+
     <style>
         .btn-group {
             margin-bottom: 10px;
@@ -12,39 +16,58 @@
         }
     </style>
 
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" Text="Nuevo dojo" onkeypress="return disableEnterKey(event)" />
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget custom-border">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
+                                        <i class="fa-solid fa-plus"></i>
+                                </asp:LinkButton>
+                            </div>
+                            <%--<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar a Excel">
+                                        <i class="fa-solid fa-download"></i>                                        
+                                </asp:LinkButton>
+                            </div>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
+                    <Columns>
+                        <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Peleador1" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Peleador2" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Dojo" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Fecha" DataField="FechaPelea" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
+                            <ItemTemplate>
+                                <div class="d-flex justify-content-center align-items-center">
 
-    <div class="row">
-        <div class="col-md-4">
-            <label for="txtSearch">Buscar:</label>
-            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" />
+                                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+            <i class="fa-solid fa-pen-to-square"></i>
+                                    </asp:LinkButton>
+
+                                    <asp:LinkButton ID="btnAbrirModalEliminarPelea" OnClick="btnAbrirModalEliminarPelea_Click" runat="server" CssClass="btn btn-danger" ClientIDMode="Static" data-bs-toggle="tooltip" ToolTip="Eliminar">
+            <i class="fa-solid fa-trash"></i>
+                                    </asp:LinkButton>
+                                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
         </div>
     </div>
-    <br />
-
-    <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
-        <Columns>
-            <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-            <asp:BoundField HeaderText="Peleador1" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-            <asp:BoundField HeaderText="Peleador2" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-            <asp:BoundField HeaderText="Dojo" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-            <asp:BoundField HeaderText="Fecha" DataField="FechaPelea" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-            <asp:TemplateField HeaderText="Accion" ItemStyle-Width="120" HeaderStyle-Width="120" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
-                <ItemTemplate>
-                    <asp:LinkButton ID="btnModificar" runat="server" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Modificar">
-                            <i class="fa-solid fa-pencil"></i>
-                    </asp:LinkButton>
-
-                    <asp:LinkButton ID="btnEliminar" runat="server" CssClass="btn btn-info" OnClientClick="return confirm('Estas seguro de eliminar el cliente?');" data-toggle="tooltip" ToolTip="Eliminar">
-                            <i class="fa-solid fa-trash"></i>
-                    </asp:LinkButton>
-
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
 
     <script>
         $(function () {

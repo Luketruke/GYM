@@ -37,10 +37,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Console.WriteLine(ex);
             }
         }
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("PeleadoresABM.aspx?a=1");
-        }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -148,6 +144,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
             {
                 Console.WriteLine(ex);
             }
+        }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PeleadoresABM.aspx?a=1");
         }
     }
 }

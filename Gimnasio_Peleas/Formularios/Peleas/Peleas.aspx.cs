@@ -38,5 +38,13 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         {
             Response.Redirect("PeleasABM.aspx?a=1");
         }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnAbrirModalEliminarPelea_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

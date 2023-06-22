@@ -35,10 +35,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 Console.WriteLine(ex);
             }
         }
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("DojosABM.aspx?a=1");
-        }
+        
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -117,6 +114,15 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             {
                 Console.WriteLine(ex);
             }   
+        }
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DojosABM.aspx?a=1");
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
