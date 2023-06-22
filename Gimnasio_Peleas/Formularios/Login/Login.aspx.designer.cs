@@ -15,13 +15,22 @@ namespace Gimnasio_Peleas
     {
 
         /// <summary>
-        /// Control txtUser.
+        /// Control loginForm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUser;
+        protected global::System.Web.UI.HtmlControls.HtmlForm loginForm;
+
+        /// <summary>
+        /// Control txtUsername.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
         /// Control txtPassword.

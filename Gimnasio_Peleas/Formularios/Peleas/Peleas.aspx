@@ -1,23 +1,16 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="Peleas.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleas.Peleas" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="Peleas.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleas.Peleas" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--CSS--%>
+    <link href="~/Stylesheets/peleas.css" rel="stylesheet" />
 
     <script type="text/javascript">
         document.title = 'Peleas';
     </script>
 
-    <style>
-        .btn-group {
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            margin-top: 10px;
-        }
-    </style>
-
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-bottom: 8px;">
             <div class="col-md-12">
                 <div class="widget custom-border">
                     <div class="row align-items-center">
@@ -52,7 +45,9 @@
                         <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                             <ItemTemplate>
                                 <div class="d-flex justify-content-center align-items-center">
-
+                                    <asp:LinkButton ID="btnAbrirModalPelea" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalPelea_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
+            <i class="fa-solid fa-search"></i>
+                                            </asp:LinkButton>
                                     <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
                                     </asp:LinkButton>
@@ -68,6 +63,50 @@
             </div>
         </div>
     </div>
+
+    <%--Modales--%>
+
+            <div class="modal fade" id="modalPelea" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="miModalLabel">Pelea</h5>
+                        </div>
+                        <div class="modal-body">
+                            <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
+                            <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
+
+                            <label for="txtNombre" class="form-label">Dojo</label>
+                            <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+
+                            <label for="txtObservaciones" class="form-label">Observaciones</label>
+                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que deseas eliminar el dojo?
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%--Modales--%>
 
     <script>
         $(function () {
@@ -87,7 +126,7 @@
                 return false; // Cancela el comportamiento predeterminado del "Enter"
             }
         }
-        document.onkeydown = disableEnterKey; // Intercepta todas las pulsaciones de teclas
+        document.onkeydown = disableEnterKey;
     </script>
 
     <script type="text/javascript">
@@ -121,6 +160,5 @@
             }
         }
     </script>
-
 
 </asp:Content>

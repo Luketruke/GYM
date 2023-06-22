@@ -1,6 +1,9 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="DojosABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Dojos.DojosABM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="DojosABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Dojos.DojosABM" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--CSS--%>
+    <link href="~/Stylesheets/dojos.css" rel="stylesheet" />
 
     <script type="text/javascript">
         document.title = 'DojosABM';

@@ -1,26 +1,19 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="Peleadores.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleadores.Peleadores" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="Peleadores.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleadores.Peleadores" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <%--CSS--%>
+    <link href="~/Stylesheets/peleadores.css" rel="stylesheet" />
+
     <script type="text/javascript">
-        document.title ='Peleadores';
+        document.title = 'Peleadores';
     </script>
-
-    <style>
-        .btn-group {
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            margin-top: 10px;
-        }
-    </style>
 
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
 
             <div class="container">
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-md-12">
                         <div class="widget custom-border">
                             <div class="row align-items-center">
@@ -30,12 +23,12 @@
                                 <div class="col-md-6 text-end">
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                         <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nuevo peleador">
-                                        <i class="fa-solid fa-plus"></i>
+                                    <i class="fa-solid fa-plus"></i>
                                         </asp:LinkButton>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                         <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar a Excel">
-                                        <i class="fa-solid fa-download"></i>                                        
+                                    <i class="fa-solid fa-download"></i>                                        
                                         </asp:LinkButton>
                                     </div>
                                 </div>
@@ -58,8 +51,7 @@
                                             <asp:LinkButton ID="btnAbrirModalPeleador" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalPeleador_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
             <i class="fa-solid fa-search"></i>
                                             </asp:LinkButton>
-
-                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
                                             </asp:LinkButton>
 
@@ -75,7 +67,7 @@
                 </div>
             </div>
 
-            <%--Modales--%>
+            <!-- Modales -->
 
             <div class="modal fade" id="modalPeleador" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

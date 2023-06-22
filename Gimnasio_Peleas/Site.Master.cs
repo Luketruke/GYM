@@ -20,6 +20,9 @@ namespace Gimnasio_Peleas
                     Usuario user = (Usuario)HttpContext.Current.Session["Usuario"];
                     usuario_navbar.Text = user.User.ToString();
                     usuario_navbar.Visible = true;
+
+                    usuario_navbar2.Text = user.User.ToString();
+                    usuario_navbar2.Visible = true;
                 }
             }
             catch

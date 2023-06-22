@@ -51,6 +51,26 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool eliminarPelea(int IdPelea)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarPelea");
+                conexion.setearParametro("@IdPelea", IdPelea);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public bool agregarPelea(Pelea p)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -222,6 +242,82 @@ namespace negocios
                 return dt;
             }
             catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public Pelea obtenerPeleaPorId(int IdPelea)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerPeleaPorId");
+                conexion.setearParametro("@IdPelea", IdPelea);
+                dt.Load(conexion.ejecutarConexion());
+
+                Pelea p = new Pelea();
+
+                p.Id = Convert.ToInt32(dt.Rows[0]["Id"]);
+                p.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
+                p.FechaPelea = Convert.ToDateTime(dt.Rows[0]["FechaPelea"]);
+                p.Observaciones = dt.Rows[0]["Observaciones"].ToString();
+
+                p.Dojo = new Dojo();
+                p.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
+                p.Dojo.Nombre = dt.Rows[0]["Dojo"].ToString();
+
+                //Peleador1
+
+                p.Peleador1 = new Peleador();
+                p.Peleador1.Id = (int)conexion.Lector["IdP1"];
+                p.Peleador1.Codigo = (int)conexion.Lector["CodigoP1"];
+                p.Peleador1.NombreCompleto = (string)conexion.Lector["Peleador1Nombre"];
+                p.Peleador1.Peso = (decimal)conexion.Lector["PesoP1"];
+                p.Peleador1.Altura = (int)conexion.Lector["AlturaP1"];
+                p.Peleador1.CantidadPeleas = (int)conexion.Lector["CantidadPeleasP1"];
+
+                p.Peleador1.Categoria = new Categoria();
+                p.Peleador1.Categoria.Id = (int)conexion.Lector["IdCategoriaP1"];
+                p.Peleador1.Categoria.Descripcion = (string)conexion.Lector["CategoriaP1"];
+  
+                p.Peleador1.Dojo = new Dojo();
+                p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
+                p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
+               
+                p.Peleador1.Genero = new Genero();
+                p.Peleador1.Genero.Id = (int)conexion.Lector["IdGeneroP1"];
+                p.Peleador1.Genero.GeneroPersona = (string)conexion.Lector["GeneroP1"];
+
+                //Peleador2
+
+                p.Peleador2 = new Peleador();
+                p.Peleador2.Id = (int)conexion.Lector["IdP2"];
+                p.Peleador2.Codigo = (int)conexion.Lector["CodigoP2"];
+                p.Peleador2.NombreCompleto = (string)conexion.Lector["Peleador2Nombre"];
+                p.Peleador2.Peso = (decimal)conexion.Lector["PesoP2"];
+                p.Peleador2.Altura = (int)conexion.Lector["AlturaP2"];
+                p.Peleador2.CantidadPeleas = (int)conexion.Lector["CantidadPeleasP2"];
+                          
+                p.Peleador2.Categoria = new Categoria();
+                p.Peleador2.Categoria.Id = (int)conexion.Lector["IdCategoriaP2"];
+                p.Peleador2.Categoria.Descripcion = (string)conexion.Lector["CategoriaP2"];
+                          
+                p.Peleador2.Dojo = new Dojo();
+                p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
+                p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
+                          
+                p.Peleador2.Genero = new Genero();
+                p.Peleador2.Genero.Id = (int)conexion.Lector["IdGeneroP2"];
+                p.Peleador2.Genero.GeneroPersona = (string)conexion.Lector["GeneroP2"];
+
+                return p;
+            }
+            catch (Exception)
             {
                 return null;
             }

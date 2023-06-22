@@ -1,42 +1,15 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="PeleasABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleas.PeleasABM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="PeleasABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleas.PeleasABM" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--CSS--%>
+    <link href="~/Stylesheets/peleas.css" rel="stylesheet" />
 
     <script type="text/javascript">
         document.title = 'PeleasABM';
     </script>
 
-    <style>
-        .upload-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-            .upload-btn:hover {
-                background-color: #45a049;
-            }
-
-        .file-input {
-            display: none;
-        }
-
-        .file-label {
-            background-color: #ddd;
-            padding: 10px 35px;
-            display: inline-block;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-    <br />
-    <h1 style="text-align: center;"><%: Title %>Peleas</h1>
-
-    <br />
+    <br /><h1 style="text-align: center;"><%: Title %>Peleas</h1><br />
 
     <div>
         <div class="row">

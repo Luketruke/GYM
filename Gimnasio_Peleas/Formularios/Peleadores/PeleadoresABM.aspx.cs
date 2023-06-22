@@ -182,8 +182,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 if (fileUpload.HasFile)
                 {
                     string rutaArchivo = Server.MapPath("~/Fotos/" + p.Id + Path.GetExtension(this.fileUpload.FileName));
+
+                    if (File.Exists(rutaArchivo))
+                    {
+                        File.Delete(rutaArchivo);
+                    }
+
                     fileUpload.SaveAs(rutaArchivo);
-                    
                 }
 
                 if (pn.modificarPeleador(p))
@@ -219,6 +224,5 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
             //Session["alerta"] = "cancelado";
             Response.Redirect("Peleadores.aspx");
         }
-
     }
 }

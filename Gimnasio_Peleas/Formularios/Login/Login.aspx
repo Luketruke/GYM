@@ -1,24 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Login.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Gimnasio_Peleas.Login" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <div class="center">
-        <h1>Login</h1>
-        <form method="post" runat="server">
-            <div class="txt_field">
-                <asp:TextBox runat="server" ID="txtUser" placeholder="" CssClass="form-control" />
-                <span></span>
-                <label>Usuario</label>
+        <form id="loginForm" runat="server" class="d-flex flex-column align-items-center mt-5">
+            <h2 class="mb-4">Inicie sesion</h2>
+            <div class="mb-3">
+                <asp:TextBox runat="server" ID="txtUsername" CssClass="form-control" placeholder="Usuario"></asp:TextBox>
             </div>
-            <div class="txt_field">
-                <asp:TextBox runat="server" placeholder="" ID="txtPassword" CssClass="form-control" TextMode="Password" />
-                <span></span>
-                <label>Contraseña</label>
+            <div class="mb-3">
+                <asp:TextBox runat="server" ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Contraseña"></asp:TextBox>
             </div>
-            <asp:Button ID="btnLogin" CssClass="btn btn-success" runat="server" Text="Login" OnClick="btnLogin_Click " />
-            <div class="signup_link">
-                No esta registrado? <a href="#">Registrarse</a>
-            </div>
-            <i class="fas fa-walking"></i>
+            <asp:Button runat="server" ID="btnLogin" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnLogin_Click" />
         </form>
     </div>
+
 </asp:Content>

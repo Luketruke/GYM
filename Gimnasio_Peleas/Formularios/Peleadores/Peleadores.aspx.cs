@@ -51,25 +51,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Console.WriteLine(ex);
             }
         }
-        protected void btnEliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PeleadoresNegocio pn = new PeleadoresNegocio();
-                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-                GridView gv = clickedRow.NamingContainer as GridView;
-                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                if (pn.eliminarPeleador(Convert.ToInt32(id)))
-                {
-                    Session["listaPeleadores"] = null;
-                    Response.Redirect("Peleadores.aspx");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
         protected void btnAbrirModalPeleador_Click(object sender, EventArgs e)
         {
             try

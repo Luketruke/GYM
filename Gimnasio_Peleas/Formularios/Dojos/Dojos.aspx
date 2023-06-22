@@ -1,26 +1,19 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="Dojos.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Dojos.Dojos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="Dojos.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Dojos.Dojos" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--CSS--%>
+    <link href="~/Stylesheets/dojos.css" rel="stylesheet" />
 
     <script type="text/javascript">
         document.title = 'Dojos';
     </script>
 
-    <style>
-        .btn-group {
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            margin-top: 10px;
-        }
-    </style>
-
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
 
             <div class="container">
-                <div class="row">
+                <div class="row" style="margin-bottom: 8px;">
                     <div class="col-md-12">
                         <div class="widget custom-border">
                             <div class="row align-items-center">
@@ -59,7 +52,7 @@
             <i class="fa-solid fa-search"></i>
                                             </asp:LinkButton>
 
-                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
                                             </asp:LinkButton>
 
@@ -127,6 +120,7 @@
             </div>
 
             <%--Modales--%>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 

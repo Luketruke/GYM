@@ -1,38 +1,13 @@
-﻿<%@ Page Language="C#" MasterPageFile="../../Site.Master" AutoEventWireup="true" CodeBehind="PeleadoresABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleadores.PeleadoresABM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Mobile.Master" AutoEventWireup="true" CodeBehind="PeleadoresABM.aspx.cs" Inherits="Gimnasio_Peleas.Formularios.Peleadores.PeleadoresABM" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%--CSS--%>
+    <link href="~/Stylesheets/peleadores.css" rel="stylesheet" />
 
     <script type="text/javascript">
         document.title = 'PeleadoresABM';
     </script>
-
-    <style>
-        .upload-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-            .upload-btn:hover {
-                background-color: #45a049;
-            }
-
-        .file-input {
-            display: none;
-        }
-
-        .file-label {
-            background-color: #ddd;
-            padding: 10px 35px;
-            display: inline-block;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
 
     <br />
     <h1 style="text-align: center;"><%: Title %>PeleadoresABM</h1>
@@ -119,7 +94,6 @@
                         </tr>
                     </table>
                 </div>
-
 
                 <br />
 

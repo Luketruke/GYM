@@ -21,7 +21,7 @@ namespace Gimnasio_Peleas
             UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
-                user = new Usuario(txtUser.Text, txtPassword.Text);
+                user = new Usuario(txtUsername.Text, txtPassword.Text);
                 if (negocio.Loguear(user))
                 {
                     Session.Add("Usuario", user);
