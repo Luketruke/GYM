@@ -1,0 +1,9 @@
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\bin\Release\negocios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\bin\Release\negocios.pdb
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\bin\Release\dominios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\bin\Release\dominios.pdb
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\obj\Release\negocios.csproj.AssemblyReference.cache
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\obj\Release\negocios.csproj.CoreCompileInputs.cache
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\obj\Release\negocios.csproj.CopyComplete
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\obj\Release\negocios.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\negocios\obj\Release\negocios.pdb

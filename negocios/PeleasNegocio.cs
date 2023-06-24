@@ -38,6 +38,10 @@ namespace negocios
                     p.Dojo.Id = (int)conexion.Lector["IdDojo"];
                     p.Dojo.Nombre = (string)conexion.Lector["Dojo"];
 
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
+
                     lista.Add(p);
                 }
                 return lista;
@@ -82,6 +86,7 @@ namespace negocios
                 conexion.setearParametro("@IdPeleador2", p.Peleador2.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
+                conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@FechaPelea", p.FechaPelea);
                 conexion.ejecutarConexion();
 
@@ -318,6 +323,26 @@ namespace negocios
                 return p;
             }
             catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable obtenerTipoPeleas() //Para llenar dropdownlist de tipoPeleas
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerTipoPeleas");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
             {
                 return null;
             }

@@ -19,15 +19,10 @@
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
+                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nuevo peleador">
                                         <i class="fa-solid fa-plus"></i>
                                 </asp:LinkButton>
                             </div>
-                            <%--<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar a Excel">
-                                        <i class="fa-solid fa-download"></i>                                        
-                                </asp:LinkButton>
-                            </div>--%>
                         </div>
                     </div>
                 </div>
@@ -47,8 +42,8 @@
                                 <div class="d-flex justify-content-center align-items-center">
                                     <asp:LinkButton ID="btnAbrirModalPelea" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalPelea_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
             <i class="fa-solid fa-search"></i>
-                                            </asp:LinkButton>
-                                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-warning me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
                                     </asp:LinkButton>
 
@@ -66,47 +61,47 @@
 
     <%--Modales--%>
 
-            <div class="modal fade" id="modalPelea" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="miModalLabel">Pelea</h5>
-                        </div>
-                        <div class="modal-body">
-                            <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                            <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
+    <div class="modal fade" id="modalPelea" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="miModalLabel">Pelea</h5>
+                </div>
+                <div class="modal-body">
+                    <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
+                    <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
 
-                            <label for="txtNombre" class="form-label">Dojo</label>
-                            <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+                    <label for="txtNombre" class="form-label">Dojo</label>
+                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
 
-                            <label for="txtObservaciones" class="form-label">Observaciones</label>
-                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
+                    <label for="txtObservaciones" class="form-label">Observaciones</label>
+                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
-                        </div>
-                        <div class="modal-body">
-                            ¿Estás seguro de que deseas eliminar el dojo?
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
-                            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
-                        </div>
-                    </div>
+    <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar el dojo?
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
                 </div>
             </div>
+        </div>
+    </div>
 
-            <%--Modales--%>
+    <%--Modales--%>
 
     <script>
         $(function () {

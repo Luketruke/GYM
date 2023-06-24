@@ -6,10 +6,12 @@ DROP TABLE Peleadores
 DROP TABLE Usuarios
 DROP TABLE Peleas
 DROP TABLE Generos
+DROP TABLE TipoUsuarios
+DROP TABLE TipoPeleas
 
 CREATE TABLE Provincias (
   Id int NOT NULL PRIMARY KEY IDENTITY (1, 1),
-  Provincia varchar(255) NOT NULL);
+  Provincia varchar(50) NOT NULL);
 
 INSERT INTO Provincias VALUES
 ('Buenos Aires'),
@@ -2444,7 +2446,7 @@ INSERT INTO Categorias VALUES (3,'Profesional',1)
 CREATE TABLE Dojos(
     Id int PRIMARY KEY IDENTITY (1, 1),
 	Codigo int, 
-    Nombre varchar(255),
+    Nombre varchar(50),
     Direccion varchar(255),
     IdLocalidad int,
     IdProvincia int,
@@ -2453,9 +2455,11 @@ CREATE TABLE Dojos(
     FOREIGN KEY (IdLocalidad) REFERENCES Localidades (Id),  
     FOREIGN KEY (IdProvincia) REFERENCES Provincias (Id));
 
+INSERT INTO Dojos VALUES (1,'Dojo Unlimited','Av. Cazón 624',249,2,'Prueba',1)
+
 CREATE TABLE Generos(
 Id int PRIMARY KEY IDENTITY (1, 1),
-Genero varchar(255),
+Genero varchar(25),
 Estado int not null);
 
 INSERT INTO Generos VALUES ('Masculino',1)
@@ -2476,14 +2480,36 @@ CREATE TABLE Peleadores (
     FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
 	FOREIGN KEY (IdGenero) REFERENCES Generos (Id));
 
-CREATE TABLE Usuarios(
+CREATE TABLE TipoPeleas(
     Id int PRIMARY KEY IDENTITY (1, 1),
-    Codigo varchar(25),
-    Usuario varchar(255),
-    Contrasenia varchar(255),
+    Codigo int not null,
+    Descripcion varchar(255),
     Estado int not null);
 
-INSERT INTO Usuarios VALUES (1,'Administrador','Administrador',1)
+INSERT INTO TipoPeleas VALUES (1,'MMA',1)
+INSERT INTO TipoPeleas VALUES (2,'Muay Thai',1)
+
+CREATE TABLE TipoUsuarios(
+    Id int PRIMARY KEY IDENTITY (1, 1),
+    Codigo int not null,
+    Descripcion varchar(255),
+    Estado int not null);
+
+INSERT INTO TipoUsuarios VALUES (1,'Administrador',1)
+INSERT INTO TipoUsuarios VALUES (2,'Administrativo',1)
+
+CREATE TABLE Usuarios(
+    Id int PRIMARY KEY IDENTITY (1, 1),
+    Codigo int not null,
+    Usuario varchar(40),
+    Contrasenia varchar(40),
+	IdTipoUsuario int not null,
+	IdDojo int not null,
+    Estado int not null
+	FOREIGN KEY (IdTipoUsuario) REFERENCES TipoUsuarios (Id),
+	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id));
+
+INSERT INTO Usuarios VALUES (1,'Administrador','Administrador',1,1,1)
 
 CREATE TABLE Peleas(
     Id int PRIMARY KEY IDENTITY (1, 1),
@@ -2493,5 +2519,7 @@ CREATE TABLE Peleas(
     IdDojo int not null,
     Observaciones VARCHAR(255),
     FechaPelea DATETIME NOT NULL,
+	IdTipoPelea int not null,
     Estado int not null
-	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id));
+	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
+	FOREIGN KEY (IdTipoPelea) REFERENCES TipoPeleas (Id));

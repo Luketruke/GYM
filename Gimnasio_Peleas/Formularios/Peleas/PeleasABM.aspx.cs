@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using negocios;
 using dominios;
 using System.Data;
+using System.Globalization;
 
 namespace Gimnasio_Peleas.Formularios.Peleas
 {
@@ -32,6 +33,9 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
                     divCodigo.Visible = false;
+                    //Cargo la hora a las variables
+                    txtFecha.Value = DateTime.Now.ToString("yyyy-MM-dd");
+                    txtHora.Value = DateTime.Now.ToString("HH:mm");
 
                     if (ddlDojos.Items.Count == 0)
                     {
@@ -42,6 +46,17 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         ddlDojos.DataBind();
 
                         ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                    }
+
+                    if (ddlTipoPeleas.Items.Count == 0)
+                    {
+                        DataTable tipoPeleas = pn.obtenerTipoPeleas();
+                        ddlTipoPeleas.DataSource = tipoPeleas;
+                        ddlTipoPeleas.DataTextField = "TipoPelea";
+                        ddlTipoPeleas.DataValueField = "IdTipoPelea";
+                        ddlTipoPeleas.DataBind();
+
+                        ddlTipoPeleas.Items.Insert(0, new ListItem("Seleccione modalidad...", "0"));
                     }
 
                     if (ddlPeleador1.Items.Count == 0)
@@ -188,6 +203,11 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             {
             }
         }
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            //Session["alerta"] = "cancelado";
+            Response.Redirect("Peleadores.aspx");
+        }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             try
@@ -204,7 +224,15 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.Dojo = new Dojo();
                 p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
 
-                p.FechaPelea = DateTime.Parse(txtFechaHora.Value);
+                p.TipoPelea = new TipoPelea();
+                p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
+
+                string dateValue = txtFecha.Value;
+                string timeValue = txtHora.Value;
+
+                DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+
+                p.FechaPelea = dateTime;
                 p.Observaciones = txtObservaciones.Text;
 
                 if (pn.agregarPelea(p))
