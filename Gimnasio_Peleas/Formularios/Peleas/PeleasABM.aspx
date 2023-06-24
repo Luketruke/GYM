@@ -79,18 +79,19 @@
                 <div class="mb-0" style="display: flex; align-items: center;">
                     <div style="flex: 1;">
                         <label for="txtFecha">Fecha</label>
-                        <input type="date" id="txtFecha" class="form-control" runat="server" />
-                        <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtFecha"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvFecha" ControlToValidate="txtFecha" ErrorMessage="*" ValidationGroup="ValidarPelea"
+                            CssClass="text-danger"></asp:RequiredFieldValidator>
                     </div>
                     <div style="width: 10px;"></div>
                     <div style="flex: 1;">
                         <label for="txtHora">Hora</label>
-                        <input type="time" id="txtHora" class="form-control" runat="server" />
-                        <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtHora"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtHora" runat="server" CssClass="form-control" type="time"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvHora" ControlToValidate="txtHora" ErrorMessage="*" ValidationGroup="ValidarPelea"
+                            CssClass="text-danger"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+
 
                 <div class="mb-3">
                     <label for="txtObservaciones" class="form-label">Observaciones</label>

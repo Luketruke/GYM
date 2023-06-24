@@ -9,7 +9,9 @@
         document.title = 'PeleasABM';
     </script>
 
-    <br /><h1 style="text-align: center;"><%: Title %>Peleas</h1><br />
+    <br />
+    <h1 style="text-align: center;"><%: Title %>Peleas</h1>
+    <br />
 
     <div>
         <div class="row">
@@ -28,6 +30,13 @@
                         ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione dojo..."></asp:RequiredFieldValidator>
                 </div>
 
+                <div>
+                    <label for="ddlTipoPeleas" class="form-label">Modalidad de la pelea</label>
+                    <asp:DropDownList ID="ddlTipoPeleas" CssClass="form-select" runat="server"></asp:DropDownList>
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlTipoPeleas"
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione modalidad..."></asp:RequiredFieldValidator>
+                </div>
+
                 <div class="row">
                     <div>
                         <div style="display: flex; flex-direction: column;">
@@ -42,7 +51,7 @@
                         <asp:DropDownList ID="ddlPeleador1" CssClass="form-select mt-2" runat="server" OnSelectedIndexChanged="ddlPeleador1_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="ValidarPelea">
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador1"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador 1..."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -63,16 +72,26 @@
                             <asp:Button ID="btnModalPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnModalPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" />
                         </div>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador2"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador 2..."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="txtFechaHora">Fecha</label>
-                    <input type="datetime-local" id="txtFechaHora" class="form-control" runat="server" />
-                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtFechaHora"
-                        ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
+                <div class="mb-0" style="display: flex; align-items: center;">
+                    <div style="flex: 1;">
+                        <label for="txtFecha">Fecha</label>
+                        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" type="date"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvFecha" ControlToValidate="txtFecha" ErrorMessage="*" ValidationGroup="ValidarPelea"
+                            CssClass="text-danger"></asp:RequiredFieldValidator>
+                    </div>
+                    <div style="width: 10px;"></div>
+                    <div style="flex: 1;">
+                        <label for="txtHora">Hora</label>
+                        <asp:TextBox ID="txtHora" runat="server" CssClass="form-control" type="time"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ID="rfvHora" ControlToValidate="txtHora" ErrorMessage="*" ValidationGroup="ValidarPelea"
+                            CssClass="text-danger"></asp:RequiredFieldValidator>
+                    </div>
                 </div>
+
 
                 <div class="mb-3">
                     <label for="txtObservaciones" class="form-label">Observaciones</label>
@@ -169,5 +188,4 @@
             return (/^[a-zA-Z ]*$/.test(e.key));
         }
     </script>
-
 </asp:Content>

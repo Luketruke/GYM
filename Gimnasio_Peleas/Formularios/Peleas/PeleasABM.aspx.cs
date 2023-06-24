@@ -34,8 +34,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 {
                     divCodigo.Visible = false;
                     //Cargo la hora a las variables
-                    txtFecha.Value = DateTime.Now.ToString("yyyy-MM-dd");
-                    txtHora.Value = DateTime.Now.ToString("HH:mm");
+                    txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    txtHora.Text = DateTime.Now.ToString("HH:mm");
 
                     if (ddlDojos.Items.Count == 0)
                     {
@@ -227,8 +227,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
 
-                string dateValue = txtFecha.Value;
-                string timeValue = txtHora.Value;
+                string dateValue = txtFecha.Text;
+                string timeValue = txtHora.Text;
 
                 DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
 
