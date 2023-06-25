@@ -13,7 +13,7 @@
         <ContentTemplate>
 
             <div class="container">
-                <div class="row mb-3">
+                <div class="row" style="margin-bottom: 8px;">
                     <div class="col-md-12">
                         <div class="widget custom-border">
                             <div class="row align-items-center">
@@ -90,20 +90,20 @@
                                     <label for="txtCategoria" class="form-label">Categoria</label>
                                     <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" />
 
-                                    <label for="txtGenero" class="form-label">Genero</label>
-                                    <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" />
-
-                                    <label for="txtCantidadPeleas" class="form-label">Cantidad Peleas</label>
-                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
-
-                                    <label for="txtPeso" class="form-label">Peso en KG</label>
+                                    <label for="txtPeso" class="form-label">Peso</label>
                                     <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
 
-                                    <label for="txtAltura" class="form-label">Altura en CM</label>
+                                    <label for="txtAltura" class="form-label">Altura</label>
                                     <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />
                                 </div>
                                 <div class="col-md-6">
-                                    <asp:Image ID="ImageDetalle" runat="server" CssClass="modal-photo img-fluid" />
+                                    <asp:Image ID="ImageDetalle" runat="server" style="margin-top:11px;" CssClass="modal-photo img-fluid" />
+
+                                    <label for="txtCantidadPeleas" class="form-label">Cantidad de Peleas</label>
+                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
+
+                                    <label for="txtGenero" class="form-label">Genero</label>
+                                    <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" />
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,6 @@
             </div>
 
             <%--Modales--%>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -188,6 +187,60 @@
                     tr[i].style.display = "none";
                 }
             }
+        }
+    </script>
+
+    <script>
+        function resizeImage() {
+            var fileInput = document.getElementById('fileUpload');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                img.onload = function () {
+                    var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+
+                    // Define el nuevo tamaño deseado
+                    var nuevoAncho = 800;
+                    var nuevoAlto = 600;
+
+                    // Calcula las dimensiones proporcionales para mantener la relación de aspecto
+                    var proporcion = Math.min(nuevoAncho / img.width, nuevoAlto / img.height);
+                    var anchoRedimensionado = img.width * proporcion;
+                    var altoRedimensionado = img.height * proporcion;
+
+                    // Configura el tamaño del lienzo
+                    canvas.width = anchoRedimensionado;
+                    canvas.height = altoRedimensionado;
+
+                    // Dibuja la imagen redimensionada en el lienzo
+                    ctx.drawImage(img, 0, 0, anchoRedimensionado, altoRedimensionado);
+
+                    // Obtiene la imagen redimensionada en formato base64
+                    var imagenRedimensionadaBase64 = canvas.toDataURL('image/jpeg');
+
+                    // Envía la imagen redimensionada al servidor
+                    // Aquí puedes usar AJAX o enviarla mediante un formulario
+                    // por ejemplo, utilizando FormData
+
+                    // Ejemplo utilizando AJAX
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'GuardarImagen.aspx', true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            // La imagen se ha guardado correctamente
+                        }
+                    };
+                    xhr.send('imagenBase64=' + encodeURIComponent(imagenRedimensionadaBase64));
+                };
+
+                img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
         }
     </script>
 

@@ -13,6 +13,7 @@ namespace dominios
         public string User { get; set; }
         public string Contrasenia { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public Dojo Dojo { get; set; }
         public Usuario(string user, string pass)
         {
             User = user;

@@ -23,12 +23,13 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 }
                 DojosNegocio dn = new DojosNegocio();
 
-                if (!IsPostBack)
+                if (!IsPostBack || Session["listaDojos"] == null)
+                {
                     Session["listaDojos"] = null;
-
-                Session.Add("listaDojos", dn.obtenerDojosTodos());
-                dgvDojos.DataSource = Session["listaDojos"];
-                dgvDojos.DataBind();
+                    Session.Add("listaDojos", dn.obtenerDojosTodos());
+                    dgvDojos.DataSource = Session["listaDojos"];
+                    dgvDojos.DataBind();
+                }
             }
             catch (Exception ex)
             {

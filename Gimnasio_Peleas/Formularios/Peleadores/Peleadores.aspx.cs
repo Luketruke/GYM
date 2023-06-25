@@ -23,14 +23,15 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
-                PeleadoresNegocio dn = new PeleadoresNegocio();
+                PeleadoresNegocio pn = new PeleadoresNegocio();
 
-                if (!IsPostBack)
+                if (!IsPostBack || Session["listaPeleadores"] == null)
+                {
                     Session["listaPeleadores"] = null;
-
-                Session.Add("listaPeleadores", dn.obtenerPeleadoresTodos());
-                dgvPeleadores.DataSource = Session["listaPeleadores"];
-                dgvPeleadores.DataBind();
+                    Session.Add("listaPeleadores", pn.obtenerPeleadoresTodos());
+                    dgvPeleadores.DataSource = Session["listaPeleadores"];
+                    dgvPeleadores.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -62,12 +63,12 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Peleador p = pn.obtenerPeleadorPorId(Convert.ToInt32(id));
 
                 txtCodigo.Text = p.Codigo.ToString();
-                txtNombreCompleto.Text = p.NombreCompleto;
                 txtDojo.Text = p.Dojo.Nombre;
+                txtNombreCompleto.Text = p.NombreCompleto.ToString();
                 txtCategoria.Text = p.Categoria.Descripcion;
                 txtGenero.Text = p.Genero.GeneroPersona;
-                txtAltura.Text = p.Altura.ToString();
-                txtPeso.Text = p.Peso.ToString();
+                txtAltura.Text = (Convert.ToDecimal(p.Altura) / 100).ToString() + "M";
+                txtPeso.Text = p.Peso.ToString() + "KG";
                 txtCantidadPeleas.Text = p.CantidadPeleas.ToString();
                 string rutaImagen = Path.Combine(Server.MapPath("~/Fotos/"), id.ToString() + ".jpg");
 

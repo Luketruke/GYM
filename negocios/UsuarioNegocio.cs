@@ -1,6 +1,7 @@
 ﻿using dominios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,30 +10,39 @@ namespace negocios
 {
     public class UsuarioNegocio
     {
-        public bool Loguear(Usuario user)
+        public Usuario Loguear(Usuario user)
         {
-            ConexionSQL datos = new ConexionSQL();
+            ConexionSQL conexion = new ConexionSQL();
             try
             {
-                datos.setearQuery("SELECT Id FROM Usuarios WHERE Usuario = @user AND Contrasenia = @pass");
-                datos.setearParametro("@user", user.User);
-                datos.setearParametro("@pass", user.Contrasenia);
-                datos.ejecutarConexion();
-                while (datos.Lector.Read())
-                {
-                    user.Id = (int)datos.Lector["Id"];
-                    return true;
-                }
-                return false;
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("LoguearUsuario");
+                conexion.setearParametro("@user", user.User);
+                conexion.setearParametro("@pass", user.Contrasenia);
+                dt.Load(conexion.ejecutarConexion());
+
+                user.Id = Convert.ToInt32(dt.Rows[0]["Id"]);
+                user.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
+                user.User = dt.Rows[0]["Usuario"].ToString();
+                user.Contrasenia = dt.Rows[0]["Contrasenia"].ToString();
+
+                user.TipoUsuario = new TipoUsuario();
+                user.TipoUsuario.Id = Convert.ToInt32(dt.Rows[0]["IdTipoUsuario"]);
+                user.TipoUsuario.Descripcion = dt.Rows[0]["TipoUsuario"].ToString();
+
+                user.Dojo = new Dojo();
+                user.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
+                user.Dojo.Nombre = dt.Rows[0]["NombreDojo"].ToString();
+
+                return user;
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                return null;
             }
             finally
             {
-                datos.cerrarConexion();
+                conexion.cerrarConexion();
             }
         }
     }

@@ -2445,7 +2445,7 @@ INSERT INTO Categorias VALUES (3,'Profesional',1)
 
 CREATE TABLE Dojos(
     Id int PRIMARY KEY IDENTITY (1, 1),
-	Codigo int, 
+    Codigo int, 
     Nombre varchar(50),
     Direccion varchar(255),
     IdLocalidad int,
@@ -2474,7 +2474,7 @@ CREATE TABLE Peleadores (
     CantidadPeleas int,
     IdCategoria int not null,
     IdDojo int not null,
-	IdGenero int not null,
+    IdGenero int not null,
     Estado int NOT NULL
     FOREIGN KEY (IdCategoria) REFERENCES Categorias (Id),  
     FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
@@ -2487,7 +2487,10 @@ CREATE TABLE TipoPeleas(
     Estado int not null);
 
 INSERT INTO TipoPeleas VALUES (1,'MMA',1)
-INSERT INTO TipoPeleas VALUES (2,'Muay Thai',1)
+INSERT INTO TipoPeleas VALUES (2,'Kick Boxing',1)
+INSERT INTO TipoPeleas VALUES (3,'K-1',1)
+INSERT INTO TipoPeleas VALUES (4,'Boxeo',1)
+INSERT INTO TipoPeleas VALUES (5,'Exhibicion',1)
 
 CREATE TABLE TipoUsuarios(
     Id int PRIMARY KEY IDENTITY (1, 1),
@@ -2503,13 +2506,14 @@ CREATE TABLE Usuarios(
     Codigo int not null,
     Usuario varchar(40),
     Contrasenia varchar(40),
-	IdTipoUsuario int not null,
-	IdDojo int not null,
+    IdTipoUsuario int not null,
+    IdDojo int not null,
     Estado int not null
 	FOREIGN KEY (IdTipoUsuario) REFERENCES TipoUsuarios (Id),
 	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id));
 
 INSERT INTO Usuarios VALUES (1,'Administrador','Administrador',1,1,1)
+INSERT INTO Usuarios VALUES (2,'Cliente','Cliente',2,1,1)
 
 CREATE TABLE Peleas(
     Id int PRIMARY KEY IDENTITY (1, 1),
@@ -2518,8 +2522,7 @@ CREATE TABLE Peleas(
     IdPeleador2 int not null,
     IdDojo int not null,
     Observaciones VARCHAR(255),
-    FechaPelea DATETIME NOT NULL,
-	IdTipoPelea int not null,
+    IdTipoPelea int not null,
     Estado int not null
 	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
 	FOREIGN KEY (IdTipoPelea) REFERENCES TipoPeleas (Id));

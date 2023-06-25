@@ -13,8 +13,8 @@ namespace negocios
             try
             {
                 comando = new SqlCommand();
-                conexion = new SqlConnection("server=localhost; database=Gimnasio; integrated security=true;"); //Local
-                //conexion = new SqlConnection("server=WIN-K3KHU78QKDH; database=Gimnasio_Unlimited; integrated security=true;"); //Servidor        
+                //conexion = new SqlConnection("server=localhost; database=Gimnasio; integrated security=true;"); //Local
+                conexion = new SqlConnection("server=WIN-K3KHU78QKDH; database=Gimnasio_Unlimited; integrated security=true;"); //Servidor        
             }
             catch (Exception ex)
             {

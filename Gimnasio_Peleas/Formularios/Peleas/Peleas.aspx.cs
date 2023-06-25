@@ -22,12 +22,13 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 }
                 PeleasNegocio pn = new PeleasNegocio();
 
-                if (!IsPostBack)
+                if (!IsPostBack || Session["listaPeleas"] == null)
+                {
                     Session["listaPeleas"] = null;
-
-                Session.Add("listaPeleas", pn.obtenerPeleasTodas());
-                dgvPeleas.DataSource = Session["listaPeleas"];
-                dgvPeleas.DataBind();
+                    Session.Add("listaPeleas", pn.obtenerPeleasTodas());
+                    dgvPeleas.DataSource = Session["listaPeleas"];
+                    dgvPeleas.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -40,7 +41,17 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         }
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("PeleasABM.aspx?a=2&id=" + id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         protected void btnAbrirModalEliminarPelea_Click(object sender, EventArgs e)
         {

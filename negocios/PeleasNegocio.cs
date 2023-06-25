@@ -26,13 +26,20 @@ namespace negocios
                     p.Id = (int)conexion.Lector["Id"];
                     p.Codigo = (int)conexion.Lector["Codigo"];
                     p.Observaciones = (string)conexion.Lector["Observaciones"];
-                    p.FechaPelea = (DateTime)conexion.Lector["FechaPelea"];
 
                     p.Peleador1 = new Peleador();
+                    p.Peleador1.Id = (int)conexion.Lector["IdPeleador1"];
                     p.Peleador1.NombreCompleto = (string)conexion.Lector["Peleador1Nombre"];
+                    p.Peleador1.Dojo = new Dojo();
+                    p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
+                    p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
 
                     p.Peleador2 = new Peleador();
+                    p.Peleador2.Id = (int)conexion.Lector["IdPeleador2"];
                     p.Peleador2.NombreCompleto = (string)conexion.Lector["Peleador2Nombre"];
+                    p.Peleador2.Dojo = new Dojo();
+                    p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
+                    p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
 
                     p.Dojo = new Dojo();
                     p.Dojo.Id = (int)conexion.Lector["IdDojo"];
@@ -87,7 +94,7 @@ namespace negocios
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
                 conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
-                conexion.setearParametro("@FechaPelea", p.FechaPelea);
+                //conexion.setearParametro("@FechaPelea", p.FechaPelea);
                 conexion.ejecutarConexion();
 
                 return true;
@@ -186,7 +193,7 @@ namespace negocios
             }
         }
 
-        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1)
+        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, int FiltrarXCategoria, int FiltrarXAltura)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -194,6 +201,10 @@ namespace negocios
                 List<Peleador> lista = new List<Peleador>();
                 conexion.setearProcedure("ObtenerPeleadoresSimilares");
                 conexion.setearParametro("@IdPeleador1", IdPeleador1);
+                conexion.setearParametro("@FiltrarXPeso", FiltrarXPeso);
+                conexion.setearParametro("@FiltrarXPeleas", FiltrarXPeleas);
+                conexion.setearParametro("@FiltrarXCategoria", FiltrarXCategoria);
+                conexion.setearParametro("@FiltrarXAltura", FiltrarXAltura);
                 conexion.ejecutarConexion();
 
                 while (conexion.Lector.Read())
@@ -269,7 +280,7 @@ namespace negocios
 
                 p.Id = Convert.ToInt32(dt.Rows[0]["Id"]);
                 p.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
-                p.FechaPelea = Convert.ToDateTime(dt.Rows[0]["FechaPelea"]);
+                //p.FechaPelea = Convert.ToD ateTime(dt.Rows[0]["FechaPelea"]);
                 p.Observaciones = dt.Rows[0]["Observaciones"].ToString();
 
                 p.Dojo = new Dojo();
@@ -345,6 +356,34 @@ namespace negocios
             catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool modificarPelea(Pelea p)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarPelea");
+                conexion.setearParametro("@Id", p.Id);
+                conexion.setearParametro("@Codigo", p.Codigo);
+                conexion.setearParametro("@IdPeleador1", p.Peleador1.Id);
+                conexion.setearParametro("@IdPeleador2", p.Peleador2.Id);
+                conexion.setearParametro("@IdDojo", p.Dojo.Id);
+                conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
+                conexion.setearParametro("@Observaciones", p.Observaciones);
+                //conexion.setearParametro("@FechaPelea", p.FechaPelea);
+
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
             finally
             {

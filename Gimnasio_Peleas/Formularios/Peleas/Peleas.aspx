@@ -32,11 +32,11 @@
             <div class="col-md-12">
                 <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Peleador1" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Peleador2" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Dojo" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Fecha" DataField="FechaPelea" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Peleador 1" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Dojo P1" DataField="Peleador1.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Peleador 2" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Dojo P2" DataField="Peleador2.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Sede" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                         <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                             <ItemTemplate>
                                 <div class="d-flex justify-content-center align-items-center">
@@ -68,14 +68,7 @@
                     <h5 class="modal-title" id="miModalLabel">Pelea</h5>
                 </div>
                 <div class="modal-body">
-                    <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                    <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-
-                    <label for="txtNombre" class="form-label">Dojo</label>
-                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
-
-                    <label for="txtObservaciones" class="form-label">Observaciones</label>
-                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                    <label class="form-label" runat="server">En desarrollo</label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -91,7 +84,7 @@
                     <h5 class="modal-title" id="modalEliminarLabel">Confirmar eliminación</h5>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar el dojo?
+                    ¿Estás seguro de que deseas eliminar la pelea?
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />

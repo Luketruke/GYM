@@ -114,40 +114,40 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.Button btnModalPeleadoresSimilares;
 
         /// <summary>
-        /// Control txtFecha.
+        /// Control checkboxPeso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxPeso;
 
         /// <summary>
-        /// Control rfvFecha.
+        /// Control checkboxCantidadPeleas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFecha;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxCantidadPeleas;
 
         /// <summary>
-        /// Control txtHora.
+        /// Control checkboxCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHora;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxCategoria;
 
         /// <summary>
-        /// Control rfvHora.
+        /// Control checkboxAltura.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvHora;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxAltura;
 
         /// <summary>
         /// Control txtObservaciones.

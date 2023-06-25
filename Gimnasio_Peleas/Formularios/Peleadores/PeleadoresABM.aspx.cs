@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using dominios;
 using negocios;
 using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Gimnasio_Peleas.Formularios.Peleadores
 {
@@ -133,20 +135,33 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Genero = new Genero();
                 p.Genero.Id = Convert.ToInt32(ddlGeneros.SelectedValue);
 
-                if (fileUpload.HasFile)
-                {
-                    string rutaArchivo = Server.MapPath("~/Fotos/" + fileUpload.FileName);
-                    fileUpload.SaveAs(rutaArchivo);
-                }
-
                 int IdNuevoPeleador = pn.agregarPeleador(p);
 
                 if (IdNuevoPeleador > 0)
                 {
                     if (fileUpload.HasFile)
                     {
-                        string rutaArchivo = Server.MapPath("~/Fotos/" + IdNuevoPeleador + Path.GetExtension(this.fileUpload.FileName));
-                        fileUpload.SaveAs(rutaArchivo);
+                        string rutaArchivoRedimensionado = Server.MapPath("~/Fotos/" + IdNuevoPeleador + Path.GetExtension(this.fileUpload.FileName));
+                        string rutaArchivoOriginal = Server.MapPath("~/Fotos/" + IdNuevoPeleador + "_Original" + Path.GetExtension(this.fileUpload.FileName));
+
+                        if (File.Exists(rutaArchivoOriginal))
+                            File.Delete(rutaArchivoOriginal);
+
+                        fileUpload.SaveAs(rutaArchivoOriginal);
+
+                        using (var imagenOriginal = System.Drawing.Image.FromFile(rutaArchivoOriginal))
+                        {
+                            using (var imagenRedimensionada = new Bitmap(500, 600)) //Ancho y alto
+                            {
+                                using (var g = Graphics.FromImage(imagenRedimensionada))
+                                {
+                                    g.DrawImage(imagenOriginal, 0, 0, 500, 600); //Ancho y alto
+                                }
+                                imagenRedimensionada.Save(rutaArchivoRedimensionado);
+                            }
+                        }
+                        // Eliminar el archivo nuevo sin redimencionar
+                        File.Delete(rutaArchivoOriginal);
                     }
                     Response.Redirect("Peleadores.aspx");
                 }
@@ -181,14 +196,27 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                 if (fileUpload.HasFile)
                 {
-                    string rutaArchivo = Server.MapPath("~/Fotos/" + p.Id + Path.GetExtension(this.fileUpload.FileName));
+                    string rutaArchivoRedimensionado = Server.MapPath("~/Fotos/" + p.Id + Path.GetExtension(this.fileUpload.FileName));
+                    string rutaArchivoOriginal = Server.MapPath("~/Fotos/" + p.Id + "_Original" + Path.GetExtension(this.fileUpload.FileName));
 
-                    if (File.Exists(rutaArchivo))
+                    if (File.Exists(rutaArchivoOriginal))
+                        File.Delete(rutaArchivoOriginal);
+
+                    fileUpload.SaveAs(rutaArchivoOriginal);
+
+                    using (var imagenOriginal = System.Drawing.Image.FromFile(rutaArchivoOriginal))
                     {
-                        File.Delete(rutaArchivo);
+                        using (var imagenRedimensionada = new Bitmap(500, 600)) //Ancho y alto
+                        {
+                            using (var g = Graphics.FromImage(imagenRedimensionada))
+                            {
+                                g.DrawImage(imagenOriginal, 0, 0, 500, 600); //Ancho y alto
+                            }
+                            imagenRedimensionada.Save(rutaArchivoRedimensionado);
+                        }
                     }
-
-                    fileUpload.SaveAs(rutaArchivo);
+                    // Eliminar el archivo nuevo sin redimencionar
+                    File.Delete(rutaArchivoOriginal);
                 }
 
                 if (pn.modificarPeleador(p))
@@ -210,7 +238,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 pn.eliminarPeleador(Convert.ToInt32(id));
-                //Session["alerta"] = "eliminado";
                 Session["listaPeleadores"] = null;
                 Response.Redirect("Peleadores.aspx");
             }
@@ -221,7 +248,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            //Session["alerta"] = "cancelado";
             Response.Redirect("Peleadores.aspx");
         }
     }

@@ -34,8 +34,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 {
                     divCodigo.Visible = false;
                     //Cargo la hora a las variables
-                    txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    txtHora.Text = DateTime.Now.ToString("HH:mm");
+                    //txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    //txtHora.Text = DateTime.Now.ToString("HH:mm");
 
                     if (ddlDojos.Items.Count == 0)
                     {
@@ -45,7 +45,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         ddlDojos.DataValueField = "IdDojo";
                         ddlDojos.DataBind();
 
-                        ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                        ddlDojos.Items.Insert(0, new ListItem("Seleccione sede...", "0"));
                     }
 
                     if (ddlTipoPeleas.Items.Count == 0)
@@ -67,13 +67,55 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         ddlPeleador1.DataValueField = "Id";
                         ddlPeleador1.DataBind();
 
-                        ddlPeleador1.Items.Insert(0, new ListItem("Seleccione primer peleador...", "0"));
+                        ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
                     }
                 }
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 2 && !IsPostBack) //Modificar
                 {
-                    //Desarrollar
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    List<Pelea> temp = (List<Pelea>)Session["listaPeleas"];
+                    Pelea selected = temp.Find(x => x.Id == id);
+
+                    DataTable dtDojos = dn.obtenerDojos();
+                    DataTable dtModalidades = pn.obtenerTipoPeleas();
+                    DataTable dtPeleador1 = pn.obtenerPeleadores1();
+                    DataTable dtPeleador2 = pn.obtenerPeleadores2(selected.Peleador1.Id);
+
+                    foreach (DataRow r in dtDojos.Rows)
+                    {
+                        li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());
+                        ddlDojos.Items.Add(li);
+                    }
+
+                    foreach (DataRow r in dtModalidades.Rows)
+                    {
+                        li = new ListItem(r["TipoPelea"].ToString(), r["IdTipoPelea"].ToString());
+                        ddlTipoPeleas.Items.Add(li);
+                    }
+
+                    foreach (DataRow r in dtPeleador1.Rows)
+                    {
+                        li = new ListItem(r["DatosDDL"].ToString(), r["Id"].ToString());
+                        ddlPeleador1.Items.Add(li);
+                    }
+
+                    foreach (DataRow r in dtPeleador2.Rows)
+                    {
+                        li = new ListItem(r["DatosDDL"].ToString(), r["Id"].ToString());
+                        ddlPeleador2.Items.Add(li);
+                    }
+
+                    btnAgregar.Visible = false;
+                    btnModificar.Visible = true;
+                    txtCodigo.Text = selected.Codigo.ToString();
+                    ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
+                    ddlTipoPeleas.SelectedValue = selected.TipoPelea.Id.ToString();
+                    ddlPeleador1.SelectedValue = selected.Peleador1.Id.ToString();
+                    ddlPeleador2.SelectedValue = selected.Peleador2.Id.ToString();
+                    //txtFecha.Text = selected.FechaPelea.ToString("yyyy-MM-dd");
+                    //txtHora.Text = selected.FechaPelea.ToString("HH:mm");                    
+                    txtObservaciones.Text = selected.Observaciones;
                 }
             }
             catch (Exception ex)
@@ -97,7 +139,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     ddlPeleador1.DataValueField = "Id";
                     ddlPeleador1.DataBind();
 
-                    ddlPeleador1.Items.Insert(0, new ListItem("Seleccione primer peleador...", "0"));
+                    ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
                 }
                 else
                 {
@@ -126,7 +168,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     ddlPeleador2.DataValueField = "Id";
                     ddlPeleador2.DataBind();
 
-                    ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
+                    ddlPeleador2.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
                 }
                 else
                 {
@@ -145,7 +187,14 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             {
                 PeleasNegocio pn = new PeleasNegocio();
 
-                dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue));
+                int FiltrarXPeso, FiltrarXPeleas, FiltrarXCategoria, FiltrarXAltura;
+
+                if (checkboxPeso.Checked) FiltrarXPeso = 1; else FiltrarXPeso = 0;
+                if (checkboxCantidadPeleas.Checked) FiltrarXPeleas = 1; else FiltrarXPeleas = 0;
+                if (checkboxCategoria.Checked) FiltrarXCategoria = 1; else FiltrarXCategoria = 0;
+                if (checkboxAltura.Checked) FiltrarXAltura = 1; else FiltrarXAltura = 0;
+
+                dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue), FiltrarXPeso, FiltrarXPeleas, FiltrarXCategoria, FiltrarXAltura);
                 dgvPeleadoresSimilares.DataBind();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresSimilares = new bootstrap.Modal(document.getElementById('modalPeleadoresSimilares')); modalPeleadoresSimilares.show();</script>", false);
@@ -205,8 +254,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            //Session["alerta"] = "cancelado";
-            Response.Redirect("Peleadores.aspx");
+            Response.Redirect("Peleas.aspx");
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -227,15 +275,55 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
 
-                string dateValue = txtFecha.Text;
-                string timeValue = txtHora.Text;
+                //string dateValue = txtFecha.Text;
+                //string timeValue = txtHora.Text;
 
-                DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+                //DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
 
-                p.FechaPelea = dateTime;
+                //p.FechaPelea = dateTime;
                 p.Observaciones = txtObservaciones.Text;
 
                 if (pn.agregarPelea(p))
+                {
+                    Response.Redirect("Peleas.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PeleasNegocio pn = new PeleasNegocio();
+                Pelea p = new Pelea();
+
+                p.Id = Convert.ToInt32(Request.QueryString["id"]);
+                p.Codigo = Convert.ToInt32(txtCodigo.Text);
+
+                p.Peleador1 = new Peleador();
+                p.Peleador1.Id = Convert.ToInt32(ddlPeleador1.SelectedValue);
+
+                p.Peleador2 = new Peleador();
+                p.Peleador2.Id = Convert.ToInt32(ddlPeleador2.SelectedValue);
+
+                p.Dojo = new Dojo();
+                p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
+
+                p.TipoPelea = new TipoPelea();
+                p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
+
+                //string dateValue = txtFecha.Text;
+                //string timeValue = txtHora.Text;
+
+                //DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+
+                //p.FechaPelea = dateTime;
+                p.Observaciones = txtObservaciones.Text;
+
+                if (pn.modificarPelea(p))
                 {
                     Response.Redirect("Peleas.aspx");
                 }

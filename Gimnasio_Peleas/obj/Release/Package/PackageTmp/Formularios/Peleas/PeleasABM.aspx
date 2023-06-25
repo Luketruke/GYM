@@ -11,7 +11,6 @@
 
     <br />
     <h1 style="text-align: center;"><%: Title %>Peleas</h1>
-    <br />
 
     <div>
         <div class="row">
@@ -24,14 +23,14 @@
                 </div>
 
                 <div>
-                    <label for="ddlDojos" class="form-label">Sede de la pelea</label>
+                    <label for="ddlDojos" class="form-label">Sede</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione dojo..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione sede..."></asp:RequiredFieldValidator>
                 </div>
 
                 <div>
-                    <label for="ddlTipoPeleas" class="form-label">Modalidad de la pelea</label>
+                    <label for="ddlTipoPeleas" class="form-label">Modalidad</label>
                     <asp:DropDownList ID="ddlTipoPeleas" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlTipoPeleas"
                         ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione modalidad..."></asp:RequiredFieldValidator>
@@ -40,7 +39,7 @@
                 <div class="row">
                     <div>
                         <div style="display: flex; flex-direction: column;">
-                            <label for="txtPeleador1" class="form-label">Primer peleador</label>
+                            <label for="txtPeleador1" class="form-label">Rincon rojo</label>
                             <div style="display: flex;">
                                 <asp:TextBox runat="server" ID="txtPeleador1" class="form-control" placeholder="Buscar peleador..." onkeypress="javascript:return SoloLetras(event)" Style="margin-right: 5px;" />
                                 <asp:LinkButton ID="btnBuscarPeleador1" runat="server" CssClass="btn btn-info" OnClick="btnBuscarPeleador1_Click" data-toggle="tooltip" ToolTip="Filtrar">
@@ -51,14 +50,14 @@
                         <asp:DropDownList ID="ddlPeleador1" CssClass="form-select mt-2" runat="server" OnSelectedIndexChanged="ddlPeleador1_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="ValidarPelea">
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador1"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador 1..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="row">
                     <div>
                         <div style="display: flex; flex-direction: column;">
-                            <label for="txtPeleador2" class="form-label">Segundo peleador</label>
+                            <label for="txtPeleador2" class="form-label">Rincon azul</label>
                             <div style="display: flex;">
                                 <asp:TextBox runat="server" ID="txtPeleador2" class="form-control" placeholder="Buscar peleador..." onkeypress="javascript:return SoloLetras(event)" Style="margin-right: 5px;"></asp:TextBox>
                                 <asp:LinkButton ID="btnBuscarPeleador2" runat="server" CssClass="btn btn-info" OnClick="btnBuscarPeleador2_Click" AutoPostBack="true" data-toggle="tooltip" ToolTip="Filtrar">
@@ -66,17 +65,44 @@
                                 </asp:LinkButton>
                             </div>
                         </div>
-
                         <div style="display: flex;">
                             <asp:DropDownList ID="ddlPeleador2" CssClass="form-select mt-2" runat="server" AutoPostBack="true" ValidationGroup="ValidarPelea" Style="margin-right: 5px;"></asp:DropDownList>
-                            <asp:Button ID="btnModalPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnModalPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" />
+                            <asp:Button ID="btnModalPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnModalPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" data-bs-toggle="tooltip" ToolTip="Filtrar"/>
                         </div>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador2"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador 2..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
-                <div class="mb-0" style="display: flex; align-items: center;">
+                <label class="form-label">Filtros para peleadores similares</label>
+                <div class="form-check-container" style="flex: 1px; margin-bottom:15px;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxPeso" runat="server" />
+                            <label class="form-check-label" for="checkboxPeso">
+                                Peso similar
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxCantidadPeleas" runat="server" />
+                            <label class="form-check-label" for="checkboxCantidadPeleas">
+                                Misma cantidad de peleas
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxCategoria" runat="server" />
+                            <label class="form-check-label" for="checkboxCategoria">
+                                Misma categoría
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="checkboxAltura" runat="server" />
+                            <label class="form-check-label" for="checkboxAltura">
+                                Altura similar
+                            </label>
+                        </div>
+                    </div>
+ 
+                <%--<div class="mb-0" style="display: flex; align-items: center;">
                     <div style="flex: 1;">
                         <label for="txtFecha">Fecha</label>
                         <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" type="date"></asp:TextBox>
@@ -90,17 +116,16 @@
                         <asp:RequiredFieldValidator runat="server" ID="rfvHora" ControlToValidate="txtHora" ErrorMessage="*" ValidationGroup="ValidarPelea"
                             CssClass="text-danger"></asp:RequiredFieldValidator>
                     </div>
-                </div>
-
+                </div>--%>
 
                 <div class="mb-3">
-                    <label for="txtObservaciones" class="form-label">Observaciones</label>
+                    <label for="txtObservaciones" class="form-label">Observaciones para la pelea</label>
                     <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="5" />
                 </div>
 
                 <div class="mb-0">
                     <asp:Button ID="btnAgregar" ValidationGroup="ValidarPelea" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
-                    <asp:Button ID="btnModificar" ValidationGroup="ValidarPelea" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
+                    <asp:Button ID="btnModificar" ValidationGroup="ValidarPelea" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
                     <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
 
@@ -187,5 +212,11 @@
         function SoloLetras(e) {
             return (/^[a-zA-Z ]*$/.test(e.key));
         }
+    </script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 </asp:Content>

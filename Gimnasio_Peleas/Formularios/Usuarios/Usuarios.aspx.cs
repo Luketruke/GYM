@@ -13,5 +13,25 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
         {
 
         }
+
+        protected void btnAbrirModalEliminarUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

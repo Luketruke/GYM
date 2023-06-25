@@ -18,11 +18,11 @@ namespace Gimnasio_Peleas
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             Usuario user;
-            UsuarioNegocio negocio = new UsuarioNegocio();
+            UsuarioNegocio un = new UsuarioNegocio();
             try
             {
                 user = new Usuario(txtUsername.Text, txtPassword.Text);
-                if (negocio.Loguear(user))
+                if (un.Loguear(user) != null)
                 {
                     Session.Add("Usuario", user);
                     Response.Redirect("../../Default.aspx", false);

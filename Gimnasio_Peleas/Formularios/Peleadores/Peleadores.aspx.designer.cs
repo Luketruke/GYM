@@ -78,24 +78,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.TextBox txtCategoria;
 
         /// <summary>
-        /// Control txtGenero.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGenero;
-
-        /// <summary>
-        /// Control txtCantidadPeleas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidadPeleas;
-
-        /// <summary>
         /// Control txtPeso.
         /// </summary>
         /// <remarks>
@@ -121,6 +103,24 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image ImageDetalle;
+
+        /// <summary>
+        /// Control txtCantidadPeleas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadPeleas;
+
+        /// <summary>
+        /// Control txtGenero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGenero;
 
         /// <summary>
         /// Control btnCancelar.

@@ -2,4 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+<script type="text/javascript">
+        document.title = 'Gimnasio';
+</script>
+
 </asp:Content>
