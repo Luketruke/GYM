@@ -5,24 +5,19 @@
     <%--CSS--%>
     <link href="~/Stylesheets/peleadores.css" rel="stylesheet" />
 
+
     <script type="text/javascript">
         document.title = 'PeleadoresABM';
     </script>
 
     <br />
-    <h1 style="text-align: center;"><%: Title %>PeleadoresABM</h1>
+    <h1 style="text-align: center;"><%: Title %>Peleadores</h1>
 
     <div>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <div class="mb-0" runat="server" id="divCodigo">
-                    <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                    <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-                    <br />
-                </div>
-
                 <div class="mb-0">
                     <label for="txtNombre" class="form-label">Nombres</label>
                     <asp:TextBox runat="server" ID="txtNombre" MaxLength="50" class="form-control" />
@@ -38,7 +33,7 @@
                 </div>
 
                 <div>
-                    <label for="ddlDojos" class="form-label">Dojo</label>
+                    <label for="ddlDojos" class="form-label">Team</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
                         ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione dojo..."></asp:RequiredFieldValidator>
@@ -49,6 +44,13 @@
                     <asp:DropDownList ID="ddlCategorias" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlCategorias"
                         ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione categoria..."></asp:RequiredFieldValidator>
+                </div>
+
+                <div>
+                    <label for="ddlModalidades" class="form-label">Modalidad</label>
+                    <asp:DropDownList ID="ddlModalidades" CssClass="form-select" runat="server"></asp:DropDownList>
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlModalidades"
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione modalidad..."></asp:RequiredFieldValidator>
                 </div>
 
                 <div>
@@ -66,6 +68,12 @@
                     </div>
                     <div style="width: 10px;"></div>
                     <div style="flex: 1;">
+                        <label for="txtEdad" class="form-label">Edad</label>
+                        <asp:TextBox runat="server" ID="txtEdad" MaxLength="2" class="form-control" onkeypress="javascript:return validarSoloNro(event)" />
+                        <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtEdad" ErrorMessage="*" ValidationGroup="ValidarPeleador"></asp:RequiredFieldValidator>
+                    </div>                  
+                    <div style="width: 10px;"></div>
+                    <div style="flex: 1;">
                         <label for="txtAltura" class="form-label">Altura en CM</label>
                         <asp:TextBox runat="server" ID="txtAltura" MaxLength="3" class="form-control" onkeypress="javascript:return validarSoloNro(event)" />
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtAltura" ErrorMessage="*" ValidationGroup="ValidarPeleador"></asp:RequiredFieldValidator>
@@ -73,7 +81,7 @@
                     <div style="width: 10px;"></div>
                     <div style="flex: 1;">
                         <label for="txtCantidadPeleas" class="form-label">Cantidad de Peleas</label>
-                        <asp:TextBox runat="server" ID="txtCantidadPeleas" MaxLength="4" class="form-control" onkeypress="javascript:return validarSoloNro(event)" />
+                        <asp:TextBox runat="server" ID="txtCantidadPeleas" MaxLength="5" class="form-control" onkeypress="javascript:return validarSoloNro(event)" />
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtCantidadPeleas" ErrorMessage="*" ValidationGroup="ValidarPeleador"></asp:RequiredFieldValidator>
                     </div>
                 </div>

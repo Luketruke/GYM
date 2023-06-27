@@ -62,12 +62,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 PeleadoresNegocio pn = new PeleadoresNegocio();
                 Peleador p = pn.obtenerPeleadorPorId(Convert.ToInt32(id));
 
-                txtCodigo.Text = p.Codigo.ToString();
+                miModalLabel.InnerText = p.NombreCompleto.ToString();
                 txtDojo.Text = p.Dojo.Nombre;
-                txtNombreCompleto.Text = p.NombreCompleto.ToString();
                 txtCategoria.Text = p.Categoria.Descripcion;
+                txtModalidad.Text = p.TipoPelea.Descripcion;
                 txtGenero.Text = p.Genero.GeneroPersona;
                 txtAltura.Text = (Convert.ToDecimal(p.Altura) / 100).ToString() + "M";
+                txtEdad.Text = p.Edad.ToString();
                 txtPeso.Text = p.Peso.ToString() + "KG";
                 txtCantidadPeleas.Text = p.CantidadPeleas.ToString();
                 string rutaImagen = Path.Combine(Server.MapPath("~/Fotos/"), id.ToString() + ".jpg");

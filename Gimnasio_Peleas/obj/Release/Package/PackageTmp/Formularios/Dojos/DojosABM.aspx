@@ -11,25 +11,39 @@
 
     <br />
 
-    <h1 style="text-align: center;"><%: Title %>Dojos</h1>
-    <br />
+    <h1 style="text-align: center;"><%: Title %>Team</h1>
 
     <div>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <div class="mb-0" runat="server" id="divCodigo">
-                    <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                    <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-                    <br />
-                </div>
-
                 <div class="mb-0">
                     <label for="txtNombre" class="form-label">Nombre</label>
                     <asp:TextBox runat="server" ID="txtNombre" MaxLength="50" class="form-control" />
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
                         ControlToValidate="txtNombre" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
+                </div>
+
+                <div class="mb-0">
+                    <label for="txtProfesor" class="form-label">Profesor</label>
+                    <asp:TextBox runat="server" ID="txtProfesor" MaxLength="50" class="form-control" />
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
+                        ControlToValidate="txtProfesor" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
+                </div>
+
+                <div class="mb-0">
+                    <label for="txtTelefonoProfesor" class="form-label">Telefono del Profesor</label>
+                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" MaxLength="50" class="form-control" />
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
+                        ControlToValidate="txtTelefonoProfesor" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
+                </div>
+
+                <div class="mb-0">
+                    <label for="txtTelefonoDojo" class="form-label">Telefono del Team</label>
+                    <asp:TextBox runat="server" ID="txtTelefonoDojo" MaxLength="50" class="form-control" />
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
+                        ControlToValidate="txtTelefonoDojo" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0" style="margin-bottom: 0;">
@@ -58,7 +72,7 @@
                 </asp:UpdatePanel>
 
                  <div class="mb-3">
-                    <label for="txtObservaciones" class="form-label">Observaciones del dojo</label>
+                    <label for="txtObservaciones" class="form-label">Observaciones</label>
                     <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="5" />
                 </div>
 

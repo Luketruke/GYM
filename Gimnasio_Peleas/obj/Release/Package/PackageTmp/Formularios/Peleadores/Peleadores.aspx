@@ -40,11 +40,10 @@
                     <div class="col-md-12">
                         <asp:GridView runat="server" ID="dgvPeleadores" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                             <Columns>
-                                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                                 <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                                 <asp:BoundField HeaderText="Categoría" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                                 <asp:BoundField HeaderText="Cantidad de Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Dojo" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Team" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                                 <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                                     <ItemTemplate>
                                         <div class="d-flex justify-content-center align-items-center">
@@ -73,25 +72,25 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="miModalLabel">Peleador</h5>
+                            <h5 class="modal-title" id="miModalLabel" runat="server">Informacion del peleador</h5>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                                    <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-
-                                    <label for="txtNombreCompleto" class="form-label">Nombre</label>
-                                    <asp:TextBox runat="server" ID="txtNombreCompleto" class="form-control" disabled="" />
-
-                                    <label for="txtDojo" class="form-label">Dojo</label>
+                                    <label for="txtDojo" class="form-label">Team</label>
                                     <asp:TextBox runat="server" ID="txtDojo" class="form-control" disabled="" />
 
                                     <label for="txtCategoria" class="form-label">Categoria</label>
                                     <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" />
 
+                                    <label for="txtModalidad" class="form-label">Modalidad</label>
+                                    <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" />
+
                                     <label for="txtPeso" class="form-label">Peso</label>
                                     <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
+
+                                    <label for="txtEdad" class="form-label">Edad</label>
+                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" />
 
                                     <label for="txtAltura" class="form-label">Altura</label>
                                     <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />

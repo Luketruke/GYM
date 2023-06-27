@@ -15,24 +15,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
     {
 
         /// <summary>
-        /// Control divCodigo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCodigo;
-
-        /// <summary>
-        /// Control txtCodigo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigo;
-
-        /// <summary>
         /// Control ddlDojos.
         /// </summary>
         /// <remarks>
@@ -123,6 +105,33 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxPeso;
 
         /// <summary>
+        /// Control txtFiltroPeso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroPeso;
+
+        /// <summary>
+        /// Control checkboxEdad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxEdad;
+
+        /// <summary>
+        /// Control txtFiltroEdad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroEdad;
+
+        /// <summary>
         /// Control checkboxCantidadPeleas.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxCantidadPeleas;
+
+        /// <summary>
+        /// Control txtFiltroCantidadPeleas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroCantidadPeleas;
 
         /// <summary>
         /// Control checkboxCategoria.
@@ -141,13 +159,13 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxCategoria;
 
         /// <summary>
-        /// Control checkboxAltura.
+        /// Control checkboxModalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxAltura;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox checkboxModalidad;
 
         /// <summary>
         /// Control txtObservaciones.

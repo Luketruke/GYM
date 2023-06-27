@@ -45,5 +45,64 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public List<Usuario> obtenerUsuariosTodos() //Para llenar las tables
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                List<Usuario> lista = new List<Usuario>();
+                conexion.setearProcedure("ObtenerUsuariosTodos");
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    Usuario u = new Usuario();
+
+                    u.Id = (int)conexion.Lector["IdDojo"];
+                    u.Codigo = (int)conexion.Lector["Codigo"];
+                    u.User = (string)conexion.Lector["Usuario"];
+                    u.Contrasenia = (string)conexion.Lector["Contrasenia"];
+
+                    u.TipoUsuario = new TipoUsuario();
+                    u.TipoUsuario.Id = (int)conexion.Lector["IdTipoUsuario"];
+                    u.TipoUsuario.Descripcion = (string)conexion.Lector["TipoUsuario"];
+
+                    u.Dojo = new Dojo();
+                    u.Dojo.Id = (int)conexion.Lector["IdDojo"];
+                    u.Dojo.Nombre = (string)conexion.Lector["Dojo"];
+
+                    lista.Add(u);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool eliminarUsuario(int IdUsuario)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("EliminarUsuario");
+                conexion.setearParametro("@IdUsuario", IdUsuario);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

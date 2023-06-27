@@ -42,22 +42,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.GridView dgvPeleadores;
 
         /// <summary>
-        /// Control txtCodigo.
+        /// Control miModalLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigo;
-
-        /// <summary>
-        /// Control txtNombreCompleto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCompleto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl miModalLabel;
 
         /// <summary>
         /// Control txtDojo.
@@ -78,6 +69,15 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.TextBox txtCategoria;
 
         /// <summary>
+        /// Control txtModalidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtModalidad;
+
+        /// <summary>
         /// Control txtPeso.
         /// </summary>
         /// <remarks>
@@ -85,6 +85,15 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPeso;
+
+        /// <summary>
+        /// Control txtEdad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEdad;
 
         /// <summary>
         /// Control txtAltura.

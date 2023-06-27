@@ -32,10 +32,10 @@
             <div class="col-md-12">
                 <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                     <Columns>
-                        <asp:BoundField HeaderText="Peleador 1" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Dojo P1" DataField="Peleador1.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Peleador 2" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Dojo P2" DataField="Peleador2.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Rincon Rojo" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Team" DataField="Peleador1.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Rincon Azul" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Team" DataField="Peleador2.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                         <asp:BoundField HeaderText="Sede" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                         <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                             <ItemTemplate>

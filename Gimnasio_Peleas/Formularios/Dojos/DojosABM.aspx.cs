@@ -25,12 +25,9 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();
-                txtCodigo.Text = Request.QueryString["id"];
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
-                    divCodigo.Visible = false;
-
                     if (ddlProvincias.Items.Count == 0)
                     {
                         DataTable provincias = dn.obtenerProvincias();
@@ -65,10 +62,12 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                     Dojo selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    txtCodigo.Text = selected.Codigo.ToString();
                     txtNombre.Text = selected.Nombre;
                     txtObservaciones.Text = selected.Observaciones;
                     txtDireccion.Text = selected.Direccion.DireccionDojo;
+                    txtProfesor.Text = selected.NombreProfesor;
+                    txtTelefonoProfesor.Text = selected.TelefonoProfesor;
+                    txtTelefonoDojo.Text = selected.TelefonoDojo;
                     ddlProvincias.SelectedValue = selected.Direccion.IdProvincia.ToString();
                     ddlLocalidades.SelectedValue = selected.Direccion.IdLocalidad.ToString();
                 }
@@ -108,7 +107,10 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             {
                 DojosNegocio dn = new DojosNegocio();
                 Dojo d = new Dojo();
-                d.Nombre = txtNombre.Text;
+                d.Nombre = txtNombre.Text;     
+                d.NombreProfesor = txtProfesor.Text;
+                d.TelefonoProfesor = txtTelefonoProfesor.Text;
+                d.TelefonoDojo = txtTelefonoDojo.Text;
                 d.Observaciones = txtObservaciones.Text;
 
                 d.Direccion = new Direccion();
@@ -135,6 +137,9 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
                 d.Id = Convert.ToInt32(Request.QueryString["id"]);
                 d.Nombre = txtNombre.Text;
+                d.NombreProfesor = txtProfesor.Text;
+                d.TelefonoProfesor = txtTelefonoProfesor.Text;
+                d.TelefonoDojo = txtTelefonoDojo.Text;
                 d.Observaciones = txtObservaciones.Text;
 
                 d.Direccion = new Direccion();

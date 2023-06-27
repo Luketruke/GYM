@@ -94,7 +94,6 @@ namespace negocios
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
                 conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
-                //conexion.setearParametro("@FechaPelea", p.FechaPelea);
                 conexion.ejecutarConexion();
 
                 return true;
@@ -193,7 +192,7 @@ namespace negocios
             }
         }
 
-        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, int FiltrarXCategoria, int FiltrarXAltura)
+        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, int FiltrarXEdad, int FiltrarXCategoria, int FiltrarXModalidad, decimal Peso, int Edad, int CantidadPeleas)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -203,8 +202,12 @@ namespace negocios
                 conexion.setearParametro("@IdPeleador1", IdPeleador1);
                 conexion.setearParametro("@FiltrarXPeso", FiltrarXPeso);
                 conexion.setearParametro("@FiltrarXPeleas", FiltrarXPeleas);
+                conexion.setearParametro("@FiltrarXEdad", FiltrarXEdad);
                 conexion.setearParametro("@FiltrarXCategoria", FiltrarXCategoria);
-                conexion.setearParametro("@FiltrarXAltura", FiltrarXAltura);
+                conexion.setearParametro("@FiltrarXModalidad", FiltrarXModalidad);
+                conexion.setearParametro("@PesoFiltro", Peso);
+                conexion.setearParametro("@EdadFiltro", Edad);
+                conexion.setearParametro("@CantidadPeleasFitro", CantidadPeleas);
                 conexion.ejecutarConexion();
 
                 while (conexion.Lector.Read())
@@ -217,12 +220,19 @@ namespace negocios
                     p.Apellido = (string)conexion.Lector["Apellido"];
                     p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
                     p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.Edad = (int)conexion.Lector["Edad"];
                     p.Altura = (int)conexion.Lector["Altura"];
+                    p.AlturaTexto = (Convert.ToDecimal(p.Altura) / 100).ToString() + "M";
+                    p.PesoTexto = p.Peso.ToString() + "KG";
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
 
                     p.Categoria = new Categoria();
                     p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
                     p.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
 
                     p.Dojo = new Dojo();
                     p.Dojo.Id = (int)conexion.Lector["IdDojo"];
@@ -300,7 +310,11 @@ namespace negocios
                 p.Peleador1.Categoria = new Categoria();
                 p.Peleador1.Categoria.Id = (int)conexion.Lector["IdCategoriaP1"];
                 p.Peleador1.Categoria.Descripcion = (string)conexion.Lector["CategoriaP1"];
-  
+
+                p.Peleador1.TipoPelea = new TipoPelea();
+                p.Peleador1.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP1"];
+                p.Peleador1.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP1"];
+
                 p.Peleador1.Dojo = new Dojo();
                 p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
                 p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
@@ -322,7 +336,11 @@ namespace negocios
                 p.Peleador2.Categoria = new Categoria();
                 p.Peleador2.Categoria.Id = (int)conexion.Lector["IdCategoriaP2"];
                 p.Peleador2.Categoria.Descripcion = (string)conexion.Lector["CategoriaP2"];
-                          
+
+                p.Peleador2.TipoPelea = new TipoPelea();
+                p.Peleador2.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP2"];
+                p.Peleador2.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP2"];
+
                 p.Peleador2.Dojo = new Dojo();
                 p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
                 p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
@@ -369,13 +387,11 @@ namespace negocios
             {
                 conexion.setearProcedure("ModificarPelea");
                 conexion.setearParametro("@Id", p.Id);
-                conexion.setearParametro("@Codigo", p.Codigo);
                 conexion.setearParametro("@IdPeleador1", p.Peleador1.Id);
                 conexion.setearParametro("@IdPeleador2", p.Peleador2.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@Observaciones", p.Observaciones);
-                //conexion.setearParametro("@FechaPelea", p.FechaPelea);
 
                 conexion.ejecutarConexion();
 

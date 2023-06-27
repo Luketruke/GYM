@@ -32,10 +32,9 @@
             <div class="col-md-12">
                 <asp:GridView runat="server" ID="dgvUsuarios" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                     <Columns>
-                        <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Usuario" DataField="Usuario" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Password" DataField="Password" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                        <asp:BoundField HeaderText="Tipo Usuario" DataField="Usuario.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Usuario" DataField="User" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Password" DataField="Contrasenia" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                        <asp:BoundField HeaderText="Tipo Usuario" DataField="TipoUsuario.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                         <asp:BoundField HeaderText="Dojo" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                         <asp:TemplateField HeaderText="Acción" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                             <ItemTemplate>

@@ -10,6 +10,7 @@ namespace dominios
     {
         public int Id { get; set; }
         public string DireccionDojo { get; set; }
+        public string DireccionCompleta { get; set; }
         public string Localidad { get; set; }
         public int IdLocalidad { get; set; }
         public string Provincia { get; set; }

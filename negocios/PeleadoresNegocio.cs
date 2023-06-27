@@ -30,11 +30,16 @@ namespace negocios
                     p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
                     p.Peso = (decimal)conexion.Lector["Peso"];
                     p.Altura = (int)conexion.Lector["Altura"];
+                    p.Edad = (int)conexion.Lector["Edad"];
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
 
                     p.Categoria = new Categoria();
                     p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
                     p.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
 
                     p.Dojo = new Dojo();
                     p.Dojo.Id = (int)conexion.Lector["IdDojo"];
@@ -75,12 +80,17 @@ namespace negocios
                 p.Apellido = dt.Rows[0]["Apellido"].ToString();
                 p.NombreCompleto = dt.Rows[0]["NombreCompleto"].ToString();
                 p.Peso = Convert.ToInt32(dt.Rows[0]["Peso"]);
+                p.Edad = Convert.ToInt32(dt.Rows[0]["Edad"]);
                 p.Altura = Convert.ToInt32(dt.Rows[0]["Altura"]);
                 p.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleas"]);
 
                 p.Categoria = new Categoria();
                 p.Categoria.Descripcion = dt.Rows[0]["Categoria"].ToString();
                 p.Categoria.Id = Convert.ToInt32(dt.Rows[0]["IdCategoria"]);
+
+                p.TipoPelea = new TipoPelea();
+                p.TipoPelea.Descripcion = dt.Rows[0]["TipoPelea"].ToString();
+                p.TipoPelea.Id = Convert.ToInt32(dt.Rows[0]["IdTipoPelea"]);
 
                 p.Dojo = new Dojo();
                 p.Dojo.Nombre = dt.Rows[0]["Dojo"].ToString();
@@ -111,8 +121,10 @@ namespace negocios
                 conexion.setearParametro("@Apellido", p.Apellido);
                 conexion.setearParametro("@Peso", p.Peso);
                 conexion.setearParametro("@Altura", p.Altura);
+                conexion.setearParametro("@Edad", p.Edad);
                 conexion.setearParametro("@CantidadPeleas", p.CantidadPeleas);
                 conexion.setearParametro("@IdCategoria", p.Categoria.Id);
+                conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@IdGenero", p.Genero.Id);
 
@@ -139,9 +151,11 @@ namespace negocios
                 conexion.setearParametro("@Nombre", p.Nombre);
                 conexion.setearParametro("@Apellido", p.Apellido);
                 conexion.setearParametro("@Peso", p.Peso);
+                conexion.setearParametro("@Edad", p.Edad);
                 conexion.setearParametro("@Altura", p.Altura);
                 conexion.setearParametro("@CantidadPeleas", p.CantidadPeleas);
                 conexion.setearParametro("@IdCategoria", p.Categoria.Id);
+                conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@IdGenero", p.Genero.Id);
 

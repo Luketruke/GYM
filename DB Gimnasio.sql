@@ -2442,20 +2442,26 @@ CREATE TABLE Categorias(
 INSERT INTO Categorias VALUES (1,'Amateur',1)
 INSERT INTO Categorias VALUES (2,'Semiprofesional',1)
 INSERT INTO Categorias VALUES (3,'Profesional',1)
+INSERT INTO Categorias VALUES (4,'Exhibicion',1)
 
 CREATE TABLE Dojos(
     Id int PRIMARY KEY IDENTITY (1, 1),
     Codigo int, 
     Nombre varchar(50),
+    Profesor varchar(80),
+    TelefonoProfesor varchar(25),
     Direccion varchar(255),
     IdLocalidad int,
     IdProvincia int,
+    TelefonoDojo varchar(25),
     Observaciones varchar(255),
     Estado int NOT NULL
     FOREIGN KEY (IdLocalidad) REFERENCES Localidades (Id),  
     FOREIGN KEY (IdProvincia) REFERENCES Provincias (Id));
 
-INSERT INTO Dojos VALUES (1,'Dojo Unlimited','Av. Cazón 624',249,2,'Prueba',1)
+INSERT INTO Dojos VALUES (1,'Unlimited','Lucas Zabalett','1132958543','Av. Cazón 624',249,2,'1112345678','Prueba',1)
+INSERT INTO Dojos VALUES (2,'Marcial','Fer','1187654321','Av. Cazón 123',249,2,'1112345678','Prueba',1)
+INSERT INTO Dojos VALUES (3,'Informatico','Manu','1156781234','Av. Cazón 321',249,2,'1112345678','Prueba',1)
 
 CREATE TABLE Generos(
 Id int PRIMARY KEY IDENTITY (1, 1),
@@ -2464,21 +2470,6 @@ Estado int not null);
 
 INSERT INTO Generos VALUES ('Masculino',1)
 INSERT INTO Generos VALUES ('Femenino',1)
-
-CREATE TABLE Peleadores (
-    Id int PRIMARY KEY IDENTITY (1, 1),
-    Nombre varchar(25),
-    Apellido varchar(25),
-    Peso decimal(18,2),
-    Altura int,
-    CantidadPeleas int,
-    IdCategoria int not null,
-    IdDojo int not null,
-    IdGenero int not null,
-    Estado int NOT NULL
-    FOREIGN KEY (IdCategoria) REFERENCES Categorias (Id),  
-    FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
-	FOREIGN KEY (IdGenero) REFERENCES Generos (Id));
 
 CREATE TABLE TipoPeleas(
     Id int PRIMARY KEY IDENTITY (1, 1),
@@ -2512,8 +2503,26 @@ CREATE TABLE Usuarios(
 	FOREIGN KEY (IdTipoUsuario) REFERENCES TipoUsuarios (Id),
 	FOREIGN KEY (IdDojo) REFERENCES Dojos (Id));
 
+CREATE TABLE Peleadores (
+    Id int PRIMARY KEY IDENTITY (1, 1),
+    Nombre varchar(25),
+    Apellido varchar(25),
+    Peso decimal(18,2),
+    Altura int,
+    Edad int,
+    CantidadPeleas int,
+    IdCategoria int not null,
+    IdDojo int not null,
+    IdGenero int not null,
+    IdTipoPelea int not null,
+    Estado int NOT NULL
+    FOREIGN KEY (IdCategoria) REFERENCES Categorias (Id),  
+    FOREIGN KEY (IdDojo) REFERENCES Dojos (Id),
+    FOREIGN KEY (IdGenero) REFERENCES Generos (Id),
+    FOREIGN KEY (IdTipoPelea) REFERENCES TipoPeleas (Id));
+
 INSERT INTO Usuarios VALUES (1,'Administrador','Administrador',1,1,1)
-INSERT INTO Usuarios VALUES (2,'Cliente','Cliente',2,1,1)
+INSERT INTO Usuarios VALUES (2,'Profesor','Profesor',2,1,1)
 
 CREATE TABLE Peleas(
     Id int PRIMARY KEY IDENTITY (1, 1),

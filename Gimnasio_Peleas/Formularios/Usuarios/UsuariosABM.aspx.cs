@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using negocios;
+using dominios;
+using System.Data;
+using System.Globalization;
 
 namespace Gimnasio_Peleas.Formularios.Usuarios
 {

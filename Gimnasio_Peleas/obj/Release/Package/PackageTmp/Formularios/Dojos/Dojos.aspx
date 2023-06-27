@@ -18,7 +18,7 @@
                         <div class="widget custom-border">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar dojos..." />
+                                    <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar teams..." />
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -40,15 +40,14 @@
                     <div class="col-md-12">
                         <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                             <Columns>
-                                <asp:BoundField HeaderText="Código" DataField="Codigo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Nombre" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Localidad" DataField="Direccion.Localidad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Provincia" DataField="Direccion.Provincia" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Team" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Profesor" DataField="NombreProfesor" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Contacto" DataField="TelefonoDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionCompleta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                                 <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                                     <ItemTemplate>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <asp:LinkButton ID="btnAbrirModalDojo" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalDojo_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
+                                            <asp:LinkButton ID="btnAbrirModalDojo" runat="server" OnClick="btnAbrirModalDojo_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
             <i class="fa-solid fa-search"></i>
                                             </asp:LinkButton>
 
@@ -74,23 +73,23 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="miModalLabel">Dojo</h5>
+                            <h5 class="modal-title" id="miModalLabel">Detalle</h5>
                         </div>
                         <div class="modal-body">
-                            <label for="txtCodigo" class="form-label" runat="server">Codigo</label>
-                            <asp:TextBox runat="server" ID="txtCodigo" class="form-control" disabled="" />
-
-                            <label for="txtNombre" class="form-label">Dojo</label>
+                            <label for="txtNombre" class="form-label">Team</label>
                             <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+
+                            <label for="txtProfesor" class="form-label">Profesor</label>
+                            <asp:TextBox runat="server" ID="txtProfesor" class="form-control" disabled="" />
+
+                            <label for="txtTelefonoProfesor" class="form-label">Telefono del profesor</label>
+                            <asp:TextBox runat="server" ID="txtTelefonoProfesor" class="form-control" disabled="" />
+
+                            <label for="txtTelefonoDojo" class="form-label">Telefono del team</label>
+                            <asp:TextBox runat="server" ID="txtTelefonoDojo" class="form-control" disabled="" />
 
                             <label for="txtDireccion" class="form-label">Direccion</label>
                             <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" />
-
-                            <label for="txtProvincia" class="form-label">Provincia</label>
-                            <asp:TextBox runat="server" ID="txtProvincia" class="form-control" disabled="" />
-
-                            <label for="txtLocalidad" class="form-label">Localidad</label>
-                            <asp:TextBox runat="server" ID="txtLocalidad" class="form-control" disabled="" />
 
                             <label for="txtObservaciones" class="form-label">Observaciones</label>
                             <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />

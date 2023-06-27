@@ -26,10 +26,14 @@ namespace negocios
                     d.Id = (int)conexion.Lector["IdDojo"];
                     d.Codigo = (int)conexion.Lector["Codigo"];
                     d.Nombre = (string)conexion.Lector["NombreDojo"];
+                    d.NombreProfesor = (string)conexion.Lector["Profesor"];
+                    d.TelefonoProfesor = (string)conexion.Lector["TelefonoProfesor"];
+                    d.TelefonoDojo = (string)conexion.Lector["TelefonoDojo"];
                     d.Observaciones = (string)conexion.Lector["Observaciones"];
 
                     d.Direccion = new Direccion();
                     d.Direccion.DireccionDojo = (string)conexion.Lector["Direccion"];
+                    d.Direccion.DireccionCompleta = (string)conexion.Lector["DireccionCompleta"];
                     d.Direccion.Localidad = (string)conexion.Lector["Localidad"];
                     d.Direccion.IdLocalidad = (int)conexion.Lector["IdLocalidad"];
                     d.Direccion.Provincia = (string)conexion.Lector["Provincia"];
@@ -79,6 +83,9 @@ namespace negocios
                 conexion.setearParametro("@Direccion", d.Direccion.DireccionDojo);
                 conexion.setearParametro("@Provincia", d.Direccion.Provincia);
                 conexion.setearParametro("@Localidad", d.Direccion.Localidad);
+                conexion.setearParametro("@Profesor", d.NombreProfesor);
+                conexion.setearParametro("@TelefonoProfesor", d.TelefonoProfesor);
+                conexion.setearParametro("@TelefonoDojo", d.TelefonoDojo);
                 conexion.setearParametro("@Observaciones", d.Observaciones);
                 conexion.ejecutarConexion();
 
@@ -104,6 +111,9 @@ namespace negocios
                 conexion.setearParametro("@Direccion", d.Direccion.DireccionDojo);
                 conexion.setearParametro("@Provincia", d.Direccion.IdProvincia);
                 conexion.setearParametro("@Localidad", d.Direccion.IdLocalidad);
+                conexion.setearParametro("@TelefonoProfesor", d.TelefonoProfesor);
+                conexion.setearParametro("@TelefonoDojo", d.TelefonoDojo);
+                conexion.setearParametro("@Profesor", d.NombreProfesor);
                 conexion.setearParametro("@Observaciones", d.Observaciones);
                 conexion.ejecutarConexion();
 
@@ -214,10 +224,14 @@ namespace negocios
                 d.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
                 d.Codigo = Convert.ToInt32(dt.Rows[0]["Codigo"]);
                 d.Nombre = dt.Rows[0]["Nombre"].ToString();
+                d.NombreProfesor = dt.Rows[0]["Profesor"].ToString();
+                d.TelefonoProfesor = dt.Rows[0]["TelefonoDojo"].ToString();
+                d.TelefonoDojo = dt.Rows[0]["TelefonoProfesor"].ToString();
                 d.Observaciones = dt.Rows[0]["Observaciones"].ToString();
 
                 d.Direccion = new Direccion();
                 d.Direccion.DireccionDojo = dt.Rows[0]["Direccion"].ToString();
+                d.Direccion.DireccionCompleta = dt.Rows[0]["DireccionCompleta"].ToString();
                 d.Direccion.Localidad = dt.Rows[0]["Localidad"].ToString();
                 d.Direccion.IdLocalidad = Convert.ToInt32(dt.Rows[0]["IdLocalidad"]);
                 d.Direccion.Provincia = dt.Rows[0]["Provincia"].ToString();

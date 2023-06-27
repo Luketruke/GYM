@@ -29,11 +29,10 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();
                 PeleadoresNegocio pn = new PeleadoresNegocio();
-                txtCodigo.Text = Request.QueryString["id"];
+                PeleasNegocio pen = new PeleasNegocio();
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
-                    divCodigo.Visible = false;
 
                     if (ddlDojos.Items.Count == 0)
                     {
@@ -57,6 +56,17 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                         ddlGeneros.Items.Insert(0, new ListItem("Seleccione genero...", "0"));
                     }
 
+                    if (ddlModalidades.Items.Count == 0)
+                    {
+                        DataTable tipoPeleas = pen.obtenerTipoPeleas();
+                        ddlModalidades.DataSource = tipoPeleas;
+                        ddlModalidades.DataTextField = "TipoPelea";
+                        ddlModalidades.DataValueField = "IdTipoPelea";
+                        ddlModalidades.DataBind();
+
+                        ddlModalidades.Items.Insert(0, new ListItem("Seleccione modalidad...", "0"));
+                    }
+
                     if (ddlCategorias.Items.Count == 0)
                     {
                         DataTable categorias = pn.obtenerCategorias();
@@ -71,14 +81,26 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 2 && !IsPostBack) //Modificar
                 {
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    List<Peleador> temp = (List<Peleador>)Session["listaPeleadores"];
+                    Peleador selected = temp.Find(x => x.Id == id);
+
                     DataTable dtDojos = dn.obtenerDojos();
                     DataTable dtCategorias = pn.obtenerCategorias();
                     DataTable dtGeneros = pn.obtenerGeneros();
+                    DataTable dtModalidades = pen.obtenerTipoPeleas();
+
 
                     foreach (DataRow r in dtDojos.Rows)
                     {
                         li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());
                         ddlDojos.Items.Add(li);
+                    }
+
+                    foreach (DataRow r in dtModalidades.Rows)
+                    {
+                        li = new ListItem(r["TipoPelea"].ToString(), r["IdTipoPelea"].ToString());
+                        ddlModalidades.Items.Add(li);
                     }
 
                     foreach (DataRow r in dtCategorias.Rows)
@@ -93,18 +115,16 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                         ddlGeneros.Items.Add(li);
                     }
 
-                    int id = Convert.ToInt32(Request.QueryString["id"]);
-                    List<Peleador> temp = (List<Peleador>)Session["listaPeleadores"];
-                    Peleador selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    txtCodigo.Text = selected.Codigo.ToString();
                     txtNombre.Text = selected.Nombre;
                     txtApellido.Text = selected.Apellido;
                     txtCantidadPeleas.Text = selected.CantidadPeleas.ToString();
                     txtPeso.Text = selected.Peso.ToString();
                     txtAltura.Text = selected.Altura.ToString();
+                    txtEdad.Text = selected.Edad.ToString();
                     ddlCategorias.SelectedValue = selected.Categoria.Id.ToString();
+                    ddlModalidades.SelectedValue = selected.TipoPelea.Id.ToString();
                     ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
                     ddlGeneros.SelectedValue = selected.Genero.Id.ToString();
                 }
@@ -124,10 +144,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Apellido = txtApellido.Text;
                 p.CantidadPeleas = Convert.ToInt32(txtCantidadPeleas.Text);
                 p.Altura = Convert.ToInt32(txtAltura.Text);
+                p.Edad = Convert.ToInt32(txtEdad.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
 
                 p.Categoria = new Categoria();
                 p.Categoria.Id = Convert.ToInt32(ddlCategorias.SelectedValue);
+
+                p.TipoPelea = new TipoPelea();
+                p.TipoPelea.Id = Convert.ToInt32(ddlModalidades.SelectedValue);
 
                 p.Dojo = new Dojo();
                 p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
@@ -184,9 +208,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.CantidadPeleas = Convert.ToInt32(txtCantidadPeleas.Text);
                 p.Altura = Convert.ToInt32(txtAltura.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
+                p.Edad = Convert.ToInt32(txtEdad.Text);
 
                 p.Categoria = new Categoria();
                 p.Categoria.Id = Convert.ToInt32(ddlCategorias.SelectedValue);
+
+                p.TipoPelea = new TipoPelea();
+                p.TipoPelea.Id = Convert.ToInt32(ddlModalidades.SelectedValue);
 
                 p.Dojo = new Dojo();
                 p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);

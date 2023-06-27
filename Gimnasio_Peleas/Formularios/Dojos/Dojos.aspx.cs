@@ -13,7 +13,6 @@ namespace Gimnasio_Peleas.Formularios.Dojos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             try
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
@@ -37,20 +36,6 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             }
         }
         
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-                GridView gv = clickedRow.NamingContainer as GridView;
-                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                Response.Redirect("DojosABM.aspx?a=2&id=" + id);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
         protected void btnAbrirModalDojo_Click(object sender, EventArgs e)
         {
             try
@@ -61,13 +46,12 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 DojosNegocio dn = new DojosNegocio();
                 Dojo d = dn.obtenerDojoPorId(Convert.ToInt32(id));
 
-                txtCodigo.Text = d.Codigo.ToString();
                 txtNombre.Text = d.Nombre;
+                txtTelefonoDojo.Text = d.TelefonoDojo;
+                txtProfesor.Text = d.Observaciones;
+                txtTelefonoProfesor.Text = d.TelefonoProfesor;        
+                txtDireccion.Text = d.Direccion.DireccionCompleta;
                 txtObservaciones.Text = d.Observaciones;
-
-                txtDireccion.Text = d.Direccion.DireccionDojo;
-                txtProvincia.Text = d.Direccion.Provincia;
-                txtLocalidad.Text = d.Direccion.Localidad;
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalDojo = new bootstrap.Modal(document.getElementById('modalDojo')); modalDojo.show();</script>", false);
             }
@@ -124,6 +108,21 @@ namespace Gimnasio_Peleas.Formularios.Dojos
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Response.Redirect("DojosABM.aspx?a=2&id=" + id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

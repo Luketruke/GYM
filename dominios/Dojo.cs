@@ -12,6 +12,9 @@ namespace dominios
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public Direccion Direccion { get; set; }
+        public string NombreProfesor { get; set; }
+        public string TelefonoProfesor { get; set; }
+        public string TelefonoDojo { get; set; }
         public string Observaciones { get; set; }
     }
 }

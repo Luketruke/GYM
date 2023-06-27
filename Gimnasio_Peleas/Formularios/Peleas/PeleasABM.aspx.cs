@@ -28,14 +28,18 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 DojosNegocio dn = new DojosNegocio();
                 PeleasNegocio pn = new PeleasNegocio();
 
-                txtCodigo.Text = Request.QueryString["id"];
-
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
-                    divCodigo.Visible = false;
                     //Cargo la hora a las variables
                     //txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     //txtHora.Text = DateTime.Now.ToString("HH:mm");
+
+                    if (!IsPostBack)
+                    {
+                        txtFiltroEdad.Text = "0";
+                        txtFiltroPeso.Text = "0";
+                        txtFiltroCantidadPeleas.Text = "0";
+                    }
 
                     if (ddlDojos.Items.Count == 0)
                     {
@@ -108,13 +112,10 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    txtCodigo.Text = selected.Codigo.ToString();
                     ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
                     ddlTipoPeleas.SelectedValue = selected.TipoPelea.Id.ToString();
                     ddlPeleador1.SelectedValue = selected.Peleador1.Id.ToString();
                     ddlPeleador2.SelectedValue = selected.Peleador2.Id.ToString();
-                    //txtFecha.Text = selected.FechaPelea.ToString("yyyy-MM-dd");
-                    //txtHora.Text = selected.FechaPelea.ToString("HH:mm");                    
                     txtObservaciones.Text = selected.Observaciones;
                 }
             }
@@ -187,14 +188,57 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             {
                 PeleasNegocio pn = new PeleasNegocio();
 
-                int FiltrarXPeso, FiltrarXPeleas, FiltrarXCategoria, FiltrarXAltura;
+                int FiltrarXPeso, FiltrarXPeleas, FiltrarXEdad, FiltrarXCategoria, FiltrarXModalidad, Edad, CantidadPeleas;
+                decimal Peso;
 
-                if (checkboxPeso.Checked) FiltrarXPeso = 1; else FiltrarXPeso = 0;
-                if (checkboxCantidadPeleas.Checked) FiltrarXPeleas = 1; else FiltrarXPeleas = 0;
-                if (checkboxCategoria.Checked) FiltrarXCategoria = 1; else FiltrarXCategoria = 0;
-                if (checkboxAltura.Checked) FiltrarXAltura = 1; else FiltrarXAltura = 0;
+                if (checkboxPeso.Checked)
+                {
+                    FiltrarXPeso = 1;
+                    Peso = Convert.ToDecimal(txtFiltroPeso.Text);
+                }
+                else
+                {
+                    FiltrarXPeso = 0;
+                    Peso = 0;
+                }
+                if (checkboxCantidadPeleas.Checked)
+                {
+                    FiltrarXPeleas = 1;
+                    CantidadPeleas = Convert.ToInt32(txtFiltroCantidadPeleas.Text);
+                }
+                else
+                {
+                    FiltrarXPeleas = 0;
+                    CantidadPeleas = 0;
+                }
+                if (checkboxEdad.Checked)
+                {
+                    FiltrarXEdad = 1;
+                    Edad = Convert.ToInt32(txtFiltroEdad.Text);
+                }
+                else
+                {
+                    FiltrarXEdad = 0;
+                    Edad = 0;
+                }
+                if (checkboxCategoria.Checked)
+                {
+                    FiltrarXCategoria = 1;
+                }
+                else
+                {
+                    FiltrarXCategoria = 0;
+                }
+                if (checkboxModalidad.Checked)
+                {
+                    FiltrarXModalidad = 1;
+                }
+                else
+                {
+                    FiltrarXModalidad = 0;
+                }
 
-                dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue), FiltrarXPeso, FiltrarXPeleas, FiltrarXCategoria, FiltrarXAltura);
+                dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue), FiltrarXPeso, FiltrarXPeleas, FiltrarXEdad, FiltrarXCategoria, FiltrarXModalidad, Peso, Edad, CantidadPeleas);
                 dgvPeleadoresSimilares.DataBind();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresSimilares = new bootstrap.Modal(document.getElementById('modalPeleadoresSimilares')); modalPeleadoresSimilares.show();</script>", false);
@@ -301,7 +345,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 Pelea p = new Pelea();
 
                 p.Id = Convert.ToInt32(Request.QueryString["id"]);
-                p.Codigo = Convert.ToInt32(txtCodigo.Text);
 
                 p.Peleador1 = new Peleador();
                 p.Peleador1.Id = Convert.ToInt32(ddlPeleador1.SelectedValue);
@@ -315,12 +358,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
 
-                //string dateValue = txtFecha.Text;
-                //string timeValue = txtHora.Text;
-
-                //DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
-
-                //p.FechaPelea = dateTime;
                 p.Observaciones = txtObservaciones.Text;
 
                 if (pn.modificarPelea(p))

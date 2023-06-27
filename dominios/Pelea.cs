@@ -14,7 +14,7 @@ namespace dominios
         public Peleador Peleador2 { get; set; }
         public Dojo Dojo { get; set; }
         public DateTime FechaPelea { get; set; }
-        public TipoPelea TipoPelea { get; set; }
+        public TipoPelea TipoPelea { get; set; }   
         public string Observaciones { get; set; }
     }
 }

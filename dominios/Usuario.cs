@@ -19,5 +19,8 @@ namespace dominios
             User = user;
             Contrasenia = pass;
         }
+        public Usuario()
+        {
+        }
     }
 }
