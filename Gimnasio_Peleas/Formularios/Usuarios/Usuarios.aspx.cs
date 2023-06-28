@@ -24,10 +24,9 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                     Response.Redirect("/Default.aspx", false);
                 }
 
-                UsuarioNegocio un = new UsuarioNegocio();
-
                 if (!IsPostBack || Session["listaUsuarios"] == null)
                 {
+                    UsuarioNegocio un = new UsuarioNegocio();
                     Session["listaUsuarios"] = null;
                     Session.Add("listaUsuarios", un.obtenerUsuariosTodos());
                     dgvUsuarios.DataSource = Session["listaUsuarios"];

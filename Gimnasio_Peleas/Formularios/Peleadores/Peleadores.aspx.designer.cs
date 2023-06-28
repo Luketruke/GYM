@@ -51,6 +51,15 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl miModalLabel;
 
         /// <summary>
+        /// Control btnTooltip.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnTooltip;
+
+        /// <summary>
         /// Control txtDojo.
         /// </summary>
         /// <remarks>
@@ -103,15 +112,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAltura;
-
-        /// <summary>
-        /// Control ImageDetalle.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageDetalle;
 
         /// <summary>
         /// Control txtCantidadPeleas.

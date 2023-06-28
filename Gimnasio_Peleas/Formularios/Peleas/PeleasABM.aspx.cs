@@ -23,6 +23,10 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
+                else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
+                {
+                    Response.Redirect("/Default.aspx", false);
+                }
 
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();
@@ -48,17 +52,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         ddlDojos.Items.Insert(0, new ListItem("Seleccione sede...", "0"));
                     }
 
-                    if (ddlTipoPeleas.Items.Count == 0)
-                    {
-                        DataTable tipoPeleas = pn.obtenerTipoPeleas();
-                        ddlTipoPeleas.DataSource = tipoPeleas;
-                        ddlTipoPeleas.DataTextField = "TipoPelea";
-                        ddlTipoPeleas.DataValueField = "IdTipoPelea";
-                        ddlTipoPeleas.DataBind();
-
-                        ddlTipoPeleas.Items.Insert(0, new ListItem("Seleccione modalidad...", "0"));
-                    }
-
                     if (ddlPeleador1.Items.Count == 0)
                     {
                         DataTable peleadores1 = pn.obtenerPeleadores1();
@@ -78,7 +71,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Pelea selected = temp.Find(x => x.Id == id);
 
                     DataTable dtDojos = dn.obtenerDojos();
-                    DataTable dtModalidades = pn.obtenerTipoPeleas();
                     DataTable dtPeleador1 = pn.obtenerPeleadores1();
                     DataTable dtPeleador2 = pn.obtenerPeleadores2(selected.Peleador1.Id);
 
@@ -86,12 +78,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     {
                         li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());
                         ddlDojos.Items.Add(li);
-                    }
-
-                    foreach (DataRow r in dtModalidades.Rows)
-                    {
-                        li = new ListItem(r["TipoPelea"].ToString(), r["IdTipoPelea"].ToString());
-                        ddlTipoPeleas.Items.Add(li);
                     }
 
                     foreach (DataRow r in dtPeleador1.Rows)
@@ -109,7 +95,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
                     ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
-                    ddlTipoPeleas.SelectedValue = selected.TipoPelea.Id.ToString();
                     ddlPeleador1.SelectedValue = selected.Peleador1.Id.ToString();
                     ddlPeleador2.SelectedValue = selected.Peleador2.Id.ToString();
                     txtObservaciones.Text = selected.Observaciones;
@@ -280,12 +265,23 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 if (ddlPeleador2.Items.Count == 0)
                 {
                     DataTable peleadores2 = pn.obtenerPeleadores2(Convert.ToInt32(ddlPeleador1.SelectedValue));
-                    ddlPeleador2.DataSource = peleadores2;
-                    ddlPeleador2.DataTextField = "DatosDDL";
-                    ddlPeleador2.DataValueField = "Id";
-                    ddlPeleador2.DataBind();
 
-                    ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
+                    if (peleadores2.Rows.Count>0)
+                    {
+                        ddlPeleador2.DataSource = peleadores2;
+                        ddlPeleador2.DataTextField = "DatosDDL";
+                        ddlPeleador2.DataValueField = "Id";
+                        ddlPeleador2.DataBind();
+                        ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
+                    }
+                    else
+                    {
+                        ddlPeleador2.DataSource = peleadores2;
+                        ddlPeleador2.DataTextField = "DatosDDL";
+                        ddlPeleador2.DataValueField = "Id";
+                        ddlPeleador2.DataBind();
+                        ddlPeleador2.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
+                    }
                 }
             }
             catch (Exception ex)
@@ -313,7 +309,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
 
                 p.TipoPelea = new TipoPelea();
-                p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
+                p.TipoPelea.Id = 1;
 
                 p.Observaciones = txtObservaciones.Text;
 
@@ -346,7 +342,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
 
                 p.TipoPelea = new TipoPelea();
-                p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
+                p.TipoPelea.Id = 1;
 
                 p.Observaciones = txtObservaciones.Text;
 

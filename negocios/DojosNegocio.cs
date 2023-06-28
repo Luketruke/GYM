@@ -26,7 +26,7 @@ namespace negocios
                     d.Id = (int)conexion.Lector["IdDojo"];
                     d.Codigo = (int)conexion.Lector["Codigo"];
                     d.Nombre = (string)conexion.Lector["NombreDojo"];
-                    d.NombreProfesor = (string)conexion.Lector["Profesor"];
+                    d.NombreProfesor = (string)conexion.Lector["NombreProfesor"];
                     d.TelefonoProfesor = (string)conexion.Lector["TelefonoProfesor"];
                     d.TelefonoDojo = (string)conexion.Lector["TelefonoDojo"];
                     d.Observaciones = (string)conexion.Lector["Observaciones"];

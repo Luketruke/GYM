@@ -19,7 +19,6 @@
     <%--JAVASCRIPT--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script defer src="https://kit.fontawesome.com/0c5b036370.js" crossorigin="anonymous"></script>
-
 </head>
 <body data-bs-theme="dark">
     <form runat="server">
@@ -40,16 +39,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item" id="peleadoresNavItem">
                             <a class="nav-link" href="/Formularios/Peleadores/Peleadores.aspx">Peleadores</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="peleasNavItem">
                             <a class="nav-link" href="/Formularios/Peleas/Peleas.aspx">Peleas</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="dojosNavItem">
                             <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Dojos</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="usuariosNavItem">
                             <a class="nav-link" href="/Formularios/Usuarios/Usuarios.aspx">Usuarios</a>
                         </li>
                     </ul>
@@ -88,5 +87,19 @@
         </div>
 
     </form>
+
+    <script>
+        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("peleasNavItem").style.display = "none";
+        }
+
+        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("dojosNavItem").style.display = "none";
+        }
+        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("usuariosNavItem").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>

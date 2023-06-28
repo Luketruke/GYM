@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using System.IO;
 using dominios;
 using negocios;
-using Microsoft.Ajax.Utilities;
 
 namespace Gimnasio_Peleas.Formularios.Peleadores
 {
@@ -23,10 +22,10 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
-                PeleadoresNegocio pn = new PeleadoresNegocio();
 
                 if (!IsPostBack || Session["listaPeleadores"] == null)
                 {
+                    PeleadoresNegocio pn = new PeleadoresNegocio();
                     Session["listaPeleadores"] = null;
                     Session.Add("listaPeleadores", pn.obtenerPeleadoresTodos());
                     dgvPeleadores.DataSource = Session["listaPeleadores"];
@@ -75,11 +74,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                 if (File.Exists(rutaImagen))
                 {
-                    ImageDetalle.ImageUrl = "~/Fotos/" + id.ToString() + ".jpg";
+                    string url = Path.Combine(Server.MapPath("~/Fotos/"), id.ToString() + ".jpg");
+                    btnTooltip.Attributes["title"] = $"<img src='{url}' alt='Imagen'>";
                 }
                 else
                 {
-                    ImageDetalle.ImageUrl = "~/Fotos/default_picture.jpg";
+                    string url = Path.Combine(Server.MapPath("~/Fotos/"), "default_picture.jpg");
+                    btnTooltip.Attributes["title"] = $"<img src='{url}' alt='Imagen'>";
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleador = new bootstrap.Modal(document.getElementById('modalPeleador')); modalPeleador.show();</script>", false);
             }

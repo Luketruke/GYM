@@ -36,28 +36,28 @@
                     <label for="ddlDojos" class="form-label">Team</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione dojo..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div>
                     <label for="ddlCategorias" class="form-label">Categoria</label>
                     <asp:DropDownList ID="ddlCategorias" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlCategorias"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione categoria..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div>
                     <label for="ddlModalidades" class="form-label">Modalidad</label>
                     <asp:DropDownList ID="ddlModalidades" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlModalidades"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione modalidad..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div>
                     <label for="ddlGeneros" class="form-label">Genero</label>
                     <asp:DropDownList ID="ddlGeneros" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlGeneros"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione genero..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0" style="display: flex; align-items: center;">
@@ -84,6 +84,11 @@
                         <asp:TextBox runat="server" ID="txtCantidadPeleas" MaxLength="5" class="form-control" onkeypress="javascript:return validarSoloNro(event)" />
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="txtCantidadPeleas" ErrorMessage="*" ValidationGroup="ValidarPeleador"></asp:RequiredFieldValidator>
                     </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="txtObservaciones" class="form-label">Observaciones para el peleador</label>
+                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="5" />
                 </div>
 
                 <div>
@@ -178,4 +183,12 @@
         }
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
 </asp:Content>

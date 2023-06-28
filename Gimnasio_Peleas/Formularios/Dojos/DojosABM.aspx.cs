@@ -22,6 +22,10 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
+                else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
+                {
+                    Response.Redirect("/Default.aspx", false);
+                }
 
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();

@@ -27,7 +27,7 @@
             <div class="container">
                 <!-- Logo -->
                 <a class="navbar-brand" href="/Default.aspx">
-                    <span class="navbar-logo">Gimnasio</span>
+                    <span class="navbar-logo">Unlimited</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Dojos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Formularios/Usuarios/Usuarios.aspx">Usuarios</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">

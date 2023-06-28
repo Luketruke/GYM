@@ -21,14 +21,7 @@
                     <label for="ddlDojos" class="form-label">Sede</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione sede..."></asp:RequiredFieldValidator>
-                </div>
-
-                <div>
-                    <label for="ddlTipoPeleas" class="form-label">Modalidad</label>
-                    <asp:DropDownList ID="ddlTipoPeleas" CssClass="form-select" runat="server"></asp:DropDownList>
-                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlTipoPeleas"
-                        ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue="Seleccione modalidad..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="0"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="row">
@@ -45,7 +38,7 @@
                         <asp:DropDownList ID="ddlPeleador1" CssClass="form-select mt-2" runat="server" OnSelectedIndexChanged="ddlPeleador1_SelectedIndexChanged" AutoPostBack="true" ValidationGroup="ValidarPelea">
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador1"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="0"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -65,7 +58,7 @@
                             <asp:Button ID="btnModalPeleadoresSimilares" runat="server" CssClass="btn btn-info ml-2" OnClick="btnModalPeleadoresSimilares_Click" Text="Peleadores similares" Style="margin-top: 8px;" data-bs-toggle="tooltip" ToolTip="Filtrar" />
                         </div>
                         <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlPeleador2"
-                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="Seleccione peleador..."></asp:RequiredFieldValidator>
+                            ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="0"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
@@ -114,33 +107,38 @@
     </div>
 
     <div class="modal fade" id="modalPeleadoresSimilares" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <!-- Agregado: modal-lg -->
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="miModalLabel">Peleadores similares</h5>
                 </div>
                 <div class="modal-body">
-                    <%--DataGridView--%>
-                    <asp:GridView runat="server" ID="dgvPeleadoresSimilares" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
-                        <HeaderStyle CssClass="thead-dark" />
-                        <Columns>
-                            <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Peso" DataField="PesoTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Edad" DataField="Edad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Altura" DataField="AlturaTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:BoundField HeaderText="Modalidad" DataField="TipoPelea.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" />
-                            <asp:TemplateField HeaderText="Acción" ItemStyle-Width="50" HeaderStyle-Width="50" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="btnSeleccionarPeleadorSimilar" runat="server" OnClick="btnSeleccionarPeleadorSimilar_Click" CssClass="btn btn-info" data-toggle="tooltip" ToolTip="Seleccionar">
+                    <div class="table-responsive">
+                        <asp:GridView runat="server" ID="dgvPeleadoresSimilares" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
+                            <HeaderStyle CssClass="thead-dark" />
+                            <Columns>
+                                <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center word-break-all" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Peso" DataField="PesoTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Edad" DataField="Edad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Altura" DataField="AlturaTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Modalidad" DataField="TipoPelea.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:TemplateField HeaderText="Info" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <i class="fa-solid fa-info-circle observaciones-icon" title='<%# Eval("Observaciones") %>'></i>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Acción" ItemStyle-Width="50" HeaderStyle-Width="50" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnSeleccionarPeleadorSimilar" runat="server" OnClick="btnSeleccionarPeleadorSimilar_Click" CssClass="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" ToolTip="Seleccionar">
                     <i class="fa-solid fa-check"></i>
-                                    </asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+                                        </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -148,7 +146,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
         //Valida solo numeros
@@ -185,8 +182,12 @@
     </script>
 
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
+
 </asp:Content>

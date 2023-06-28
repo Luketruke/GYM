@@ -15,15 +15,20 @@ namespace Gimnasio_Peleas.Formularios.Dojos
         {
             try
             {
+                //Verifico login
                 Usuario usuario = (Usuario)Session["Usuario"];
                 if (usuario==null)
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
-                DojosNegocio dn = new DojosNegocio();
+                else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
+                {
+                    Response.Redirect("/Default.aspx", false);
+                }   
 
                 if (!IsPostBack || Session["listaDojos"] == null)
                 {
+                    DojosNegocio dn = new DojosNegocio();
                     Session["listaDojos"] = null;
                     Session.Add("listaDojos", dn.obtenerDojosTodos());
                     dgvDojos.DataSource = Session["listaDojos"];
@@ -48,7 +53,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
                 txtNombre.Text = d.Nombre;
                 txtTelefonoDojo.Text = d.TelefonoDojo;
-                txtProfesor.Text = d.Observaciones;
+                txtProfesor.Text = d.NombreProfesor;
                 txtTelefonoProfesor.Text = d.TelefonoProfesor;        
                 txtDireccion.Text = d.Direccion.DireccionCompleta;
                 txtObservaciones.Text = d.Observaciones;

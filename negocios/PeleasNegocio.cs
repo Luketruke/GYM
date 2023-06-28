@@ -33,6 +33,9 @@ namespace negocios
                     p.Peleador1.Dojo = new Dojo();
                     p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
                     p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
+                    p.Peleador1.TipoPelea = new TipoPelea();
+                    p.Peleador1.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP1"];
+                    p.Peleador1.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP1"];
 
                     p.Peleador2 = new Peleador();
                     p.Peleador2.Id = (int)conexion.Lector["IdPeleador2"];
@@ -40,6 +43,9 @@ namespace negocios
                     p.Peleador2.Dojo = new Dojo();
                     p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
                     p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
+                    p.Peleador2.TipoPelea = new TipoPelea();
+                    p.Peleador2.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP2"];
+                    p.Peleador2.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP2"];
 
                     p.Dojo = new Dojo();
                     p.Dojo.Id = (int)conexion.Lector["IdDojo"];
@@ -192,9 +198,9 @@ namespace negocios
             }
         }
 
-        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, 
-        int FiltrarXEdad, int FiltrarXCategoria, int FiltrarXModalidad, decimal Peso, int Edad, int CantidadPeleas) 
-                        //Para llenar DataGridView de Peleadores Similares en PeleasABM
+        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas,
+        int FiltrarXEdad, int FiltrarXCategoria, int FiltrarXModalidad, decimal Peso, int Edad, int CantidadPeleas)
+        //Para llenar DataGridView de Peleadores Similares en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -227,6 +233,7 @@ namespace negocios
                     p.AlturaTexto = (Convert.ToDecimal(p.Altura) / 100).ToString() + "M";
                     p.PesoTexto = p.Peso.ToString() + "KG";
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
+                    p.Observaciones = (string)conexion.Lector["Observaciones"];
 
                     p.Categoria = new Categoria();
                     p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
@@ -320,7 +327,7 @@ namespace negocios
                 p.Peleador1.Dojo = new Dojo();
                 p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
                 p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
-               
+
                 p.Peleador1.Genero = new Genero();
                 p.Peleador1.Genero.Id = (int)conexion.Lector["IdGeneroP1"];
                 p.Peleador1.Genero.GeneroPersona = (string)conexion.Lector["GeneroP1"];
@@ -334,7 +341,7 @@ namespace negocios
                 p.Peleador2.Peso = (decimal)conexion.Lector["PesoP2"];
                 p.Peleador2.Altura = (int)conexion.Lector["AlturaP2"];
                 p.Peleador2.CantidadPeleas = (int)conexion.Lector["CantidadPeleasP2"];
-                          
+
                 p.Peleador2.Categoria = new Categoria();
                 p.Peleador2.Categoria.Id = (int)conexion.Lector["IdCategoriaP2"];
                 p.Peleador2.Categoria.Descripcion = (string)conexion.Lector["CategoriaP2"];
@@ -346,7 +353,7 @@ namespace negocios
                 p.Peleador2.Dojo = new Dojo();
                 p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
                 p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
-                          
+
                 p.Peleador2.Genero = new Genero();
                 p.Peleador2.Genero.Id = (int)conexion.Lector["IdGeneroP2"];
                 p.Peleador2.Genero.GeneroPersona = (string)conexion.Lector["GeneroP2"];
@@ -402,6 +409,26 @@ namespace negocios
             catch (Exception)
             {
                 return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable ExportarPeleasAExcel()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ExportarPeleasAExcel");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
             finally
             {

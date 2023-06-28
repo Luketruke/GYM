@@ -126,6 +126,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     ddlModalidades.SelectedValue = selected.TipoPelea.Id.ToString();
                     ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
                     ddlGeneros.SelectedValue = selected.Genero.Id.ToString();
+                    txtObservaciones.Text = selected.Observaciones;
                 }
             }
             catch (Exception ex)
@@ -145,6 +146,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Altura = Convert.ToInt32(txtAltura.Text);
                 p.Edad = Convert.ToInt32(txtEdad.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
+                p.Observaciones = txtObservaciones.Text;
 
                 p.Categoria = new Categoria();
                 p.Categoria.Id = Convert.ToInt32(ddlCategorias.SelectedValue);
@@ -208,6 +210,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Altura = Convert.ToInt32(txtAltura.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
                 p.Edad = Convert.ToInt32(txtEdad.Text);
+                p.Observaciones = txtObservaciones.Text;
 
                 p.Categoria = new Categoria();
                 p.Categoria.Id = Convert.ToInt32(ddlCategorias.SelectedValue);

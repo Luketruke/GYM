@@ -23,5 +23,6 @@ namespace dominios
         public TipoPelea TipoPelea { get; set; }
         public Categoria Categoria { get; set; }
         public Genero Genero { get; set; }
+        public string Observaciones { get; set; }
     }
 }

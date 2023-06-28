@@ -19,8 +19,13 @@
                         </div>
                         <div class="col-md-6 text-end">
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nuevo peleador">
-                                        <i class="fa-solid fa-plus"></i>
+                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nueva pelea">
+                                    <i class="fa-solid fa-plus"></i>
+                                </asp:LinkButton>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar peleas a Excel">
+                                    <i class="fa-solid fa-download"></i>                                        
                                 </asp:LinkButton>
                             </div>
                         </div>

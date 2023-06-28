@@ -22,12 +22,12 @@
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Nuevo peleador">
+                                        <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo peleador">
                                         <i class="fa-solid fa-plus"></i>
                                         </asp:LinkButton>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-toggle="tooltip" ToolTip="Exportar a Excel">
+                                        <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
                                         <i class="fa-solid fa-download"></i>                                        
                                         </asp:LinkButton>
                                     </div>
@@ -38,31 +38,34 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
-                            <Columns>
-                                <asp:BoundField HeaderText="Team" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Profesor" DataField="NombreProfesor" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Contacto" DataField="TelefonoDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionCompleta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                                <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
-                                    <ItemTemplate>
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <asp:LinkButton ID="btnAbrirModalDojo" runat="server" OnClick="btnAbrirModalDojo_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
+                        <div class="table-responsive">
+                            <asp:GridView runat="server" ID="dgvDojos" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Team" DataField="Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                    <asp:BoundField HeaderText="Profesor" DataField="NombreProfesor" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                    <asp:BoundField HeaderText="Contacto" DataField="TelefonoDojo" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                    <asp:BoundField HeaderText="Direccion" DataField="Direccion.DireccionCompleta" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                                    <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
+                                        <ItemTemplate>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <asp:LinkButton ID="btnAbrirModalDojo" runat="server" OnClick="btnAbrirModalDojo_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
             <i class="fa-solid fa-search"></i>
-                                            </asp:LinkButton>
+                                                </asp:LinkButton>
 
-                                            <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
+                                                <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
-                                            </asp:LinkButton>
+                                                </asp:LinkButton>
 
-                                            <asp:LinkButton ID="btnAbrirModalEliminarDojo" runat="server" OnClick="btnAbrirModalEliminarDojo_Click" data-bs-toggle="tooltip" CssClass="btn btn-danger" ToolTip="Eliminar" ClientIDMode="Static">
+                                                <asp:LinkButton ID="btnAbrirModalEliminarDojo" runat="server" OnClick="btnAbrirModalEliminarDojo_Click" data-bs-toggle="tooltip" CssClass="btn btn-danger" ToolTip="Eliminar" ClientIDMode="Static">
             <i class="fa-solid fa-trash"></i>
-                                            </asp:LinkButton>
-                                        </div>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <RowStyle VerticalAlign="Middle" />
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,14 +122,16 @@
             </div>
 
             <%--Modales--%>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
 
     <script>

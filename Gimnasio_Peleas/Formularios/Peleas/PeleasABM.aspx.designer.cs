@@ -24,15 +24,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.DropDownList ddlDojos;
 
         /// <summary>
-        /// Control ddlTipoPeleas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoPeleas;
-
-        /// <summary>
         /// Control txtPeleador1.
         /// </summary>
         /// <remarks>

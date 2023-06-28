@@ -32,6 +32,7 @@ namespace negocios
                     p.Altura = (int)conexion.Lector["Altura"];
                     p.Edad = (int)conexion.Lector["Edad"];
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
+                    p.Observaciones = (string)conexion.Lector["Observaciones"];
 
                     p.Categoria = new Categoria();
                     p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
@@ -83,6 +84,7 @@ namespace negocios
                 p.Edad = Convert.ToInt32(dt.Rows[0]["Edad"]);
                 p.Altura = Convert.ToInt32(dt.Rows[0]["Altura"]);
                 p.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleas"]);
+                p.Observaciones = dt.Rows[0]["Observaciones"].ToString();
 
                 p.Categoria = new Categoria();
                 p.Categoria.Descripcion = dt.Rows[0]["Categoria"].ToString();
@@ -127,6 +129,7 @@ namespace negocios
                 conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@IdGenero", p.Genero.Id);
+                conexion.setearParametro("@Observaciones", p.Observaciones);
 
                 int IdPeleador = conexion.ejecutarScalar();
 
@@ -158,6 +161,7 @@ namespace negocios
                 conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
                 conexion.setearParametro("@IdDojo", p.Dojo.Id);
                 conexion.setearParametro("@IdGenero", p.Genero.Id);
+                conexion.setearParametro("@Observaciones", p.Observaciones);
 
                 conexion.ejecutarConexion();
 

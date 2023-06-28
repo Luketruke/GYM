@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Office.Interop.Excel;
 using dominios;
 using negocios;
+using System.IO;
+using DataTable = System.Data.DataTable;
 
 namespace Gimnasio_Peleas.Formularios.Peleas
 {
@@ -15,15 +19,20 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         {
             try
             {
+                //Verifico login
                 Usuario usuario = (Usuario)Session["Usuario"];
                 if (usuario==null)
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
-                PeleasNegocio pn = new PeleasNegocio();
+                else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
+                {
+                    Response.Redirect("/Default.aspx", false);
+                }
 
                 if (!IsPostBack || Session["listaPeleas"] == null)
                 {
+                    PeleasNegocio pn = new PeleasNegocio();
                     Session["listaPeleas"] = null;
                     Session.Add("listaPeleas", pn.obtenerPeleasTodas());
                     dgvPeleas.DataSource = Session["listaPeleas"];
@@ -110,6 +119,55 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PeleasNegocio pn = new PeleasNegocio();
+                DataTable dt = (DataTable)pn.ExportarPeleasAExcel();
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string fileName = "ListaPeleas.xlsx";
+                string filePath = Path.Combine(desktopPath, fileName);
+
+                ExportToExcel(dt, filePath);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void ExportToExcel(System.Data.DataTable dataTable, string filePath)
+        {
+            try
+            {
+                Application excelApp = new Application();
+
+                Workbook workbook = excelApp.Workbooks.Add();
+                Worksheet worksheet = workbook.ActiveSheet;
+
+                for (int i = 0; i < dataTable.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1] = dataTable.Columns[i].ColumnName;
+                }
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataTable.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1] = dataTable.Rows[i][j].ToString();
+                    }
+                }
+
+                workbook.SaveAs(filePath);
+
+                workbook.Close();
+                excelApp.Quit();
+            }
+            catch (Exception ex)
+            {
             }
         }
     }

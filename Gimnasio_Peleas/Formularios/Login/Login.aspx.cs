@@ -25,6 +25,7 @@ namespace Gimnasio_Peleas
                 if (un.Loguear(user) != null)
                 {
                     Session.Add("Usuario", user);
+                    Session.Add("IdTipoUsuario", user.TipoUsuario.Id);
                     Response.Redirect("../../Default.aspx", false);
                 }
                 else
