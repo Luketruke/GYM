@@ -31,7 +31,7 @@
             <div class="container">
                 <!-- Logo -->
                 <a class="navbar-brand" href="/Default.aspx">
-                    <span class="navbar-logo">Gimnasio</span>
+                    <span class="navbar-logo">Unlimited</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

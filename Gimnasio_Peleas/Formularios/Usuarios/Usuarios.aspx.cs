@@ -19,7 +19,11 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 if (usuario==null)
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
+                } else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
+                {
+                    Response.Redirect("/Default.aspx", false);
                 }
+
                 UsuarioNegocio un = new UsuarioNegocio();
 
                 if (!IsPostBack || Session["listaUsuarios"] == null)

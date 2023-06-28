@@ -10,7 +10,7 @@ namespace negocios
 {
     public class PeleadoresNegocio
     {
-        public List<Peleador> obtenerPeleadoresTodos()
+        public List<Peleador> obtenerPeleadoresTodos() //Para llenar el DataGridView
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -62,7 +62,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public Peleador obtenerPeleadorPorId(int IdPeleador)
+        public Peleador obtenerPeleadorPorId(int IdPeleador) //Para llenar el Modal de Peleador
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -193,7 +193,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerCategorias() //Para llenar dropdownlist de categorias
+        public DataTable obtenerCategorias() //Para llenar DropDownList de las categorias de los peleadores
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -209,7 +209,7 @@ namespace negocios
                 return null;
             }
         }
-        public DataTable obtenerGeneros() //Para llenar dropdownlist de generos
+        public DataTable obtenerGeneros() //Para llenar DropDownList de Generos
         {
             ConexionSQL conexion = new ConexionSQL();
             try

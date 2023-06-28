@@ -30,10 +30,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
-                    //Cargo la hora a las variables
-                    //txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    //txtHora.Text = DateTime.Now.ToString("HH:mm");
-
                     if (!IsPostBack)
                     {
                         txtFiltroEdad.Text = "0";
@@ -319,12 +315,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = Convert.ToInt32(ddlTipoPeleas.SelectedValue);
 
-                //string dateValue = txtFecha.Text;
-                //string timeValue = txtHora.Text;
-
-                //DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
-
-                //p.FechaPelea = dateTime;
                 p.Observaciones = txtObservaciones.Text;
 
                 if (pn.agregarPelea(p))

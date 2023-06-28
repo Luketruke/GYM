@@ -78,13 +78,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 PeleasNegocio pn = new PeleasNegocio();
                 Pelea p = pn.obtenerPeleaPorId(Convert.ToInt32(id));
 
-                //txtCodigo.Text = d.Codigo.ToString();
-                //txtNombre.Text = d.Nombre;
-                //txtObservaciones.Text = d.Observaciones;
-
-                //txtDireccion.Text = d.Direccion.DireccionDojo;
-                //txtProvincia.Text = d.Direccion.Provincia;
-                //txtLocalidad.Text = d.Direccion.Localidad;
+                //Desarrollar
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPelea = new bootstrap.Modal(document.getElementById('modalPelea')); modalPelea.show();</script>", false);
             }

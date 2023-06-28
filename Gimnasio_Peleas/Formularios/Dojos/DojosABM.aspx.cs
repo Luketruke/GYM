@@ -42,6 +42,10 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 2 && !IsPostBack) //Modificar
                 {
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    List<Dojo> temp = (List<Dojo>)Session["listaDojos"];
+                    Dojo selected = temp.Find(x => x.Id == id);
+
                     DataTable dtProvincias = dn.obtenerProvincias();
                     DataTable dtLocalidades = dn.obtenerLocalidades();
 
@@ -57,9 +61,6 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                         ddlLocalidades.Items.Add(li);
                     }
 
-                    int id = Convert.ToInt32(Request.QueryString["id"]);
-                    List<Dojo> temp = (List<Dojo>)Session["listaDojos"];
-                    Dojo selected = temp.Find(x => x.Id == id);
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
                     txtNombre.Text = selected.Nombre;

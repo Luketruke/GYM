@@ -6,7 +6,7 @@
     <link href="~/Stylesheets/dojos.css" rel="stylesheet" />
 
     <script type="text/javascript">
-        document.title = 'DojosABM';
+        document.title = 'TeamsABM';
     </script>
 
     <br />

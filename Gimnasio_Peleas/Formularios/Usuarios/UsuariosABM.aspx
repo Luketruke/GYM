@@ -2,16 +2,12 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--CSS--%>
-    <link href="~/Stylesheets/dojos.css" rel="stylesheet" />
-
     <script type="text/javascript">
-        document.title = 'DojosABM';
+        document.title = 'UsuariosABM';
     </script>
 
     <br />
-
-    <h1 style="text-align: center;"><%: Title %>Team</h1>
+    <h1 style="text-align: center;"><%: Title %>Usuarios</h1>
 
     <div>
         <div class="row">

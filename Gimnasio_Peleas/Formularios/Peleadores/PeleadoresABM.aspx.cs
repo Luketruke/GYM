@@ -90,7 +90,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     DataTable dtGeneros = pn.obtenerGeneros();
                     DataTable dtModalidades = pen.obtenerTipoPeleas();
 
-
                     foreach (DataRow r in dtDojos.Rows)
                     {
                         li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());

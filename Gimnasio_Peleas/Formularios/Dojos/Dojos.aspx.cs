@@ -107,7 +107,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
 
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
-
+            //Desarrollar
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)

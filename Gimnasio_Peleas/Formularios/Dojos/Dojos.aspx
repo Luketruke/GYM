@@ -6,7 +6,7 @@
     <link href="~/Stylesheets/dojos.css" rel="stylesheet" />
 
     <script type="text/javascript">
-        document.title = 'Dojos';
+        document.title = 'Teams';
     </script>
 
     <asp:UpdatePanel runat="server">

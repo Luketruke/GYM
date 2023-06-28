@@ -10,7 +10,7 @@ namespace negocios
 {
     public class DojosNegocio
     {
-        public List<Dojo> obtenerDojosTodos() //Para llenar las tables
+        public List<Dojo> obtenerDojosTodos() //Para llenar los DataGridView
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -52,13 +52,13 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerDojos() //Para llenar los DropDownList
+        public DataTable obtenerDojos() //Para llenar los DropDownList de Dojos
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("ObtenerDojosTodos");
+                conexion.setearProcedure("ObtenerDojos");
                 dt.Load(conexion.ejecutarConexion());
 
                 return dt;
@@ -148,7 +148,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerProvincias()
+        public DataTable obtenerProvincias() //Para llenar los DropDownList de Provincias
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -168,7 +168,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerLocalidades(int IdProvincia)
+        public DataTable obtenerLocalidades(int IdProvincia) //Para llenar los DropDownList de Localidades X Provincia
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -189,7 +189,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerLocalidades()
+        public DataTable obtenerLocalidades() //Para llenar los DropDownList de Localidades
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -209,7 +209,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public Dojo obtenerDojoPorId(int IdDojo)
+        public Dojo obtenerDojoPorId(int IdDojo) //Para llenar Modal del Dojo
         {
             ConexionSQL conexion = new ConexionSQL();
             try

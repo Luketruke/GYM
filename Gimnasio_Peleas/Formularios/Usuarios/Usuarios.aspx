@@ -2,9 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--CSS--%>
-    <link href="~/Stylesheets/peleas.css" rel="stylesheet" />
-
     <script type="text/javascript">
         document.title = 'Usuarios';
     </script>

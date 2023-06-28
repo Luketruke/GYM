@@ -10,7 +10,7 @@ namespace negocios
 {
     public class PeleasNegocio
     {
-        public List<Pelea> obtenerPeleasTodas() //Para llenar el datagridview Peleas
+        public List<Pelea> obtenerPeleasTodas() //Para llenar el DataGridView
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -107,7 +107,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPeleadores1() //Para llenar dropdownlist de peleador1 en PeleasABM
+        public DataTable obtenerPeleadores1() //Para llenar DropDownList de Peleador1 en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -127,7 +127,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPeleadores2(int IdPeleador1) //Para llenar dropdownlist de peleador2 en PeleasABM
+        public DataTable obtenerPeleadores2(int IdPeleador1) //Para llenar DropDownList de Peleador2 en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -148,7 +148,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPeleadores1Filtrados(string txtBuscar) //Para llenar dropdownlist de peleador1 en PeleasABM
+        public DataTable obtenerPeleadores1Filtrados(string txtBuscar) //Para llenar DropDownList de Peleador1 en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -169,7 +169,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPeleadores2Filtrados(int IdPeleador, string txtBuscar) //Para llenar dropdownlist de peleador1 en PeleasABM
+        public DataTable obtenerPeleadores2Filtrados(int IdPeleador, string txtBuscar) //Para llenar DropDownList de Peleador2 en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -192,7 +192,9 @@ namespace negocios
             }
         }
 
-        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, int FiltrarXEdad, int FiltrarXCategoria, int FiltrarXModalidad, decimal Peso, int Edad, int CantidadPeleas)
+        public List<Peleador> obtenerPeleadoresSimilares(int IdPeleador1, int FiltrarXPeso, int FiltrarXPeleas, 
+        int FiltrarXEdad, int FiltrarXCategoria, int FiltrarXModalidad, decimal Peso, int Edad, int CantidadPeleas) 
+                        //Para llenar DataGridView de Peleadores Similares en PeleasABM
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -255,7 +257,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerPeleadorPorId(int IdPeleador)
+        public DataTable obtenerPeleadorPorId(int IdPeleador) //Para llenar DropDownList de peleadores similares
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -276,7 +278,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public Pelea obtenerPeleaPorId(int IdPelea)
+        public Pelea obtenerPeleaPorId(int IdPelea) //Para llenar Modal de Peleas
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -360,7 +362,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable obtenerTipoPeleas() //Para llenar dropdownlist de tipoPeleas
+        public DataTable obtenerTipoPeleas() //Para llenar DropDownList de TipoPeleas
         {
             ConexionSQL conexion = new ConexionSQL();
             try

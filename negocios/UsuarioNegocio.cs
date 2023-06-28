@@ -45,7 +45,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public List<Usuario> obtenerUsuariosTodos() //Para llenar las tables
+        public List<Usuario> obtenerUsuariosTodos() //Para llenar los DataGridView
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -78,6 +78,74 @@ namespace negocios
             catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable obtenerTiposUsuario() //Para llenar los DropDownList de Tipos de Usuario
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerTiposUsuario");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool agregarUsuario(Usuario u)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("AgregarUsuario");
+                conexion.setearParametro("@Codigo", 0);
+                conexion.setearParametro("@Usuario", u.User);
+                conexion.setearParametro("@Contrasenia", u.Contrasenia);
+                conexion.setearParametro("@IdTipoUsuario", u.TipoUsuario.Id);
+                conexion.setearParametro("@IdDojo", u.Dojo.Id);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool modificarUsuario(Usuario u)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarUsuario");
+                conexion.setearParametro("@Id", u.Id);
+                conexion.setearParametro("@Usuario", u.User);
+                conexion.setearParametro("@Contrasenia", u.Contrasenia);
+                conexion.setearParametro("@IdTipoUsuario", u.TipoUsuario.Id);
+                conexion.setearParametro("@IdDojo", u.Dojo.Id);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
             finally
             {
