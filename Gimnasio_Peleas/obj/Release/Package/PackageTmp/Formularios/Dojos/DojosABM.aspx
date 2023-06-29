@@ -59,14 +59,14 @@
                             <label for="ddlProvincias" class="form-label">Provincia</label>
                             <asp:DropDownList ID="ddlProvincias" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                             <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlProvincias"
-                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue="Seleccione provincia..."></asp:RequiredFieldValidator>
+                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue=0></asp:RequiredFieldValidator>
                         </div>
 
                         <div>
                             <label for="ddlLocalidades" class="form-label">Localidad</label>
                             <asp:DropDownList ID="ddlLocalidades" CssClass="form-select" runat="server"></asp:DropDownList>
                             <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlLocalidades"
-                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue="Seleccione localidad..."></asp:RequiredFieldValidator>
+                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue=0></asp:RequiredFieldValidator>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -108,6 +108,19 @@
         function SoloLetras(e) {
             return (/^[a-zA-Z ]*$/.test(e.key));
         }
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+    </script>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
     </script>
 
 </asp:Content>

@@ -75,7 +75,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="miModalLabel" runat="server">Informacion del peleador</h5>
-                    <button type="button" id="btnTooltip" class="btn btn-info" data-bs-toggle="tooltip" data-bs-html="true" runat="server">
+                    <button type="button" id="btnTooltip" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" runat="server">
                         <i class="fa-solid fa-image"></i>
                     </button>
                 </div>
@@ -91,22 +91,33 @@
                             <label for="txtModalidad" class="form-label">Modalidad</label>
                             <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" />
 
-                            <label for="txtPeso" class="form-label">Peso</label>
-                            <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
-
-                            <label for="txtEdad" class="form-label">Edad</label>
-                            <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" />
-
-                            <label for="txtAltura" class="form-label">Altura</label>
-                            <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />
-
-                            <%--<asp:Image ID="ImageDetalle" runat="server" Style="margin-top: 11px;" CssClass="modal-photo img-fluid" />--%>
-
-                            <label for="txtCantidadPeleas" class="form-label">Cantidad de Peleas</label>
-                            <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
+                            <div class="mb-0" style="display: flex; align-items: center;">
+                                <div style="flex: 1;">
+                                    <label for="txtPeso" class="form-label">Peso</label>
+                                    <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
+                                </div>
+                                <div style="width: 10px;"></div>
+                                <div style="flex: 1;">
+                                    <label for="txtEdad" class="form-label">Edad</label>
+                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" />
+                                </div>
+                                <div style="width: 10px;"></div>
+                                <div style="flex: 1;">
+                                    <label for="txtAltura" class="form-label">Altura</label>
+                                    <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />
+                                </div>
+                                <div style="width: 10px;"></div>
+                                <div style="flex: 1;">
+                                    <label for="txtCantidadPeleas" class="form-label">Peleas</label>
+                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
+                                </div>
+                            </div>
 
                             <label for="txtGenero" class="form-label">Genero</label>
                             <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" />
+
+                            <label for="txtObservaciones" class="form-label">Observaciones</label>
+                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
                         </div>
                     </div>
                 </div>

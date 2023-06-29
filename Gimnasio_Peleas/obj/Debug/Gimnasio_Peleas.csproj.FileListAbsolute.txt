@@ -156,3 +156,9 @@ C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\obj\Debug\
 C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\obj\Debug\Gimnasio_Peleas.csproj.CopyComplete
 C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\obj\Debug\Gimnasio_Peleas.dll
 C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\obj\Debug\Gimnasio_Peleas.pdb
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\EPPlus.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\EPPlus.Interfaces.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\EPPlus.System.Drawing.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\EPPlus.xml
+C:\Users\Luketruke\Desktop\Gimnasio NET Framework\GYM\Gimnasio_Peleas\bin\Microsoft.IO.RecyclableMemoryStream.xml

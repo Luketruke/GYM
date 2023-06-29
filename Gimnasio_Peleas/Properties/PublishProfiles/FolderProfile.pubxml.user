@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Luketruke\Desktop\Gimnasio NET Framework\Publish</_PublishTargetUrl>
-    <History>True|2023-06-28T15:46:43.0422223Z;True|2023-06-27T18:10:24.2089588-03:00;True|2023-06-27T18:04:34.2061442-03:00;True|2023-06-24T20:02:35.1074736-03:00;True|2023-06-24T19:54:36.6840699-03:00;True|2023-06-23T21:44:17.4101573-03:00;True|2023-06-23T21:43:51.5998691-03:00;True|2023-06-23T21:26:58.8686578-03:00;True|2023-06-23T21:23:23.8162224-03:00;True|2023-06-23T17:38:33.5091890-03:00;True|2023-06-23T17:36:15.3818582-03:00;</History>
+    <History>True|2023-06-29T14:52:42.0672282Z;True|2023-06-29T11:28:31.9840615-03:00;True|2023-06-28T20:16:52.4606405-03:00;True|2023-06-28T12:46:43.0422223-03:00;True|2023-06-27T18:10:24.2089588-03:00;True|2023-06-27T18:04:34.2061442-03:00;True|2023-06-24T20:02:35.1074736-03:00;True|2023-06-24T19:54:36.6840699-03:00;True|2023-06-23T21:44:17.4101573-03:00;True|2023-06-23T21:43:51.5998691-03:00;True|2023-06-23T21:26:58.8686578-03:00;True|2023-06-23T21:23:23.8162224-03:00;True|2023-06-23T17:38:33.5091890-03:00;True|2023-06-23T17:36:15.3818582-03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -18,10 +18,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/16/2019 12:33:30</publishTime>
     </File>
     <File Include="bin/dominios.dll">
-      <publishTime>06/28/2023 12:46:41</publishTime>
+      <publishTime>06/28/2023 20:16:51</publishTime>
     </File>
     <File Include="bin/dominios.pdb">
-      <publishTime>06/28/2023 12:46:41</publishTime>
+      <publishTime>06/28/2023 20:16:51</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>06/15/2023 05:37:08</publishTime>
+    </File>
+    <File Include="bin/EPPlus.Interfaces.dll">
+      <publishTime>11/21/2022 09:51:04</publishTime>
+    </File>
+    <File Include="bin/EPPlus.System.Drawing.dll">
+      <publishTime>11/21/2022 09:51:06</publishTime>
     </File>
     <File Include="bin/es/Microsoft.AspNet.FriendlyUrls.resources.dll">
       <publishTime>07/30/2013 14:01:46</publishTime>
@@ -30,10 +39,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/11/2014 12:28:40</publishTime>
     </File>
     <File Include="bin/Gimnasio_Peleas.dll">
-      <publishTime>06/28/2023 12:46:42</publishTime>
+      <publishTime>06/29/2023 11:52:41</publishTime>
     </File>
     <File Include="bin/Gimnasio_Peleas.pdb">
-      <publishTime>06/28/2023 12:46:42</publishTime>
+      <publishTime>06/29/2023 11:52:41</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>07/30/2013 16:57:30</publishTime>
@@ -43,6 +52,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IO.RecyclableMemoryStream.dll">
+      <publishTime>03/10/2021 20:48:48</publishTime>
     </File>
     <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
       <publishTime>09/06/2013 11:20:12</publishTime>
@@ -54,10 +66,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/negocios.dll">
-      <publishTime>06/28/2023 12:46:42</publishTime>
+      <publishTime>06/29/2023 11:52:41</publishTime>
     </File>
     <File Include="bin/negocios.pdb">
-      <publishTime>06/28/2023 12:46:42</publishTime>
+      <publishTime>06/29/2023 11:52:41</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>04/22/2019 01:06:16</publishTime>
@@ -231,31 +243,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/01/2023 12:17:22</publishTime>
     </File>
     <File Include="Formularios/Dojos/Dojos.aspx">
-      <publishTime>06/27/2023 21:30:29</publishTime>
+      <publishTime>06/28/2023 19:11:27</publishTime>
     </File>
     <File Include="Formularios/Dojos/DojosABM.aspx">
-      <publishTime>06/27/2023 20:53:30</publishTime>
+      <publishTime>06/28/2023 19:02:33</publishTime>
     </File>
     <File Include="Formularios/Login/Login.aspx">
       <publishTime>06/22/2023 15:25:35</publishTime>
     </File>
     <File Include="Formularios/Peleadores/Peleadores.aspx">
-      <publishTime>06/28/2023 12:32:02</publishTime>
+      <publishTime>06/28/2023 20:05:15</publishTime>
     </File>
     <File Include="Formularios/Peleadores/PeleadoresABM.aspx">
-      <publishTime>06/27/2023 16:52:00</publishTime>
+      <publishTime>06/28/2023 19:02:51</publishTime>
     </File>
     <File Include="Formularios/Peleas/Peleas.aspx">
-      <publishTime>06/28/2023 12:33:55</publishTime>
+      <publishTime>06/28/2023 19:10:30</publishTime>
     </File>
     <File Include="Formularios/Peleas/PeleasABM.aspx">
-      <publishTime>06/27/2023 17:45:10</publishTime>
+      <publishTime>06/28/2023 19:33:20</publishTime>
     </File>
     <File Include="Formularios/Usuarios/Usuarios.aspx">
-      <publishTime>06/27/2023 20:52:54</publishTime>
+      <publishTime>06/28/2023 19:10:51</publishTime>
     </File>
     <File Include="Formularios/Usuarios/UsuariosABM.aspx">
-      <publishTime>06/27/2023 20:53:01</publishTime>
+      <publishTime>06/29/2023 11:05:09</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>06/01/2023 12:17:22</publishTime>
@@ -330,16 +342,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/01/2023 12:17:31</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>06/27/2023 21:33:28</publishTime>
+      <publishTime>06/28/2023 17:00:45</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
-      <publishTime>06/27/2023 21:33:33</publishTime>
+      <publishTime>06/28/2023 20:16:06</publishTime>
+    </File>
+    <File Include="Stylesheets/Dojos.css">
+      <publishTime>06/26/2023 17:12:56</publishTime>
+    </File>
+    <File Include="Stylesheets/navbar.css">
+      <publishTime>06/26/2023 17:13:03</publishTime>
+    </File>
+    <File Include="Stylesheets/Peleadores.css">
+      <publishTime>06/28/2023 18:44:37</publishTime>
+    </File>
+    <File Include="Stylesheets/Peleas.css">
+      <publishTime>06/26/2023 17:13:14</publishTime>
     </File>
     <File Include="ViewSwitcher.ascx">
       <publishTime>06/01/2023 12:17:31</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/28/2023 12:46:42</publishTime>
+      <publishTime>06/29/2023 11:52:41</publishTime>
     </File>
   </ItemGroup>
 </Project>

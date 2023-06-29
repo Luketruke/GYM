@@ -33,16 +33,28 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                 if (Convert.ToInt32(Request.QueryString["a"]) == 1) //Agregar
                 {
-
                     if (ddlDojos.Items.Count == 0)
                     {
-                        DataTable dojos = dn.obtenerDojos();
-                        ddlDojos.DataSource = dojos;
-                        ddlDojos.DataTextField = "NombreDojo";
-                        ddlDojos.DataValueField = "IdDojo";
-                        ddlDojos.DataBind();
+                        if (usuario.TipoUsuario.Id == 1)
+                        {
+                            DataTable dojos = dn.obtenerDojos();
+                            ddlDojos.DataSource = dojos;
+                            ddlDojos.DataTextField = "NombreDojo";
+                            ddlDojos.DataValueField = "IdDojo";
+                            ddlDojos.DataBind();
 
-                        ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                            ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                        }
+                        else
+                        {
+                            DataTable dojos = dn.obtenerDojosXId(usuario.Dojo.Id);
+                            ddlDojos.DataSource = dojos;
+                            ddlDojos.DataTextField = "NombreDojo";
+                            ddlDojos.DataValueField = "IdDojo";
+                            ddlDojos.DataBind();
+
+                            ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                        }
                     }
 
                     if (ddlGeneros.Items.Count == 0)
@@ -84,8 +96,19 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     int id = Convert.ToInt32(Request.QueryString["id"]);
                     List<Peleador> temp = (List<Peleador>)Session["listaPeleadores"];
                     Peleador selected = temp.Find(x => x.Id == id);
+                    DataTable dtDojos = null;
 
-                    DataTable dtDojos = dn.obtenerDojos();
+                    if (ddlDojos.Items.Count == 0)
+                    {
+                        if (usuario.TipoUsuario.Id == 1)
+                        {
+                            dtDojos = dn.obtenerDojos();
+                        }
+                        else
+                        {
+                            dtDojos = dn.obtenerDojosXId(usuario.Dojo.Id);
+                        }
+                    }
                     DataTable dtCategorias = pn.obtenerCategorias();
                     DataTable dtGeneros = pn.obtenerGeneros();
                     DataTable dtModalidades = pen.obtenerTipoPeleas();

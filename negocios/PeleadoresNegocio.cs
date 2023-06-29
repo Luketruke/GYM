@@ -63,6 +63,60 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public List<Peleador> obtenerPeleadoresTodosXDojo(int IdDojo) //Para llenar el DataGridView x Profesor
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                List<Peleador> lista = new List<Peleador>();
+                conexion.setearProcedure("obtenerPeleadoresTodosXDojo");
+                conexion.setearParametro("@IdDojo", IdDojo);
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    Peleador p = new Peleador();
+
+                    p.Id = (int)conexion.Lector["Id"];
+                    p.Codigo = (int)conexion.Lector["Codigo"];
+                    p.Nombre = (string)conexion.Lector["Nombre"];
+                    p.Apellido = (string)conexion.Lector["Apellido"];
+                    p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
+                    p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.Altura = (int)conexion.Lector["Altura"];
+                    p.Edad = (int)conexion.Lector["Edad"];
+                    p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
+                    p.Observaciones = (string)conexion.Lector["Observaciones"];
+
+                    p.Categoria = new Categoria();
+                    p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
+                    p.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
+
+                    p.Dojo = new Dojo();
+                    p.Dojo.Id = (int)conexion.Lector["IdDojo"];
+                    p.Dojo.Nombre = (string)conexion.Lector["Dojo"];
+
+                    p.Genero = new Genero();
+                    p.Genero.Id = (int)conexion.Lector["IdGenero"];
+                    p.Genero.GeneroPersona = (string)conexion.Lector["Genero"];
+
+                    lista.Add(p);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public Peleador obtenerPeleadorPorId(int IdPeleador) //Para llenar el Modal de Peleador
         {
             ConexionSQL conexion = new ConexionSQL();

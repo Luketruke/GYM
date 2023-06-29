@@ -55,12 +55,23 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     if (ddlPeleador1.Items.Count == 0)
                     {
                         DataTable peleadores1 = pn.obtenerPeleadores1();
-                        ddlPeleador1.DataSource = peleadores1;
-                        ddlPeleador1.DataTextField = "DatosDDL";
-                        ddlPeleador1.DataValueField = "Id";
-                        ddlPeleador1.DataBind();
+                        if (peleadores1.Rows.Count>0)
+                        {
+                            ddlPeleador1.DataSource = peleadores1;
+                            ddlPeleador1.DataTextField = "DatosDDL";
+                            ddlPeleador1.DataValueField = "Id";
+                            ddlPeleador1.DataBind();
 
-                        ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
+                            ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
+                        }
+                        else
+                        {
+                            ddlPeleador1.DataSource = peleadores1;
+                            ddlPeleador1.DataTextField = "DatosDDL";
+                            ddlPeleador1.DataValueField = "Id";
+                            ddlPeleador1.DataBind();
+                            ddlPeleador1.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
+                        }
                     }
                 }
 
@@ -110,23 +121,28 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             try
             {
                 PeleasNegocio pn = new PeleasNegocio();
-
                 ddlPeleador1.Items.Clear();
 
                 if (ddlPeleador1.Items.Count == 0)
                 {
                     DataTable peleadores1 = pn.obtenerPeleadores1Filtrados(txtPeleador1.Text);
-                    ddlPeleador1.DataSource = peleadores1;
-                    ddlPeleador1.DataTextField = "DatosDDL";
-                    ddlPeleador1.DataValueField = "Id";
-                    ddlPeleador1.DataBind();
-
-                    ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
-                }
-                else
-                {
-                    ddlPeleador1.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
-
+                    if (peleadores1.Rows.Count>0)
+                    {
+                        ddlPeleador1.DataSource = peleadores1;
+                        ddlPeleador1.DataTextField = "DatosDDL";
+                        ddlPeleador1.DataValueField = "Id";
+                        ddlPeleador1.DataBind();
+                        ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
+                        //txtPeleador2.Text = "";
+                    }
+                    else
+                    {
+                        ddlPeleador1.DataSource = peleadores1;
+                        ddlPeleador1.DataTextField = "DatosDDL";
+                        ddlPeleador1.DataValueField = "Id";
+                        ddlPeleador1.DataBind();
+                        ddlPeleador1.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
+                    }
                 }
             }
             catch (Exception ex)
@@ -142,27 +158,38 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                 ddlPeleador2.Items.Clear();
 
-                if (ddlPeleador2.Items.Count == 0)
+                if (Convert.ToInt32(ddlPeleador1.SelectedValue) == 0)
                 {
-                    DataTable peleadores2 = pn.obtenerPeleadores2Filtrados(Convert.ToInt32(ddlPeleador1.SelectedValue), txtPeleador2.Text);
-                    ddlPeleador2.DataSource = peleadores2;
-                    ddlPeleador2.DataTextField = "DatosDDL";
-                    ddlPeleador2.DataValueField = "Id";
                     ddlPeleador2.DataBind();
+                    ddlPeleador2.Items.Insert(0, new ListItem("Seleccione primer peleador primero...", "0"));
+                }
+                else if (ddlPeleador2.Items.Count == 0)
+                    {
+                        DataTable peleadores2 = pn.obtenerPeleadores2Filtrados(Convert.ToInt32(ddlPeleador1.SelectedValue), txtPeleador2.Text);
 
-                    ddlPeleador2.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
-                }
-                else
-                {
-                    ddlPeleador1.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
-                }
+                        if (peleadores2.Rows.Count>0)
+                        {
+                            ddlPeleador2.DataSource = peleadores2;
+                            ddlPeleador2.DataTextField = "DatosDDL";
+                            ddlPeleador2.DataValueField = "Id";
+                            ddlPeleador2.DataBind();
+                            ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
+                        }
+                        else
+                        {
+                            ddlPeleador2.DataSource = peleadores2;
+                            ddlPeleador2.DataTextField = "DatosDDL";
+                            ddlPeleador2.DataValueField = "Id";
+                            ddlPeleador2.DataBind();
+                            ddlPeleador2.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
+                        }
+                    }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnModalPeleadoresSimilares_Click(object sender, EventArgs e)
         {
             try

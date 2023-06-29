@@ -25,11 +25,22 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                 if (!IsPostBack || Session["listaPeleadores"] == null)
                 {
-                    PeleadoresNegocio pn = new PeleadoresNegocio();
-                    Session["listaPeleadores"] = null;
-                    Session.Add("listaPeleadores", pn.obtenerPeleadoresTodos());
-                    dgvPeleadores.DataSource = Session["listaPeleadores"];
-                    dgvPeleadores.DataBind();
+                    if (usuario.TipoUsuario.Id == 1)
+                    {
+                        PeleadoresNegocio pn = new PeleadoresNegocio();
+                        Session["listaPeleadores"] = null;
+                        Session.Add("listaPeleadores", pn.obtenerPeleadoresTodos());
+                        dgvPeleadores.DataSource = Session["listaPeleadores"];
+                        dgvPeleadores.DataBind();
+                    }
+                    else
+                    {
+                        PeleadoresNegocio pn = new PeleadoresNegocio();
+                        Session["listaPeleadores"] = null;
+                        Session.Add("listaPeleadores", pn.obtenerPeleadoresTodosXDojo(usuario.Dojo.Id));
+                        dgvPeleadores.DataSource = Session["listaPeleadores"];
+                        dgvPeleadores.DataBind();
+                    }
                 }
             }
             catch (Exception ex)
@@ -70,16 +81,17 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 txtEdad.Text = p.Edad.ToString();
                 txtPeso.Text = p.Peso.ToString() + "KG";
                 txtCantidadPeleas.Text = p.CantidadPeleas.ToString();
-                string rutaImagen = Path.Combine(Server.MapPath("~/Fotos/"), id.ToString() + ".jpg");
+                txtObservaciones.Text = p.Observaciones;
+                string rutaImagen = Path.Combine(Server.MapPath("../../Fotos/"), id.ToString() + ".jpg");
 
                 if (File.Exists(rutaImagen))
                 {
-                    string url = Path.Combine(Server.MapPath("~/Fotos/"), id.ToString() + ".jpg");
+                    string url = "../../Fotos/" + id.ToString() + ".jpg";
                     btnTooltip.Attributes["title"] = $"<img src='{url}' alt='Imagen'>";
                 }
                 else
                 {
-                    string url = Path.Combine(Server.MapPath("~/Fotos/"), "default_picture.jpg");
+                    string url = "../../Fotos/default_picture.jpg";
                     btnTooltip.Attributes["title"] = $"<img src='{url}' alt='Imagen'>";
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleador = new bootstrap.Modal(document.getElementById('modalPeleador')); modalPeleador.show();</script>", false);

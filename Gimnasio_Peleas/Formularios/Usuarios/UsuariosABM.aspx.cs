@@ -81,8 +81,8 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                     btnModificar.Visible = true;
                     txtUsuario.Text = selected.User;
                     txtPassword.Text = selected.Contrasenia;
-                    ddlDojos.SelectedValue = selected.Dojo.Nombre.ToString();
-                    ddlTiposUsuario.SelectedValue = selected.TipoUsuario.Descripcion.ToString();
+                    ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
+                    ddlTiposUsuario.SelectedValue = selected.TipoUsuario.Id.ToString();
                 }
             }
             catch (Exception ex)
@@ -99,8 +99,12 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
 
                 u.User = txtUsuario.Text;
                 u.Contrasenia = txtPassword.Text;
-                u.Dojo.Nombre = ddlDojos.SelectedValue;
-                u.TipoUsuario.Descripcion = ddlTiposUsuario.SelectedValue;
+
+                u.Dojo = new Dojo();
+                u.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
+
+                u.TipoUsuario = new TipoUsuario();
+                u.TipoUsuario.Id = Convert.ToInt32(ddlTiposUsuario.SelectedValue);
 
                 if (un.agregarUsuario(u))
                 {
@@ -122,8 +126,12 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 u.Id = Convert.ToInt32(Request.QueryString["id"]);
                 u.User = txtUsuario.Text;
                 u.Contrasenia = txtPassword.Text;
-                u.Dojo.Nombre = ddlDojos.SelectedValue;
-                u.TipoUsuario.Descripcion = ddlTiposUsuario.SelectedValue;
+
+                u.Dojo = new Dojo();
+                u.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
+
+                u.TipoUsuario = new TipoUsuario();
+                u.TipoUsuario.Id = Convert.ToInt32(ddlTiposUsuario.SelectedValue);
 
                 if (Convert.ToInt32(ddlDojos.SelectedValue) > 0) //Verifico que se seleccionen valores
                 {

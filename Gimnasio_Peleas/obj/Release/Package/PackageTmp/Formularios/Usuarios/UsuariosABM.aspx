@@ -32,14 +32,14 @@
                     <label for="ddlTiposUsuario" class="form-label">Tipo de Usuario</label>
                     <asp:DropDownList ID="ddlTiposUsuario" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlTiposUsuario"
-                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue="Seleccione tipo de usuario..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0">
                     <label for="ddlDojos" class="form-label">Team</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue="Seleccione team..."></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0">
@@ -74,6 +74,15 @@
         function SoloLetras(e) {
             return (/^[a-zA-Z ]*$/.test(e.key));
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
     </script>
 
 </asp:Content>

@@ -10,6 +10,7 @@ using dominios;
 using negocios;
 using System.IO;
 using DataTable = System.Data.DataTable;
+using OfficeOpenXml;
 
 namespace Gimnasio_Peleas.Formularios.Peleas
 {
@@ -121,53 +122,45 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnExcel_Click(object sender, EventArgs e)
         {
             try
             {
                 PeleasNegocio pn = new PeleasNegocio();
                 DataTable dt = (DataTable)pn.ExportarPeleasAExcel();
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string fileName = "ListaPeleas.xlsx";
-                string filePath = Path.Combine(desktopPath, fileName);
 
-                ExportToExcel(dt, filePath);
-            }
-            catch (Exception ex)
-            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            }
-        }
-        private void ExportToExcel(System.Data.DataTable dataTable, string filePath)
-        {
-            try
-            {
-                Application excelApp = new Application();
-
-                Workbook workbook = excelApp.Workbooks.Add();
-                Worksheet worksheet = workbook.ActiveSheet;
-
-                for (int i = 0; i < dataTable.Columns.Count; i++)
+                using (ExcelPackage package = new ExcelPackage())
                 {
-                    worksheet.Cells[1, i + 1] = dataTable.Columns[i].ColumnName;
-                }
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                for (int i = 0; i < dataTable.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dataTable.Columns.Count; j++)
+                    for (int i = 0; i < dt.Columns.Count; i++)
                     {
-                        worksheet.Cells[i + 2, j + 1] = dataTable.Rows[i][j].ToString();
+                        worksheet.Cells[1, i + 1].Value = dt.Columns[i].ColumnName;
                     }
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dt.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1].Value = dt.Rows[i][j].ToString();
+                        }
+                    }
+
+                    byte[] excelBytes = package.GetAsByteArray();
+
+                    Response.Clear();
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+                    Response.BinaryWrite(excelBytes);
+                    Response.End();
                 }
-
-                workbook.SaveAs(filePath);
-
-                workbook.Close();
-                excelApp.Quit();
             }
             catch (Exception ex)
             {
+                // Manejo de errores
             }
         }
     }

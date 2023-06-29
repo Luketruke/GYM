@@ -72,6 +72,28 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+
+        public DataTable obtenerDojosXId(int IdDojo) //Para llenar los DropDownList de Dojos x Profesor
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("obtenerDojosXId");
+                conexion.setearParametro("@IdDojo", IdDojo);
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public bool agregarDojo(Dojo d)
         {
             ConexionSQL conexion = new ConexionSQL();

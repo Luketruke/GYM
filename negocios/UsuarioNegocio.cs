@@ -58,7 +58,7 @@ namespace negocios
                 {
                     Usuario u = new Usuario();
 
-                    u.Id = (int)conexion.Lector["IdDojo"];
+                    u.Id = (int)conexion.Lector["Id"];
                     u.Codigo = (int)conexion.Lector["Codigo"];
                     u.User = (string)conexion.Lector["Usuario"];
                     u.Contrasenia = (string)conexion.Lector["Contrasenia"];
