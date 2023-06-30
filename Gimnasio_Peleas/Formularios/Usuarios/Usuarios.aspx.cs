@@ -24,6 +24,8 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                     Response.Redirect("/Default.aspx", false);
                 }
 
+                MaintainScrollPositionOnPostBack = true;
+
                 if (!IsPostBack || Session["listaUsuarios"] == null)
                 {
                     UsuarioNegocio un = new UsuarioNegocio();

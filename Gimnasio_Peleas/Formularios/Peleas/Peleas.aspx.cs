@@ -31,6 +31,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Response.Redirect("/Default.aspx", false);
                 }
 
+                MaintainScrollPositionOnPostBack = true;
+
                 if (!IsPostBack || Session["listaPeleas"] == null)
                 {
                     PeleasNegocio pn = new PeleasNegocio();
@@ -88,7 +90,25 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 PeleasNegocio pn = new PeleasNegocio();
                 Pelea p = pn.obtenerPeleaPorId(Convert.ToInt32(id));
 
-                //Desarrollar
+                txtPeleador1.Text = p.Peleador1.NombreCompleto;         
+                txtTeam1.Text = p.Peleador1.Dojo.Nombre;
+                txtCategoria1.Text = p.Peleador1.Categoria.Descripcion;
+                txtModalidad1.Text = p.Peleador1.TipoPelea.Descripcion;
+                txtPeso1.Text = p.Peleador1.Peso.ToString() + "KG";
+                txtEdad1.Text = p.Peleador1.Edad.ToString();
+                txtAltura1.Text = (Convert.ToDecimal(p.Peleador1.Altura) / 100).ToString() + "M";
+                txtPeleas1.Text = p.Peleador1.CantidadPeleas.ToString();
+
+                txtPeleador2.Text = p.Peleador2.NombreCompleto;
+                txtTeam2.Text = p.Peleador2.Dojo.Nombre;
+                txtCategoria2.Text = p.Peleador2.Categoria.Descripcion;
+                txtModalidad2.Text = p.Peleador2.TipoPelea.Descripcion;
+                txtPeso2.Text = p.Peleador2.Peso.ToString() + "KG";
+                txtEdad2.Text = p.Peleador2.Edad.ToString();
+                txtAltura2.Text = (Convert.ToDecimal(p.Peleador2.Altura) / 100).ToString() + "M";
+                txtPeleas2.Text = p.Peleador2.CantidadPeleas.ToString();
+
+                txtObservaciones.Text = p.Observaciones;
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPelea = new bootstrap.Modal(document.getElementById('modalPelea')); modalPelea.show();</script>", false);
             }

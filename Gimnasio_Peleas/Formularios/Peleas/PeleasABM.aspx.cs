@@ -39,18 +39,20 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         txtFiltroEdad.Text = "0";
                         txtFiltroPeso.Text = "0";
                         txtFiltroCantidadPeleas.Text = "0";
+                        checkboxCategoria.Checked = true;
+                        checkboxModalidad.Checked = true;
                     }
 
-                    if (ddlDojos.Items.Count == 0)
-                    {
-                        DataTable dojos = dn.obtenerDojos();
-                        ddlDojos.DataSource = dojos;
-                        ddlDojos.DataTextField = "NombreDojo";
-                        ddlDojos.DataValueField = "IdDojo";
-                        ddlDojos.DataBind();
+                    //if (ddlDojos.Items.Count == 0)
+                    //{
+                    //    DataTable dojos = dn.obtenerDojos();
+                    //    ddlDojos.DataSource = dojos;
+                    //    ddlDojos.DataTextField = "NombreDojo";
+                    //    ddlDojos.DataValueField = "IdDojo";
+                    //    ddlDojos.DataBind();
 
-                        ddlDojos.Items.Insert(0, new ListItem("Seleccione sede...", "0"));
-                    }
+                    //    ddlDojos.Items.Insert(0, new ListItem("Seleccione sede...", "0"));
+                    //}
 
                     if (ddlPeleador1.Items.Count == 0)
                     {
@@ -85,11 +87,20 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     DataTable dtPeleador1 = pn.obtenerPeleadores1();
                     DataTable dtPeleador2 = pn.obtenerPeleadores2(selected.Peleador1.Id);
 
-                    foreach (DataRow r in dtDojos.Rows)
+                    if (!IsPostBack)
                     {
-                        li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());
-                        ddlDojos.Items.Add(li);
+                        txtFiltroEdad.Text = "0";
+                        txtFiltroPeso.Text = "0";
+                        txtFiltroCantidadPeleas.Text = "0";
+                        checkboxCategoria.Checked = true;
+                        checkboxModalidad.Checked = true;
                     }
+
+                    //foreach (DataRow r in dtDojos.Rows)
+                    //{
+                    //    li = new ListItem(r["NombreDojo"].ToString(), r["IdDojo"].ToString());
+                    //    ddlDojos.Items.Add(li);
+                    //}
 
                     foreach (DataRow r in dtPeleador1.Rows)
                     {
@@ -105,7 +116,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                     btnAgregar.Visible = false;
                     btnModificar.Visible = true;
-                    ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
+                    //ddlDojos.SelectedValue = selected.Dojo.Id.ToString();
                     ddlPeleador1.SelectedValue = selected.Peleador1.Id.ToString();
                     ddlPeleador2.SelectedValue = selected.Peleador2.Id.ToString();
                     txtObservaciones.Text = selected.Observaciones;
@@ -333,7 +344,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.Peleador2.Id = Convert.ToInt32(ddlPeleador2.SelectedValue);
 
                 p.Dojo = new Dojo();
-                p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
+                p.Dojo.Id = 1; //Modificar si vuelven a usar sede
 
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = 1;
@@ -366,7 +377,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 p.Peleador2.Id = Convert.ToInt32(ddlPeleador2.SelectedValue);
 
                 p.Dojo = new Dojo();
-                p.Dojo.Id = Convert.ToInt32(ddlDojos.SelectedValue);
+                p.Dojo.Id = 1; //Modificar si vuelven a usar sede
 
                 p.TipoPelea = new TipoPelea();
                 p.TipoPelea.Id = 1;

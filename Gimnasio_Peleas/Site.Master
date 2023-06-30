@@ -43,7 +43,7 @@
                             <a class="nav-link" href="/Formularios/Peleas/Peleas.aspx">Peleas</a>
                         </li>
                         <li class="nav-item" id="dojosNavItem">
-                            <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Dojos</a>
+                            <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Teams</a>
                         </li>
                         <li class="nav-item" id="usuariosNavItem">
                             <a class="nav-link" href="/Formularios/Usuarios/Usuarios.aspx">Usuarios</a>

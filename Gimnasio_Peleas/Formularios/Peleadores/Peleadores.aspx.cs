@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.IO;
 using dominios;
 using negocios;
+using System.Data;
+using OfficeOpenXml;
 
 namespace Gimnasio_Peleas.Formularios.Peleadores
 {
@@ -22,6 +24,8 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 {
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
+
+                MaintainScrollPositionOnPostBack = true;
 
                 if (!IsPostBack || Session["listaPeleadores"] == null)
                 {
@@ -124,16 +128,25 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 int id = Convert.ToInt32(Session["IdPeleadorEliminar"]);
                 if (id>0)
                 {
-                    pn.eliminarPeleador(id);
-                    Session["listaPeleadores"] = null;
-                    Session["IdPeleadorEliminar"] = null;
-                    Response.Redirect("Peleadores.aspx");
+                    if (!pn.VefificarPeleasAlEliminarPeleadores(id))
+                    {
+                        pn.eliminarPeleador(id);
+                        Session["listaPeleadores"] = null;
+                        Session["IdPeleadorEliminar"] = null;
+                        Response.Redirect("Peleadores.aspx");
+                    }
+                    else
+                    {
+                        Session["IdDojoEliminar"] = null;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleasRelacionadas();", true);
+                    }
                 }
                 else
                 {
-                    Session["IdPeleadorEliminar"] = null;
+                    Session["IdDojoEliminar"] = null;
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
-                    Response.Redirect("Peleadores.aspx");
+                    Response.Redirect("Dojos.aspx");
                 }
             }
             catch (Exception ex)
@@ -141,13 +154,50 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Console.WriteLine(ex);
             }
         }
-        protected void btnFiltrar_Click(object sender, EventArgs e)
-        {
-
-        }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("PeleadoresABM.aspx?a=1");
+        }
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PeleadoresNegocio pn = new PeleadoresNegocio();
+                DataTable dt = (DataTable)pn.ExportarPeleadoresAExcel();
+                string fileName = "ListaPeleadores.xlsx";
+
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = dt.Columns[i].ColumnName;
+                    }
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dt.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1].Value = dt.Rows[i][j].ToString();
+                        }
+                    }
+
+                    byte[] excelBytes = package.GetAsByteArray();
+
+                    Response.Clear();
+                    Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+                    Response.BinaryWrite(excelBytes);
+                    Response.End();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+            }
         }
     }
 }

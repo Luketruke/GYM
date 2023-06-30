@@ -72,10 +72,105 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="miModalLabel">Pelea</h5>
+                    <h5 class="modal-title" id="miModalLabel">Detalle de la pelea</h5>
                 </div>
                 <div class="modal-body">
-                    <label class="form-label" runat="server">En desarrollo</label>
+                    <%--Desarrollar--%>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtPeleador1" class="form-label">Rincon Rojo</label>
+                            <asp:TextBox runat="server" ID="txtPeleador1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtPeleador2" class="form-label">Rincon Azul</label>
+                            <asp:TextBox runat="server" ID="txtPeleador2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtTeam1" class="form-label">Team</label>
+                            <asp:TextBox runat="server" ID="txtTeam1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtTeam2" class="form-label">Team</label>
+                            <asp:TextBox runat="server" ID="txtTeam2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtCategoria1" class="form-label">Categoria</label>
+                            <asp:TextBox runat="server" ID="txtCategoria1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtCategoria2" class="form-label">Categoria</label>
+                            <asp:TextBox runat="server" ID="txtCategoria2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtModalidad1" class="form-label">Modalidad</label>
+                            <asp:TextBox runat="server" ID="txtModalidad1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtModalidad2" class="form-label">Modalidad</label>
+                            <asp:TextBox runat="server" ID="txtModalidad2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtPeso1" class="form-label">Peso</label>
+                            <asp:TextBox runat="server" ID="txtPeso1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtEdad1" class="form-label">Edad</label>
+                            <asp:TextBox runat="server" ID="txtEdad1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtPeso2" class="form-label">Peso</label>
+                            <asp:TextBox runat="server" ID="txtPeso2" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtEdad2" class="form-label">Edad</label>
+                            <asp:TextBox runat="server" ID="txtEdad2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <div style="flex: 1;">
+                            <label for="txtAltura1" class="form-label">Altura</label>
+                            <asp:TextBox runat="server" ID="txtAltura1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtPeleas1" class="form-label">Peleas</label>
+                            <asp:TextBox runat="server" ID="txtPeleas1" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtAltura2" class="form-label">Altura</label>
+                            <asp:TextBox runat="server" ID="txtAltura2" class="form-control" disabled="" />
+                        </div>
+                        <div style="width: 10px;"></div>
+                        <div style="flex: 1;">
+                            <label for="txtPeleas2" class="form-label">Peleas</label>
+                            <asp:TextBox runat="server" ID="txtPeleas2" class="form-control" disabled="" />
+                        </div>
+                    </div>
+
+                    <label for="txtObservaciones" class="form-label">Observaciones para la pelea</label>
+                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -120,8 +215,9 @@
 
     <script type="text/javascript">
         function normalize(text) {
-            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return text.replace(/\s+/g, '');
         }
+
         function filterGrid() {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("txtBusqueda");

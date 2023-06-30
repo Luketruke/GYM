@@ -9,8 +9,6 @@
         document.title = 'Peleadores';
     </script>
 
-
-
     <div class="container">
         <div class="row" style="margin-bottom: 8px;">
             <div class="col-md-12">
@@ -26,7 +24,7 @@
                                 </asp:LinkButton>
                             </div>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnFiltrar" OnClick="btnFiltrar_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
+                                <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
                                     <i class="fa-solid fa-download"></i>                                        
                                 </asp:LinkButton>
                             </div>
@@ -148,6 +146,18 @@
     <%--Modales--%>
 
     <script>
+        function cerrarModal() {
+            var modal = document.getElementById('modalEliminar');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.hide();
+        }
+
+        function mostrarAlertaPeleasRelacionadas() {
+            alert('El peleador tiene peleas relacionadas, no puede eliminarlo!');
+        }
+    </script>
+
+    <script>
         function disableEnterKey(e) {
             var key;
             if (window.event)
@@ -165,7 +175,7 @@
 
     <script type="text/javascript">
         function normalize(text) {
-            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return text.replace(/\s+/g, '');
         }
 
         function filterGrid() {

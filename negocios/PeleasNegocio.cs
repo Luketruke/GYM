@@ -309,58 +309,60 @@ namespace negocios
                 //Peleador1
 
                 p.Peleador1 = new Peleador();
-                p.Peleador1.Id = (int)conexion.Lector["IdP1"];
-                p.Peleador1.Codigo = (int)conexion.Lector["CodigoP1"];
-                p.Peleador1.NombreCompleto = (string)conexion.Lector["Peleador1Nombre"];
-                p.Peleador1.Peso = (decimal)conexion.Lector["PesoP1"];
-                p.Peleador1.Altura = (int)conexion.Lector["AlturaP1"];
-                p.Peleador1.CantidadPeleas = (int)conexion.Lector["CantidadPeleasP1"];
+                p.Peleador1.Id = Convert.ToInt32(dt.Rows[0]["IdP1"]);
+                p.Peleador1.Codigo = Convert.ToInt32(dt.Rows[0]["CodigoP1"]);
+                p.Peleador1.NombreCompleto = dt.Rows[0]["Peleador1Nombre"].ToString();
+                p.Peleador1.Peso = Convert.ToDecimal(dt.Rows[0]["PesoP1"]);
+                p.Peleador1.Altura = Convert.ToInt32(dt.Rows[0]["AlturaP1"]);
+                p.Peleador1.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleasP1"]);
+                p.Peleador1.Edad = Convert.ToInt32(dt.Rows[0]["EdadP1"]);
 
                 p.Peleador1.Categoria = new Categoria();
-                p.Peleador1.Categoria.Id = (int)conexion.Lector["IdCategoriaP1"];
-                p.Peleador1.Categoria.Descripcion = (string)conexion.Lector["CategoriaP1"];
+                p.Peleador1.Categoria.Id = Convert.ToInt32(dt.Rows[0]["IdCategoriaP1"]);
+                p.Peleador1.Categoria.Descripcion = dt.Rows[0]["CategoriaP1"].ToString();
 
                 p.Peleador1.TipoPelea = new TipoPelea();
-                p.Peleador1.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP1"];
-                p.Peleador1.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP1"];
+                p.Peleador1.TipoPelea.Id = Convert.ToInt32(dt.Rows[0]["IdTipoPeleaP1"]);
+                p.Peleador1.TipoPelea.Descripcion = dt.Rows[0]["TipoPeleaP1"].ToString();
 
                 p.Peleador1.Dojo = new Dojo();
-                p.Peleador1.Dojo.Id = (int)conexion.Lector["IdDojoP1"];
-                p.Peleador1.Dojo.Nombre = (string)conexion.Lector["DojoP1"];
+                p.Peleador1.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojoP1"]);
+                p.Peleador1.Dojo.Nombre =  dt.Rows[0]["DojoP1"].ToString();
 
                 p.Peleador1.Genero = new Genero();
-                p.Peleador1.Genero.Id = (int)conexion.Lector["IdGeneroP1"];
-                p.Peleador1.Genero.GeneroPersona = (string)conexion.Lector["GeneroP1"];
+                p.Peleador1.Genero.Id = Convert.ToInt32(dt.Rows[0]["IdGeneroP1"]);
+                p.Peleador1.Genero.GeneroPersona = dt.Rows[0]["GeneroP1"].ToString();
 
                 //Peleador2
 
                 p.Peleador2 = new Peleador();
-                p.Peleador2.Id = (int)conexion.Lector["IdP2"];
-                p.Peleador2.Codigo = (int)conexion.Lector["CodigoP2"];
-                p.Peleador2.NombreCompleto = (string)conexion.Lector["Peleador2Nombre"];
-                p.Peleador2.Peso = (decimal)conexion.Lector["PesoP2"];
-                p.Peleador2.Altura = (int)conexion.Lector["AlturaP2"];
-                p.Peleador2.CantidadPeleas = (int)conexion.Lector["CantidadPeleasP2"];
+                p.Peleador2.Id = Convert.ToInt32(dt.Rows[0]["IdP2"]);
+                p.Peleador2.Codigo = Convert.ToInt32(dt.Rows[0]["CodigoP2"]);
+                p.Peleador2.NombreCompleto = dt.Rows[0]["Peleador2Nombre"].ToString();
+                p.Peleador2.Peso = Convert.ToDecimal(dt.Rows[0]["PesoP2"]);
+                p.Peleador2.Altura = Convert.ToInt32(dt.Rows[0]["AlturaP2"]);
+                p.Peleador2.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleasP2"]);
+                p.Peleador2.Edad = Convert.ToInt32(dt.Rows[0]["EdadP2"]);
 
                 p.Peleador2.Categoria = new Categoria();
-                p.Peleador2.Categoria.Id = (int)conexion.Lector["IdCategoriaP2"];
-                p.Peleador2.Categoria.Descripcion = (string)conexion.Lector["CategoriaP2"];
+                p.Peleador2.Categoria.Id = Convert.ToInt32(dt.Rows[0]["IdCategoriaP2"]);
+                p.Peleador2.Categoria.Descripcion = dt.Rows[0]["CategoriaP2"].ToString();
 
                 p.Peleador2.TipoPelea = new TipoPelea();
-                p.Peleador2.TipoPelea.Id = (int)conexion.Lector["IdTipoPeleaP2"];
-                p.Peleador2.TipoPelea.Descripcion = (string)conexion.Lector["TipoPeleaP2"];
+                p.Peleador2.TipoPelea.Id = Convert.ToInt32(dt.Rows[0]["IdTipoPeleaP2"]);
+                p.Peleador2.TipoPelea.Descripcion = dt.Rows[0]["TipoPeleaP2"].ToString();
 
                 p.Peleador2.Dojo = new Dojo();
-                p.Peleador2.Dojo.Id = (int)conexion.Lector["IdDojoP2"];
-                p.Peleador2.Dojo.Nombre = (string)conexion.Lector["DojoP2"];
+                p.Peleador2.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojoP2"]);
+                p.Peleador2.Dojo.Nombre =  dt.Rows[0]["DojoP2"].ToString();
 
                 p.Peleador2.Genero = new Genero();
-                p.Peleador2.Genero.Id = (int)conexion.Lector["IdGeneroP2"];
-                p.Peleador2.Genero.GeneroPersona = (string)conexion.Lector["GeneroP2"];
+                p.Peleador2.Genero.Id = Convert.ToInt32(dt.Rows[0]["IdGeneroP2"]);
+                p.Peleador2.Genero.GeneroPersona = dt.Rows[0]["GeneroP2"].ToString();
 
                 return p;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }

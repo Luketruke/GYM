@@ -91,8 +91,9 @@
 
     <script type="text/javascript">
         function normalize(text) {
-            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return text.replace(/\s+/g, ''); // Elimina los espacios en blanco
         }
+
         function filterGrid() {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("txtBusqueda");

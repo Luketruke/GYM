@@ -34,21 +34,21 @@
 
                 <div class="mb-0">
                     <label for="txtTelefonoProfesor" class="form-label">Telefono del Profesor</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" MaxLength="50" class="form-control" />
+                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" MaxLength="25" class="form-control" />
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
                         ControlToValidate="txtTelefonoProfesor" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0">
                     <label for="txtTelefonoDojo" class="form-label">Telefono del Team</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoDojo" MaxLength="50" class="form-control" />
+                    <asp:TextBox runat="server" ID="txtTelefonoDojo" MaxLength="25" class="form-control" />
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
                         ControlToValidate="txtTelefonoDojo" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0" style="margin-bottom: 0;">
                     <label for="txtDireccion" class="form-label">Direccion</label>
-                    <asp:TextBox runat="server" ID="txtDireccion" MaxLength="35" class="form-control" />
+                    <asp:TextBox runat="server" ID="txtDireccion" MaxLength="50" class="form-control" />
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
                         ControlToValidate="txtDireccion" ErrorMessage="*" ValidationGroup="ValidarDojo"></asp:RequiredFieldValidator>
                 </div>

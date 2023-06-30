@@ -24,7 +24,9 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 else if (usuario.TipoUsuario.Id != 1) //Verifico si el usuario es Administrador
                 {
                     Response.Redirect("/Default.aspx", false);
-                }   
+                }
+
+                MaintainScrollPositionOnPostBack = true;
 
                 if (!IsPostBack || Session["listaDojos"] == null)
                 {
@@ -40,7 +42,6 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 Console.WriteLine(ex);
             }
         }
-        
         protected void btnAbrirModalDojo_Click(object sender, EventArgs e)
         {
             try
@@ -54,11 +55,12 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 txtNombre.Text = d.Nombre;
                 txtTelefonoDojo.Text = d.TelefonoDojo;
                 txtProfesor.Text = d.NombreProfesor;
-                txtTelefonoProfesor.Text = d.TelefonoProfesor;        
+                txtTelefonoProfesor.Text = d.TelefonoProfesor;
                 txtDireccion.Text = d.Direccion.DireccionCompleta;
                 txtObservaciones.Text = d.Observaciones;
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalDojo = new bootstrap.Modal(document.getElementById('modalDojo')); modalDojo.show();</script>", false);
+
             }
             catch (Exception ex)
             {
@@ -88,10 +90,28 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 int id = Convert.ToInt32(Session["IdDojoEliminar"]);
                 if (id>0)
                 {
-                    dn.eliminarDojo(id);
-                    Session["listaDojos"] = null;
-                    Session["IdDojoEliminar"] = null;
-                    Response.Redirect("Dojos.aspx");
+                    if (!dn.VefificarPeleadoresAlEliminarDojo(id))
+                    {
+                        //if (!dn.VefificarPeleasAlEliminarDojo(id))
+                        //{
+                            dn.eliminarDojo(id);
+                            Session["listaDojos"] = null;
+                            Session["IdDojoEliminar"] = null;
+                            Response.Redirect("Dojos.aspx");
+                        //}
+                        //else
+                        //{
+                        //    Session["IdDojoEliminar"] = null;
+                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleasRelacionadas();", true);
+                        //}
+                    }
+                    else
+                    {
+                        Session["IdDojoEliminar"] = null;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleadoresRelacionados();", true);
+                    }
                 }
                 else
                 {
@@ -103,16 +123,11 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }   
+            }
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("DojosABM.aspx?a=1");
-        }
-
-        protected void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            //Desarrollar
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)

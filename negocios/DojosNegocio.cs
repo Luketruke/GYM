@@ -170,6 +170,62 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool VefificarPeleadoresAlEliminarDojo(int IdDojo)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VefificarPeleadoresAlEliminarDojo");
+                conexion.setearParametro("@IdDojo", IdDojo);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool VefificarPeleasAlEliminarDojo(int IdDojo)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VefificarPeleasAlEliminarDojo");
+                conexion.setearParametro("@IdDojo", IdDojo);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public DataTable obtenerProvincias() //Para llenar los DropDownList de Provincias
         {
             ConexionSQL conexion = new ConexionSQL();

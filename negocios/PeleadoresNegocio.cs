@@ -230,6 +230,34 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool VefificarPeleasAlEliminarPeleadores(int IdPeleador)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VefificarPeleasAlEliminarPeleadores");
+                conexion.setearParametro("@IdPeleador", IdPeleador);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
         public bool eliminarPeleador(int IdPeleador)
         {
             ConexionSQL conexion = new ConexionSQL();
@@ -281,6 +309,26 @@ namespace negocios
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+        public DataTable ExportarPeleadoresAExcel()
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ExportarPeleadoresAExcel");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
             }
         }
     }

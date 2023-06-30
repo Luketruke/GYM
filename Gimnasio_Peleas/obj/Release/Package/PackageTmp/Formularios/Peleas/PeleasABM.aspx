@@ -17,13 +17,6 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-                <div>
-                    <label for="ddlDojos" class="form-label">Sede</label>
-                    <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
-                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarPelea" InitialValue="0"></asp:RequiredFieldValidator>
-                </div>
-
                 <div class="row">
                     <div>
                         <div style="display: flex; flex-direction: column;">
@@ -67,7 +60,7 @@
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="checkboxPeso" runat="server" />
                         <label class="form-check-label" for="checkboxPeso">Peso</label>
-                        <asp:TextBox ID="txtFiltroPeso" runat="server" MaxLength="6" oninput="validarInput(this)" Style="width: 30px; font-size: 10px;"></asp:TextBox>
+                        <asp:TextBox ID="txtFiltroPeso" runat="server" MaxLength="6" oninput="soloNumeros(this)" Style="width: 30px; font-size: 10px;"></asp:TextBox>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="checkboxEdad" runat="server" />
@@ -75,7 +68,7 @@
                         <asp:TextBox ID="txtFiltroEdad" runat="server" MaxLength="2" oninput="soloNumeros(this)" Style="width: 30px; font-size: 10px;"></asp:TextBox>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="checkboxCantidadPeleas" runat="server" />
+                        <input class="form-check-input" type="checkbox" id="checkboxCantidadPeleas" runat="server"/>
                         <label class="form-check-label" for="checkboxCantidadPeleas">Peleas</label>
                         <asp:TextBox ID="txtFiltroCantidadPeleas" runat="server" oninput="soloNumeros(this)" MaxLength="3" Style="width: 30px; font-size: 10px;"></asp:TextBox>
                     </div>
@@ -124,6 +117,7 @@
                                 <asp:BoundField HeaderText="Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Modalidad" DataField="TipoPelea.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Team" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:TemplateField HeaderText="Info" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <i class="fa-solid fa-info-circle observaciones-icon" title='<%# Eval("Observaciones") %>'></i>
@@ -188,6 +182,49 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
+    </script>
+
+    <script>
+        var modal = document.getElementById('modalPeleadoresSimilares');
+        var header = modal.querySelector('.modal-header');
+        var isDragging = false;
+        var dragStartX;
+        var dragStartY;
+        var initialModalTop;
+        var initialModalLeft;
+
+        header.addEventListener('mousedown', dragStart);
+
+        document.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                event.preventDefault(); // Evitar el arrastre predeterminado
+                var dx = event.clientX - dragStartX;
+                var dy = event.clientY - dragStartY;
+                modal.style.top = (initialModalTop + dy) + 'px';
+                modal.style.left = (initialModalLeft + dx) + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
+
+        function dragStart(event) {
+            // Verificar si el clic proviene del área del header
+            if (event.target === header || event.target.parentNode === header) {
+                isDragging = true;
+                dragStartX = event.clientX;
+                dragStartY = event.clientY;
+                initialModalTop = modal.offsetTop;
+                initialModalLeft = modal.offsetLeft;
+
+                // Evitar la selección de texto durante el arrastre
+                document.body.style.userSelect = 'none';
+                document.body.style.webkitUserSelect = 'none';
+                document.body.style.mozUserSelect = 'none';
+                document.body.style.msUserSelect = 'none';
+            }
+        }
     </script>
 
 </asp:Content>
