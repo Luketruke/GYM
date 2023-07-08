@@ -170,13 +170,13 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool VefificarPeleadoresAlEliminarDojo(int IdDojo)
+        public bool VerificarPeleadoresAlEliminarDojo(int IdDojo)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("VefificarPeleadoresAlEliminarDojo");
+                conexion.setearProcedure("VerificarPeleadoresAlEliminarDojo");
                 conexion.setearParametro("@IdDojo", IdDojo);
                 dt.Load(conexion.ejecutarConexion());
 
@@ -198,13 +198,13 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool VefificarPeleasAlEliminarDojo(int IdDojo)
+        public bool VerificarPeleasAlEliminarDojo(int IdDojo)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("VefificarPeleasAlEliminarDojo");
+                conexion.setearProcedure("VerificarPeleasAlEliminarDojo");
                 conexion.setearParametro("@IdDojo", IdDojo);
                 dt.Load(conexion.ejecutarConexion());
 

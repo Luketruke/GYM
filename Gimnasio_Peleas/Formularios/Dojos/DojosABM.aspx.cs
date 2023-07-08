@@ -104,6 +104,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
         public void btnAgregar_Click(object sender, EventArgs e)
@@ -112,7 +113,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
             {
                 DojosNegocio dn = new DojosNegocio();
                 Dojo d = new Dojo();
-                d.Nombre = txtNombre.Text;     
+                d.Nombre = txtNombre.Text;
                 d.NombreProfesor = txtProfesor.Text;
                 d.TelefonoProfesor = txtTelefonoProfesor.Text;
                 d.TelefonoDojo = txtTelefonoDojo.Text;
@@ -170,8 +171,15 @@ namespace Gimnasio_Peleas.Formularios.Dojos
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            //Session["alerta"] = "cancelado";
-            Response.Redirect("Dojos.aspx");
+            try
+            {
+                //Session["alerta"] = "cancelado";
+                Response.Redirect("Dojos.aspx");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

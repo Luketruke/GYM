@@ -301,7 +301,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Peleadores.aspx");
+            try
+            {
+                Response.Redirect("Peleadores.aspx");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

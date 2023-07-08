@@ -40,7 +40,6 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnAbrirModalEliminarUsuario_Click(object sender, EventArgs e)
         {
             try
@@ -56,7 +55,6 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -71,7 +69,6 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 Console.WriteLine(ex);
             }
         }
-
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Response.Redirect("UsuariosABM.aspx?a=1");

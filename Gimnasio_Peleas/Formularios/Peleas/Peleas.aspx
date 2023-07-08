@@ -14,19 +14,19 @@
             <div class="col-md-12">
                 <div class="widget custom-border">
                     <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
-                                    <i class="fa-solid fa-plus"></i>
-                                </asp:LinkButton>
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar peleas a Excel">
-                                    <i class="fa-solid fa-download"></i>                                        
-                                </asp:LinkButton>
+                        <div class="col-md-12">
+                            <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                                <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
+        <i class="fa-solid fa-plus"></i>
+                                    </asp:LinkButton>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar peleas a Excel">
+        <i class="fa-solid fa-download"></i>                                        
+                                    </asp:LinkButton>
+                                </div>
                             </div>
                         </div>
                     </div>

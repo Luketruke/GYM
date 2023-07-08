@@ -180,7 +180,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             }
             catch (Exception ex)
             {
-                // Manejo de errores
+                Console.WriteLine(ex);
             }
         }
     }

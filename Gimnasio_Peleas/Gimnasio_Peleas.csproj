@@ -125,6 +125,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="Formularios\Eventos\Eventos.aspx" />
     <Content Include="Formularios\Dojos\Dojos.aspx" />
     <Content Include="Formularios\Dojos\DojosABM.aspx" />
     <Content Include="Formularios\Login\Login.aspx" />
@@ -183,6 +184,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Eventos\Eventos.aspx.cs">
+      <DependentUpon>Eventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Eventos\Eventos.aspx.designer.cs">
+      <DependentUpon>Eventos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Dojos\Dojos.aspx.cs">
       <DependentUpon>Dojos.aspx</DependentUpon>

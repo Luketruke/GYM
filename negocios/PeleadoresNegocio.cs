@@ -230,13 +230,13 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool VefificarPeleasAlEliminarPeleadores(int IdPeleador)
+        public bool VerificarPeleasAlEliminarPeleadores(int IdPeleador)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("VefificarPeleasAlEliminarPeleadores");
+                conexion.setearProcedure("VerificarPeleasAlEliminarPeleadores");
                 conexion.setearParametro("@IdPeleador", IdPeleador);
                 dt.Load(conexion.ejecutarConexion());
 

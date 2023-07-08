@@ -128,7 +128,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 int id = Convert.ToInt32(Session["IdPeleadorEliminar"]);
                 if (id>0)
                 {
-                    if (!pn.VefificarPeleasAlEliminarPeleadores(id))
+                    if (!pn.VerificarPeleasAlEliminarPeleadores(id))
                     {
                         pn.eliminarPeleador(id);
                         Session["listaPeleadores"] = null;
@@ -156,7 +156,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PeleadoresABM.aspx?a=1");
+            try
+            {
+                Response.Redirect("PeleadoresABM.aspx?a=1");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         protected void btnExcel_Click(object sender, EventArgs e)
         {
@@ -196,7 +203,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
             }
             catch (Exception ex)
             {
-                // Manejo de errores
+                Console.WriteLine(ex);
             }
         }
     }

@@ -48,6 +48,7 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Dojo.cs" />
+    <Compile Include="Evento.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="Pelea.cs" />
     <Compile Include="Peleador.cs" />

@@ -90,14 +90,14 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 int id = Convert.ToInt32(Session["IdDojoEliminar"]);
                 if (id>0)
                 {
-                    if (!dn.VefificarPeleadoresAlEliminarDojo(id))
+                    if (!dn.VerificarPeleadoresAlEliminarDojo(id))
                     {
-                        //if (!dn.VefificarPeleasAlEliminarDojo(id))
+                        //if (!dn.VerificarPeleasAlEliminarDojo(id))
                         //{
-                            dn.eliminarDojo(id);
-                            Session["listaDojos"] = null;
-                            Session["IdDojoEliminar"] = null;
-                            Response.Redirect("Dojos.aspx");
+                        dn.eliminarDojo(id);
+                        Session["listaDojos"] = null;
+                        Session["IdDojoEliminar"] = null;
+                        Response.Redirect("Dojos.aspx");
                         //}
                         //else
                         //{

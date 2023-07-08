@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="DojosNegocio.cs" />
+    <Compile Include="EventosNegocio.cs" />
     <Compile Include="PeleadoresNegocio.cs" />
     <Compile Include="PeleasNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

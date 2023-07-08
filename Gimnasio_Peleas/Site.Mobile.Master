@@ -48,8 +48,16 @@
                         <li class="nav-item" id="dojosNavItem">
                             <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Teams</a>
                         </li>
-                        <li class="nav-item" id="usuariosNavItem">
-                            <a class="nav-link" href="/Formularios/Usuarios/Usuarios.aspx">Usuarios</a>
+                        <li class="nav-item dropdown" id="herramientasNavItem">
+                            <a class="nav-link dropdown-toggle" href="#" id="herramientasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Herramientas</a>
+                            <ul class="dropdown-menu" aria-labelledby="herramientasDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="/Formularios/Usuarios/Usuarios.aspx">Usuarios</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/Formularios/Eventos/Eventos.aspx">Eventos</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -96,8 +104,13 @@
         if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
             document.getElementById("dojosNavItem").style.display = "none";
         }
+
         if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
             document.getElementById("usuariosNavItem").style.display = "none";
+        }
+
+        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("controlPanelNavItem").style.display = "none";
         }
     </script>
 

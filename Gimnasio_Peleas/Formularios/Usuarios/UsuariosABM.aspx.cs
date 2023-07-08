@@ -106,9 +106,16 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 u.TipoUsuario = new TipoUsuario();
                 u.TipoUsuario.Id = Convert.ToInt32(ddlTiposUsuario.SelectedValue);
 
-                if (un.agregarUsuario(u))
+                if (!un.VerificarUsuario(u.User))
                 {
-                    Response.Redirect("Usuarios.aspx");
+                    if (un.agregarUsuario(u))
+                    {
+                        Response.Redirect("Usuarios.aspx");
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalYaExisteUsuarioAgregar = new bootstrap.Modal(document.getElementById('modalYaExisteUsuarioAgregar')); modalYaExisteUsuarioAgregar.show();</script>", false);
                 }
             }
             catch (Exception ex)
@@ -137,10 +144,16 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 {
                     if (Convert.ToInt32(ddlTiposUsuario.SelectedValue) > 0) //Verifico que se seleccionen valores
                     {
-                        if (un.modificarUsuario(u))
+                        if (!un.VerificarUsuarioModificar(u.User, u.Id))
                         {
-                            //Session["alerta"] = "modificado";
-                            Response.Redirect("Usuarios.aspx");
+                            if (un.modificarUsuario(u))
+                            {
+                                Response.Redirect("Usuarios.aspx");
+                            }
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalYaExisteUsuarioModificar = new bootstrap.Modal(document.getElementById('modalYaExisteUsuarioModificar')); modalYaExisteUsuarioModificar.show();</script>", false);
                         }
                     }
                 }
@@ -152,8 +165,14 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            //Session["alerta"] = "cancelado";
-            Response.Redirect("Usuarios.aspx");
+            try
+            {
+                Response.Redirect("Usuarios.aspx");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

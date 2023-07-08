@@ -34,7 +34,14 @@ namespace negocios
                 user.Dojo.Id = Convert.ToInt32(dt.Rows[0]["IdDojo"]);
                 user.Dojo.Nombre = dt.Rows[0]["NombreDojo"].ToString();
 
-                return user;
+                if (dt.Rows.Count>0)
+                {
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch (Exception ex)
             {
@@ -78,6 +85,35 @@ namespace negocios
             catch (Exception ex)
             {
                 return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool VerificarUsuarioModificar(string User, int IdUsuario)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VerificarUsuario");
+                conexion.setearParametro("@user", User);
+                conexion.setearParametro("@IdUsuario", IdUsuario);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
             finally
             {
@@ -162,6 +198,34 @@ namespace negocios
                 conexion.ejecutarConexion();
 
                 return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool VerificarUsuario(string user)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VerificarUsuario");
+                conexion.setearParametro("@User", user);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {

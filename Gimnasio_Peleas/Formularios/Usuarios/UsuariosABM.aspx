@@ -32,14 +32,14 @@
                     <label for="ddlTiposUsuario" class="form-label">Tipo de Usuario</label>
                     <asp:DropDownList ID="ddlTiposUsuario" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlTiposUsuario"
-                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue=0></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue="0"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0">
                     <label for="ddlDojos" class="form-label">Team</label>
                     <asp:DropDownList ID="ddlDojos" CssClass="form-select" runat="server"></asp:DropDownList>
                     <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlDojos"
-                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue=0></asp:RequiredFieldValidator>
+                        ErrorMessage="*" ValidationGroup="ValidarUsuario" InitialValue="0"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="mb-0">
@@ -52,6 +52,40 @@
             </div>
         </div>
     </div>
+
+    <%--Modales--%>
+
+    <div class="modal fade" id="modalYaExisteUsuarioAgregar" tabindex="-1" role="dialog" aria-labelledby="modalYaExisteUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede agregar el nombre de usuario debido a que ya existe.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="CerrarModalYaExisteUsuarioAgregar" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalYaExisteUsuarioModificar" tabindex="-1" role="dialog" aria-labelledby="modalYaExisteUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede modificar el nombre de usuario debido a que ya existe.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="CerrarModalYaExisteUsuarioModificar" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--Modales--%>
 
     <script>
         //valida los campos solo numeros

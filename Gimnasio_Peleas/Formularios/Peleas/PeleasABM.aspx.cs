@@ -144,7 +144,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                         ddlPeleador1.DataValueField = "Id";
                         ddlPeleador1.DataBind();
                         ddlPeleador1.Items.Insert(0, new ListItem("Seleccione peleador...", "0"));
-                        //txtPeleador2.Text = "";
                     }
                     else
                     {
@@ -324,6 +323,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
             }
         }
         protected void btnCancelar_Click(object sender, EventArgs e)
