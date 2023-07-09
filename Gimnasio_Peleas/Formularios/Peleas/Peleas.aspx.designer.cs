@@ -24,13 +24,22 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
 
         /// <summary>
-        /// Control btnExcel.
+        /// Control btnModalPeleasAExcelXEvento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnExcel;
+        protected global::System.Web.UI.WebControls.LinkButton btnModalPeleasAExcelXEvento;
+
+        /// <summary>
+        /// Control btnModalPeleasAExcelConHorario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnModalPeleasAExcelConHorario;
 
         /// <summary>
         /// Control dgvPeleas.
@@ -211,5 +220,41 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptar;
+
+        /// <summary>
+        /// Control CerrarModalHayEventoPendiente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CerrarModalHayEventoPendiente;
+
+        /// <summary>
+        /// Control ddlEventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEventos;
+
+        /// <summary>
+        /// Control btnCancelar3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelar3;
+
+        /// <summary>
+        /// Control btnGenerarExcelXEvento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarExcelXEvento;
     }
 }

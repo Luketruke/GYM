@@ -127,9 +127,15 @@ namespace Gimnasio_Peleas.Formularios.Dojos
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("DojosABM.aspx?a=1");
+            try
+            {
+                Response.Redirect("DojosABM.aspx?a=1");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
-
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             try

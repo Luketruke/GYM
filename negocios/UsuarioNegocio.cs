@@ -45,6 +45,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -84,6 +85,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -111,8 +113,9 @@ namespace negocios
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -133,6 +136,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -155,8 +159,9 @@ namespace negocios
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -179,8 +184,9 @@ namespace negocios
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -227,8 +233,9 @@ namespace negocios
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally

@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
-        <i class="fa-solid fa-download"></i>                                        
+        <i class="fa-solid fa-file-arrow-down"></i>                                       
                                     </asp:LinkButton>
                                 </div>
                             </div>
@@ -81,41 +81,40 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="txtDojo" class="form-label">Team</label>
-                            <asp:TextBox runat="server" ID="txtDojo" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtDojo" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                             <label for="txtCategoria" class="form-label">Categoria</label>
-                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                             <label for="txtModalidad" class="form-label">Modalidad</label>
-                            <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                             <div class="mb-0" style="display: flex; align-items: center;">
                                 <div style="flex: 1;">
                                     <label for="txtPeso" class="form-label">Peso</label>
-                                    <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtEdad" class="form-label">Edad</label>
-                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtAltura" class="form-label">Altura</label>
-                                    <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtCantidadPeleas" class="form-label">Peleas</label>
-                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                                 </div>
                             </div>
-
                             <label for="txtGenero" class="form-label">Genero</label>
-                            <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                             <label for="txtObservaciones" class="form-label">Observaciones</label>
-                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                         </div>
                     </div>
                 </div>
@@ -138,6 +137,21 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNoHayEventoActivo" tabindex="-1" role="dialog" aria-labelledby="modalNoHayEventoActivoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede agregar un nuevo peleador debido a que no hay un evento activo.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="CerrarModalHayEventoPendiente" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
                 </div>
             </div>
         </div>

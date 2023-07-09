@@ -351,7 +351,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                 p.Observaciones = txtObservaciones.Text;
 
-                if (pn.agregarPelea(p))
+                if (pn.AgregarPelea(p))
                 {
                     Response.Redirect("Peleas.aspx");
                 }

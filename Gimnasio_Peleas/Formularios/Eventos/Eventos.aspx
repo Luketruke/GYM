@@ -33,7 +33,7 @@
                     <asp:GridView runat="server" ID="dgvEventos" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                         <Columns>
                             <asp:BoundField HeaderText="Evento" DataField="Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
-                            <asp:BoundField HeaderText="Fecha del Evento" DataField="FechaEvento" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
+                            <asp:BoundField HeaderText="Fecha" DataField="FechaEvento" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                             <asp:BoundField HeaderText="Estado" DataField="EstadoEvento" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                             <asp:TemplateField HeaderText="Acción" ItemStyle-Width="150" HeaderStyle-Width="150" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle">
                                 <ItemTemplate>
@@ -67,13 +67,13 @@
                 </div>
                 <div class="modal-body">
                     <label for="txtDescripcionDetalle" class="form-label">Evento</label>
-                    <asp:TextBox runat="server" ID="txtDescripcionDetalle" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtDescripcionDetalle" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                     <label for="txtFechaEventoDetalle" class="form-label">Fecha</label>
-                    <asp:TextBox runat="server" ID="txtFechaEventoDetalle" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtFechaEventoDetalle" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                     <label for="txtEstadoEventoDetalle" class="form-label">Estado</label>
-                    <asp:TextBox runat="server" ID="txtEstadoEventoDetalle" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtEstadoEventoDetalle" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                     <label for="txtObservacionesDetalle" class="form-label">Observaciones</label>
                     <asp:TextBox runat="server" ID="txtObservacionesDetalle" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
@@ -119,7 +119,8 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
-                    <asp:Button runat="server" ID="btnAgregarEvento" ValidationGroup="ValidarEvento" OnClientClick="return validarControles();" OnClick="btnAgregarEvento_Click" Text="Agregar" CssClass="btn btn-success" />
+                    <asp:Button runat="server" ID="btnAgregarEvento" ValidationGroup="ValidarEvento" OnClientClick="return validarControles();" OnClick="btnAgregarEvento_Click" Text="Agregar" CssClass="btn btn-success" Visible="false" />
+                    <asp:Button runat="server" ID="btnModificarEvento" ValidationGroup="ValidarEvento" OnClientClick="return validarControles();" OnClick="btnModificarEvento_Click" Text="Modificar" CssClass="btn btn-success" Visible="false" />
                 </div>
             </div>
         </div>

@@ -22,7 +22,9 @@ namespace Gimnasio_Peleas
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
             }
-            catch (Exception ex) { 
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex);
             }
         }
     }

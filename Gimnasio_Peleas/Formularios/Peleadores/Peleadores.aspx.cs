@@ -9,6 +9,7 @@ using dominios;
 using negocios;
 using System.Data;
 using OfficeOpenXml;
+using OfficeOpenXml.Table;
 
 namespace Gimnasio_Peleas.Formularios.Peleadores
 {
@@ -158,7 +159,16 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         {
             try
             {
-                Response.Redirect("PeleadoresABM.aspx?a=1");
+                EventosNegocio en = new EventosNegocio();
+                if (en.VerificarHayEventoActivo())
+                {
+                    Response.Redirect("PeleadoresABM.aspx?a=1");
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalNoHayEventoActivo = " +
+                        "new bootstrap.Modal(document.getElementById('modalNoHayEventoActivo')); modalNoHayEventoActivo.show();</script>", false);
+                }
             }
             catch (Exception ex)
             {
@@ -179,11 +189,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
+                    // Establecer encabezados de columna
                     for (int i = 0; i < dt.Columns.Count; i++)
                     {
                         worksheet.Cells[1, i + 1].Value = dt.Columns[i].ColumnName;
                     }
 
+                    // Establecer valores de celdas
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         for (int j = 0; j < dt.Columns.Count; j++)
@@ -191,6 +203,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                             worksheet.Cells[i + 2, j + 1].Value = dt.Rows[i][j].ToString();
                         }
                     }
+
+                    // Crear tabla Excel y dar formato de tabla
+                    ExcelRange tableRange = worksheet.Cells[1, 1, dt.Rows.Count + 1, dt.Columns.Count];
+                    ExcelTable excelTable = worksheet.Tables.Add(tableRange, "Table1");
+                    excelTable.TableStyle = OfficeOpenXml.Table.TableStyles.Medium2;
+
+                    // Ajustar el ancho de las columnas automáticamente
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
                     byte[] excelBytes = package.GetAsByteArray();
 

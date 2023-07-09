@@ -61,6 +61,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -88,7 +89,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool agregarPelea(Pelea p)
+        public bool AgregarPelea(Pelea p)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -104,8 +105,9 @@ namespace negocios
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -126,6 +128,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -147,6 +150,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -168,6 +172,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -190,6 +195,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -257,6 +263,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -278,6 +285,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -364,6 +372,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -384,6 +393,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -408,8 +418,9 @@ namespace negocios
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -417,19 +428,42 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public DataTable ExportarPeleasAExcel()
+        public DataTable ExportarPeleasTodasAExcel()
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("ExportarPeleasAExcel");
+                conexion.setearProcedure("ExportarPeleasTodasAExcel");
                 dt.Load(conexion.ejecutarConexion());
 
                 return dt;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable ExportarPeleasXEventoAExcel(int IdEvento)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ExportarPeleasXEventoAExcel");
+                conexion.setearParametro("@IdEvento", IdEvento);
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
                 return null;
             }
             finally

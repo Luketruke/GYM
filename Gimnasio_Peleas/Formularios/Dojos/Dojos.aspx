@@ -72,22 +72,22 @@
                 </div>
                 <div class="modal-body">
                     <label for="txtNombre" class="form-label">Team</label>
-                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtProfesor" class="form-label">Profesor</label>
-                    <asp:TextBox runat="server" ID="txtProfesor" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtProfesor" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtTelefonoProfesor" class="form-label">Telefono del profesor</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtTelefonoDojo" class="form-label">Telefono del team</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoDojo" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtTelefonoDojo" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtDireccion" class="form-label">Direccion</label>
-                    <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtObservaciones" class="form-label">Observaciones</label>
-                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

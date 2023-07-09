@@ -23,8 +23,13 @@
                                     </asp:LinkButton>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar peleas a Excel">
-        <i class="fa-solid fa-download"></i>                                        
+                                    <asp:LinkButton ID="btnModalPeleasAExcelXEvento" OnClick="btnModalPeleasAExcelXEvento_Click" runat="server" CssClass="btn btn-info btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Peleas X Evento a Excel">
+        <i class="fa-solid fa-file-arrow-down"></i>                                 
+                                    </asp:LinkButton>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnModalPeleasAExcelConHorario" OnClick="btnModalPeleasAExcelConHorario_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Peleas con Horario a Excel">
+        <i class="fa-solid fa-file-arrow-down"></i>                                       
                                     </asp:LinkButton>
                                 </div>
                             </div>
@@ -191,6 +196,41 @@
                 <div class="modal-footer">
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNoHayEventoActivo" tabindex="-1" role="dialog" aria-labelledby="modalNoHayEventoActivoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede agregar una nueva pelea debido a que no hay un evento activo.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="CerrarModalHayEventoPendiente" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPeleasAExcelXEvento" tabindex="-1" role="dialog" aria-labelledby="modalPeleasAExcelXEventoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPeleasAExcelXEventoLabel">Exportar Peleas X Evento a Excel</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                    <label for="ddlEventos" class="form-label">Evento</label>
+                    <asp:DropDownList ID="ddlEventos" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnCancelar3" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <asp:Button ID="btnGenerarExcelXEvento" OnClick="btnGenerarExcelXEvento_Click" runat="server" Text="Generar" CssClass="btn btn-success" />
                 </div>
             </div>
         </div>

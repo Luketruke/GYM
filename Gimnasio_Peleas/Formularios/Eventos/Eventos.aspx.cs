@@ -54,17 +54,20 @@ namespace Gimnasio_Peleas.Formularios.Eventos
             {
                 EventosNegocio en = new EventosNegocio();
 
-                if (!en.VerificarEventosPendientes())
+                if (!en.VerificarHayEventoActivo())
                 {
                     //Cargo la hora a las variables agregar
                     txtFechaAgregarModificar.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtHoraAgregarModificar.Text = DateTime.Now.ToString("HH:mm");
+                    btnAgregarEvento.Visible = true;
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalAgregarModificarEvento = new bootstrap.Modal(document.getElementById('modalAgregarModificarEvento')); modalAgregarModificarEvento.show();</script>", false);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalAgregarModificarEvento = " +
+                        "new bootstrap.Modal(document.getElementById('modalAgregarModificarEvento')); modalAgregarModificarEvento.show();</script>", false);
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalHayEventoPendiente = new bootstrap.Modal(document.getElementById('modalHayEventoPendiente')); modalHayEventoPendiente.show();</script>", false);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalHayEventoPendiente = " +
+                        "new bootstrap.Modal(document.getElementById('modalHayEventoPendiente')); modalHayEventoPendiente.show();</script>", false);
                 }
             }
             catch (Exception ex)
@@ -80,7 +83,8 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdEventoFinalizar"] = Convert.ToInt32(id);
-                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalFinalizarEvento = new bootstrap.Modal(document.getElementById('modalFinalizarEvento')); modalFinalizarEvento.show();</script>", false);
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalFinalizarEvento = " +
+                    "new bootstrap.Modal(document.getElementById('modalFinalizarEvento')); modalFinalizarEvento.show();</script>", false);
             }
             catch (Exception ex)
             {
@@ -114,7 +118,28 @@ namespace Gimnasio_Peleas.Formularios.Eventos
         }
         protected void btnAbrirModalModificarEvento_Click(object sender, EventArgs e)
         {
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                EventosNegocio en = new EventosNegocio();
+                Evento ev = en.obtenerEventoXId(Convert.ToInt32(id));
+                Session["IdEventoModificar"] = Convert.ToInt32(id);
+                btnModificarEvento.Visible = true;
 
+                txtDescripcionAgregarModificar.Text = ev.Descripcion;
+                txtObservacionesAgregarModificar.Text = ev.Observaciones;
+                txtFechaAgregarModificar.Text = ev.FechaEvento.ToString("yyyy-MM-dd");
+                txtHoraAgregarModificar.Text = ev.FechaEvento.ToString("HH:mm");
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalAgregarModificarEvento = " +
+                    "new bootstrap.Modal(document.getElementById('modalAgregarModificarEvento')); modalAgregarModificarEvento.show();</script>", false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
         protected void btnAbrirModalDetalleEvento_Click(object sender, EventArgs e)
         {
@@ -131,7 +156,8 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 txtEstadoEventoDetalle.Text = ev.EstadoEvento;
                 txtObservacionesDetalle.Text = ev.Observaciones;
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEvento = new bootstrap.Modal(document.getElementById('modalEvento')); modalEvento.show();</script>", false);
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEvento = " +
+                    "new bootstrap.Modal(document.getElementById('modalEvento')); modalEvento.show();</script>", false);
             }
             catch (Exception ex)
             {
@@ -164,7 +190,47 @@ namespace Gimnasio_Peleas.Formularios.Eventos
         }
         protected void btnFinalizarEvento_Click(object sender, EventArgs e)
         {
+            try
+            {
+                EventosNegocio en = new EventosNegocio();
+                int IdEvento = Convert.ToInt32(Session["IdEventoFinalizar"]);
+                Session["IdEventoFinalizar"] = null;
 
+                if (en.FinalizarEvento(IdEvento))
+                {
+                    Response.Redirect("Eventos.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnModificarEvento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EventosNegocio en = new EventosNegocio();
+                Evento ev = new Evento();
+                ev.Id = Convert.ToInt32(Session["IdEventoModificar"]);
+                Session["IdEventoModificar"] = null;
+                ev.Descripcion = txtDescripcionAgregarModificar.Text;
+                ev.Observaciones = txtObservacionesAgregarModificar.Text;
+                string dateValue = txtFechaAgregarModificar.Text;
+                string timeValue = txtHoraAgregarModificar.Text;
+                DateTime dateTime = DateTime.ParseExact(dateValue + " " + timeValue, "yyyy-MM-dd HH:mm",
+                    CultureInfo.InvariantCulture);
+                ev.FechaEvento = dateTime;
+
+                if (en.ModificarEvento(ev))
+                {
+                    Response.Redirect("Eventos.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }

@@ -183,7 +183,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Genero = new Genero();
                 p.Genero.Id = Convert.ToInt32(ddlGeneros.SelectedValue);
 
-                int IdNuevoPeleador = pn.agregarPeleador(p);
+                int IdNuevoPeleador = pn.AgregarPeleador(p);
 
                 if (IdNuevoPeleador > 0)
                 {

@@ -39,6 +39,28 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable ObtenerEventos() //Para llenar los DropDownList de Eventos
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ObtenerEventos");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -67,8 +89,9 @@ namespace negocios
 
                 return e;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -90,8 +113,9 @@ namespace negocios
 
                 return IdEvento;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return -1;
             }
             finally
@@ -99,13 +123,58 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public bool VerificarEventosPendientes()
+        public bool ModificarEvento(Evento ev)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("ModificarEvento");
+                conexion.setearParametro("@IdEvento", ev.Id);
+                conexion.setearParametro("@Descripcion", ev.Descripcion);
+                conexion.setearParametro("@FechaEvento", ev.FechaEvento);
+                conexion.setearParametro("@Observaciones", ev.Observaciones);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool FinalizarEvento(int IdEvento)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("FinalizarEvento");
+                conexion.setearParametro("@IdEvento", IdEvento);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool VerificarHayEventoActivo()
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("VerificarEventosPendientes");
+                conexion.setearProcedure("VerificarHayEventoActivo");
                 dt.Load(conexion.ejecutarConexion());
 
                 if (dt.Rows.Count>0)
@@ -117,8 +186,9 @@ namespace negocios
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally

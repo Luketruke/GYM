@@ -56,6 +56,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -110,6 +111,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -158,8 +160,9 @@ namespace negocios
 
                 return p;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
@@ -167,7 +170,7 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
-        public int agregarPeleador(Peleador p)
+        public int AgregarPeleador(Peleador p)
         {
             ConexionSQL conexion = new ConexionSQL();
             try
@@ -189,8 +192,9 @@ namespace negocios
 
                 return IdPeleador;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return -1;
             }
             finally
@@ -221,8 +225,9 @@ namespace negocios
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -249,8 +254,9 @@ namespace negocios
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
             finally
@@ -292,6 +298,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }
@@ -308,6 +315,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }
@@ -324,6 +332,7 @@ namespace negocios
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
             finally
