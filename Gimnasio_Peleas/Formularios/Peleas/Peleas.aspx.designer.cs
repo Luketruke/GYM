@@ -33,15 +33,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.LinkButton btnModalPeleasAExcelXEvento;
 
         /// <summary>
-        /// Control btnModalPeleasAExcelConHorario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnModalPeleasAExcelConHorario;
-
-        /// <summary>
         /// Control dgvPeleas.
         /// </summary>
         /// <remarks>
@@ -204,15 +195,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
 
         /// <summary>
-        /// Control btnCancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
-
-        /// <summary>
         /// Control btnAceptar.
         /// </summary>
         /// <remarks>
@@ -220,15 +202,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAceptar;
-
-        /// <summary>
-        /// Control CerrarModalHayEventoPendiente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CerrarModalHayEventoPendiente;
 
         /// <summary>
         /// Control ddlEventos.
@@ -256,5 +229,23 @@ namespace Gimnasio_Peleas.Formularios.Peleas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGenerarExcelXEvento;
+
+        /// <summary>
+        /// Control txtOrdenPelea.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrdenPelea;
+
+        /// <summary>
+        /// Control btnAgregarOrdenPelea.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarOrdenPelea;
     }
 }

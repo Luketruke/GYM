@@ -24,13 +24,13 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
 
         /// <summary>
-        /// Control btnExcel.
+        /// Control btnModalPeleadoresAExcelXEvento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnExcel;
+        protected global::System.Web.UI.WebControls.LinkButton btnModalPeleadoresAExcelXEvento;
 
         /// <summary>
         /// Control dgvPeleadores.
@@ -141,15 +141,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.TextBox txtObservaciones;
 
         /// <summary>
-        /// Control btnCancelar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
-
-        /// <summary>
         /// Control btnAceptar.
         /// </summary>
         /// <remarks>
@@ -159,12 +150,21 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
         protected global::System.Web.UI.WebControls.Button btnAceptar;
 
         /// <summary>
-        /// Control CerrarModalHayEventoPendiente.
+        /// Control ddlEventos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CerrarModalHayEventoPendiente;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEventos;
+
+        /// <summary>
+        /// Control btnGenerarExcelXEvento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarExcelXEvento;
     }
 }

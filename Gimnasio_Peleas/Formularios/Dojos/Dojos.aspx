@@ -106,12 +106,12 @@
                     ¿Estás seguro de que deseas eliminar el dojo?
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
     <%--Modales--%>
 
@@ -130,10 +130,6 @@
             var bootstrapModal = new bootstrap.Modal(modal);
             bootstrapModal.hide();
         }
-
-        //function mostrarAlertaPeleasRelacionadas() {
-        //    alert('El dojo tiene peleas relacionadas, no puede eliminarlo!');
-        //}
 
         function mostrarAlertaPeleadoresRelacionados() {
             alert('El dojo tiene peleadores relacionados, no puede eliminarlo!');

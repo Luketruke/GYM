@@ -319,13 +319,35 @@ namespace negocios
                 return null;
             }
         }
-        public DataTable ExportarPeleadoresAExcel()
+        public DataTable ExportarPeleadoresTodosAExcel()
         {
             ConexionSQL conexion = new ConexionSQL();
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("ExportarPeleadoresAExcel");
+                conexion.setearProcedure("ExportarPeleadoresTodosAExcel");
+                dt.Load(conexion.ejecutarConexion());
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public DataTable ExportarPeleadoresXEventoAExcel(int IdEvento)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("ExportarPeleadoresXEventoAExcel");
+                conexion.setearParametro("@IdEvento", IdEvento);
                 dt.Load(conexion.ejecutarConexion());
 
                 return dt;

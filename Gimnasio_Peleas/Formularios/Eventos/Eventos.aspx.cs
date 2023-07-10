@@ -34,6 +34,8 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                     Response.Redirect("/Default.aspx", false);
                 }
 
+                MaintainScrollPositionOnPostBack = true;
+
                 if (!IsPostBack || Session["listaEventos"] == null)
                 {
                     EventosNegocio en = new EventosNegocio();

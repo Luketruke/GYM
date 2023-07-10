@@ -165,7 +165,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
             try
             {
                 EventosNegocio en = new EventosNegocio();
-                PeleasNegocio pn = new PeleasNegocio();
 
                 if (ddlEventos.Items.Count == 0)
                 {
@@ -185,11 +184,11 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 Console.WriteLine(ex);
             }
         }
-        protected void btnModalPeleasAExcelConHorario_Click(object sender, EventArgs e)
-        {
 
-        }
+        //protected void btnModalPeleasAExcelConHorario_Click(object sender, EventArgs e)
+        //{
 
+        //}
         protected void btnGenerarExcelXEvento_Click(object sender, EventArgs e)
         {
             try
@@ -225,18 +224,20 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Hoja1");
 
-                    // Establecer encabezados de columna
+                    // Establecer encabezados de columna y centrarlos
                     for (int i = 0; i < dt.Columns.Count; i++)
                     {
                         worksheet.Cells[1, i + 1].Value = dt.Columns[i].ColumnName;
+                        worksheet.Cells[1, i + 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     }
 
-                    // Establecer valores de celdas
+                    // Establecer valores de celdas y centrar el contenido
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         for (int j = 0; j < dt.Columns.Count; j++)
                         {
                             worksheet.Cells[i + 2, j + 1].Value = dt.Rows[i][j].ToString();
+                            worksheet.Cells[i + 2, j + 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                         }
                     }
 
@@ -255,6 +256,70 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
                     Response.BinaryWrite(excelBytes);
                     Response.End();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnModalOrdenPelea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Session["IdPeleaOrden"] = Convert.ToInt32(id);
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalOrdenPelea = new bootstrap.Modal(document.getElementById('modalOrdenPelea')); modalOrdenPelea.show();</script>", false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnAgregarOrdenPelea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PeleasNegocio pn = new PeleasNegocio();
+                int IdPeleaOrden = Convert.ToInt32(Session["IdPeleaOrden"]);
+                int NumeroPelea = Convert.ToInt32(txtOrdenPelea.Text);
+                if (IdPeleaOrden > 0)
+                {
+                    if (NumeroPelea > -1)
+                    {
+                        if (!pn.VerificarSiExisteNumeroPelea(NumeroPelea))
+                        {
+                            pn.setearNumeroPelea(IdPeleaOrden, NumeroPelea);
+                            Session["listaPeleas"] = null;
+                            Session["IdPeleaOrden"] = null;
+                            Response.Redirect("Peleas.aspx");
+                        }
+                        else
+                        {
+                            Session["IdPeleaOrden"] = null;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaExisteNumeroPelea();", true);
+                        }
+                    }
+                    else
+                    {
+                        Session["IdPeleaOrden"] = null;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaIngreseNumeroValido();", true);
+                    }
+                }
+                else
+                {
+                    Session["IdDojoEliminar"] = null;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
+                    Response.Redirect("Dojos.aspx");
+                }
+                Session["IdPeleaOrden"] = null;
+                if (pn.VerificarSiExisteNumeroPelea(NumeroPelea))
+                {
+
                 }
             }
             catch (Exception ex)

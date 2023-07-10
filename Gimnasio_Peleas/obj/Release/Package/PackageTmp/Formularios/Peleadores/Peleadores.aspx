@@ -14,19 +14,19 @@
             <div class="col-md-12">
                 <div class="widget custom-border">
                     <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleadores..." />
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo peleador">
-                                    <i class="fa-solid fa-plus"></i>
-                                </asp:LinkButton>
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
-                                    <i class="fa-solid fa-download"></i>                                        
-                                </asp:LinkButton>
+                        <div class="col-md-12">
+                            <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                                <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleadores..." />
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo peleador">
+        <i class="fa-solid fa-plus"></i>
+                                    </asp:LinkButton>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnModalPeleadoresAExcelXEvento" OnClick="btnModalPeleadoresAExcelXEvento_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar a Excel">
+        <i class="fa-solid fa-file-excel"></i>                                    
+                                    </asp:LinkButton>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,41 +81,40 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="txtDojo" class="form-label">Team</label>
-                            <asp:TextBox runat="server" ID="txtDojo" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtDojo" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                             <label for="txtCategoria" class="form-label">Categoria</label>
-                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtCategoria" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                             <label for="txtModalidad" class="form-label">Modalidad</label>
-                            <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtModalidad" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                             <div class="mb-0" style="display: flex; align-items: center;">
                                 <div style="flex: 1;">
                                     <label for="txtPeso" class="form-label">Peso</label>
-                                    <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtPeso" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtEdad" class="form-label">Edad</label>
-                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtEdad" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtAltura" class="form-label">Altura</label>
-                                    <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtAltura" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
                                 </div>
                                 <div style="width: 10px;"></div>
                                 <div style="flex: 1;">
                                     <label for="txtCantidadPeleas" class="form-label">Peleas</label>
-                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" />
+                                    <asp:TextBox runat="server" ID="txtCantidadPeleas" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
                                 </div>
                             </div>
-
                             <label for="txtGenero" class="form-label">Genero</label>
-                            <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" />
+                            <asp:TextBox runat="server" ID="txtGenero" class="form-control" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
 
                             <label for="txtObservaciones" class="form-label">Observaciones</label>
-                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                            <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" Style="display: flex; align-items: center; margin-bottom: 5px;" />
                         </div>
                     </div>
                 </div>
@@ -136,8 +135,43 @@
                     ¿Estás seguro de que deseas eliminar el peleador?
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNoHayEventoActivo" tabindex="-1" role="dialog" aria-labelledby="modalNoHayEventoActivoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede agregar un nuevo peleador debido a que no hay un evento activo.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPeleadoresAExcelXEvento" tabindex="-1" role="dialog" aria-labelledby="modalPeleadoresAExcelXEventoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPeleadoresAExcelXEventoLabel">Exportar Peleadores X Evento a Excel</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="ddlEventos" class="form-label">Evento</label>
+                        <asp:DropDownList ID="ddlEventos" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="btnGenerarExcelXEvento" OnClick="btnGenerarExcelXEvento_Click" runat="server" Text="Generar" CssClass="btn btn-success" />
                 </div>
             </div>
         </div>

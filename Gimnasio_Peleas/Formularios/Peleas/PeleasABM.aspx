@@ -88,9 +88,9 @@
                 </div>
 
                 <div class="mb-0">
+                    <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                     <asp:Button ID="btnAgregar" ValidationGroup="ValidarPelea" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
                     <asp:Button ID="btnModificar" ValidationGroup="ValidarPelea" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
-                    <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
 
             </div>

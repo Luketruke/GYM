@@ -99,18 +99,9 @@
     <script>
         if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
             document.getElementById("peleasNavItem").style.display = "none";
-        }
-
-        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
             document.getElementById("dojosNavItem").style.display = "none";
-        }
-
-        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("herramientasNavItem").style.display = "none";
             document.getElementById("usuariosNavItem").style.display = "none";
-        }
-
-        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
-            document.getElementById("controlPanelNavItem").style.display = "none";
         }
     </script>
 

@@ -111,9 +111,9 @@
                 <br />
 
                 <div id="botones" style="margin-left: auto;">
+                    <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                     <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" ValidationGroup="ValidarPeleador" runat="server" CssClass="btn btn-success" Text="Agregar" />
                     <asp:Button ID="btnModificar" OnClick="btnModificar_Click" ValidationGroup="ValidarPeleador" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
-                    <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
             </div>
             <div class="col-md-2">

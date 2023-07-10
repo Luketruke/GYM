@@ -471,5 +471,55 @@ namespace negocios
                 conexion.cerrarConexion();
             }
         }
+        public bool VerificarSiExisteNumeroPelea(int IdNumeroPelea)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VerificarSiExisteNumeroPelea");
+                conexion.setearParametro("@NumeroDePelea", IdNumeroPelea);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public bool setearNumeroPelea(int IdPelea, int NumeroPelea)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                conexion.setearProcedure("SetearNumeroPelea");
+                conexion.setearParametro("@IdPelea", IdPelea);
+                conexion.setearParametro("@NumeroPelea", NumeroPelea);
+                conexion.ejecutarConexion();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
     }
 }

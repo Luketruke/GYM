@@ -59,27 +59,27 @@
                             <label for="ddlProvincias" class="form-label">Provincia</label>
                             <asp:DropDownList ID="ddlProvincias" CssClass="form-select" runat="server" OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                             <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlProvincias"
-                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue=0></asp:RequiredFieldValidator>
+                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue="0"></asp:RequiredFieldValidator>
                         </div>
 
                         <div>
                             <label for="ddlLocalidades" class="form-label">Localidad</label>
                             <asp:DropDownList ID="ddlLocalidades" CssClass="form-select" runat="server"></asp:DropDownList>
                             <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server" ControlToValidate="ddlLocalidades"
-                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue=0></asp:RequiredFieldValidator>
+                                ErrorMessage="*" ValidationGroup="ValidarDojo" InitialValue="0"></asp:RequiredFieldValidator>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
 
-                 <div class="mb-3">
+                <div class="mb-3">
                     <label for="txtObservaciones" class="form-label">Observaciones</label>
                     <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="5" />
                 </div>
 
                 <div class="mb-0">
+                    <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                     <asp:Button ID="btnAgregar" OnClick="btnAgregar_Click" ValidationGroup="ValidarDojo" runat="server" CssClass="btn btn-success" Text="Agregar" />
                     <asp:Button ID="btnModificar" OnClick="btnModificar_Click" ValidationGroup="ValidarDojo" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
-                    <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
             </div>
             <div class="col-md-2">

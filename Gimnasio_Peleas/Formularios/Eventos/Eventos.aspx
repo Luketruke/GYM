@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button runat="server" ID="btnAgregarEvento" ValidationGroup="ValidarEvento" OnClientClick="return validarControles();" OnClick="btnAgregarEvento_Click" Text="Agregar" CssClass="btn btn-success" Visible="false" />
                     <asp:Button runat="server" ID="btnModificarEvento" ValidationGroup="ValidarEvento" OnClientClick="return validarControles();" OnClick="btnModificarEvento_Click" Text="Modificar" CssClass="btn btn-success" Visible="false" />
                 </div>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar2" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnFinalizarEvento" OnClick="btnFinalizarEvento_Click" runat="server" Text="Aceptar" CssClass="btn btn-success" />
                 </div>
             </div>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="CerrarModalHayEventoPendiente" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

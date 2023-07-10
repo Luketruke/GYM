@@ -92,19 +92,10 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 {
                     if (!dn.VerificarPeleadoresAlEliminarDojo(id))
                     {
-                        //if (!dn.VerificarPeleasAlEliminarDojo(id))
-                        //{
                         dn.eliminarDojo(id);
                         Session["listaDojos"] = null;
                         Session["IdDojoEliminar"] = null;
                         Response.Redirect("Dojos.aspx");
-                        //}
-                        //else
-                        //{
-                        //    Session["IdDojoEliminar"] = null;
-                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
-                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleasRelacionadas();", true);
-                        //}
                     }
                     else
                     {

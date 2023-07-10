@@ -17,7 +17,6 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             try
             {
                 Usuario usuario = (Usuario)Session["Usuario"];
@@ -175,32 +174,80 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Console.WriteLine(ex);
             }
         }
-        protected void btnExcel_Click(object sender, EventArgs e)
+
+        protected void btnModalPeleadoresAExcelXEvento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EventosNegocio en = new EventosNegocio();
+
+                if (ddlEventos.Items.Count == 0)
+                {
+                    DataTable Eventos = en.ObtenerEventos();
+                    ddlEventos.DataSource = Eventos;
+                    ddlEventos.DataTextField = "Evento";
+                    ddlEventos.DataValueField = "Id";
+                    ddlEventos.DataBind();
+
+                    ddlEventos.Items.Insert(0, new ListItem("Todos los eventos", "0"));
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresAExcelXEvento = " +
+                    "new bootstrap.Modal(document.getElementById('modalPeleadoresAExcelXEvento')); modalPeleadoresAExcelXEvento.show();</script>", false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnGenerarExcelXEvento_Click(object sender, EventArgs e)
         {
             try
             {
                 PeleadoresNegocio pn = new PeleadoresNegocio();
-                DataTable dt = (DataTable)pn.ExportarPeleadoresAExcel();
+                DataTable dt = null;
+
+                if (Convert.ToInt32(ddlEventos.SelectedValue)==0)
+                {
+                    dt = (DataTable)pn.ExportarPeleadoresTodosAExcel();
+                    GenerarExcelPeleadores(dt);
+                }
+                else
+                {
+                    dt = (DataTable)pn.ExportarPeleadoresXEventoAExcel(Convert.ToInt32(ddlEventos.SelectedValue));
+                    GenerarExcelPeleadores(dt);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void GenerarExcelPeleadores(DataTable dt)
+        {
+            try
+            {
                 string fileName = "ListaPeleadores.xlsx";
 
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 using (ExcelPackage package = new ExcelPackage())
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Hoja1");
 
-                    // Establecer encabezados de columna
+                    // Establecer encabezados de columna y centrarlos
                     for (int i = 0; i < dt.Columns.Count; i++)
                     {
                         worksheet.Cells[1, i + 1].Value = dt.Columns[i].ColumnName;
+                        worksheet.Cells[1, i + 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     }
 
-                    // Establecer valores de celdas
+                    // Establecer valores de celdas y centrar el contenido
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         for (int j = 0; j < dt.Columns.Count; j++)
                         {
                             worksheet.Cells[i + 2, j + 1].Value = dt.Rows[i][j].ToString();
+                            worksheet.Cells[i + 2, j + 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                         }
                     }
 

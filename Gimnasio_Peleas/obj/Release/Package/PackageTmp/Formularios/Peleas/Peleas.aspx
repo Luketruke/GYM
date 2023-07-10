@@ -14,19 +14,28 @@
             <div class="col-md-12">
                 <div class="widget custom-border">
                     <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
-                                    <i class="fa-solid fa-plus"></i>
-                                </asp:LinkButton>
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnExcel" OnClick="btnExcel_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Exportar peleas a Excel">
-                                    <i class="fa-solid fa-download"></i>                                        
-                                </asp:LinkButton>
+                        <div class="col-md-12">
+                            <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                                <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
+        <i class="fa-solid fa-plus"></i>
+                                    </asp:LinkButton>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnModalPeleasAExcelXEvento" OnClick="btnModalPeleasAExcelXEvento_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Peleas X Evento a Excel">
+        <i class="fa-solid fa-file-excel"></i>                                
+                                    </asp:LinkButton>
+                                </div>
+
+                                <%---------------Por si quieren un excel con horarios, usar este boton.--------------------%>
+                                <%--<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnModalPeleasAExcelConHorario" OnClick="btnModalPeleasAExcelConHorario_Click" runat="server" CssClass="btn btn-primary btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Peleas con Horario a Excel">
+        <i class="fa-solid fa-file-arrow-down"></i>                                       
+                                    </asp:LinkButton>
+                                </div>--%>
+                                <%----------------------------------------------------------------------------------------%>
+
                             </div>
                         </div>
                     </div>
@@ -36,8 +45,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static" AllowPaging="true">
+                    <asp:GridView runat="server" ID="dgvPeleas" DataKeyNames="Id" CssClass="table table-striped table-white" AutoGenerateColumns="false" ClientIDMode="Static">
                         <Columns>
+                            <asp:BoundField HeaderText="#" DataField="Codigo" ItemStyle-Width="60" HeaderStyle-Width="60" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                             <asp:BoundField HeaderText="Rincon Rojo" DataField="Peleador1.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                             <asp:BoundField HeaderText="Team" DataField="Peleador1.Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
                             <asp:BoundField HeaderText="Rincon Azul" DataField="Peleador2.NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center align-middle" />
@@ -49,10 +59,12 @@
                                         <asp:LinkButton ID="btnAbrirModalPelea" runat="server" Text="Abrir Modal" OnClick="btnAbrirModalPelea_Click" data-bs-toggle="tooltip" ToolTip="Detalle" CssClass="btn btn-info me-1">
             <i class="fa-solid fa-search"></i>
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="btnModalOrdenPelea" runat="server" Text="Abrir Modal" OnClick="btnModalOrdenPelea_Click" data-bs-toggle="tooltip" ToolTip="Orden" CssClass="btn btn-info me-1">
+            <i class="fa-solid fa-sort"></i>
+                                        </asp:LinkButton>
                                         <asp:LinkButton ID="btnModificar" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success me-1" data-bs-toggle="tooltip" ToolTip="Modificar">
             <i class="fa-solid fa-pen-to-square"></i>
                                         </asp:LinkButton>
-
                                         <asp:LinkButton ID="btnAbrirModalEliminarPelea" OnClick="btnAbrirModalEliminarPelea_Click" runat="server" CssClass="btn btn-danger" ClientIDMode="Static" data-bs-toggle="tooltip" ToolTip="Eliminar">
             <i class="fa-solid fa-trash"></i>
                                         </asp:LinkButton>
@@ -189,8 +201,62 @@
                     ¿Estás seguro de que deseas eliminar la pelea?
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalNoHayEventoActivo" tabindex="-1" role="dialog" aria-labelledby="modalNoHayEventoActivoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="text-align: center; margin-bottom: -14px">
+                    <div class="alert alert-danger" role="alert">
+                        <b>No puede agregar una nueva pelea debido a que no hay un evento activo.</b>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="CerrarModalHayEventoPendiente" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPeleasAExcelXEvento" tabindex="-1" role="dialog" aria-labelledby="modalPeleasAExcelXEventoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPeleasAExcelXEventoLabel">Exportar Peleas X Evento a Excel</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="ddlEventos" class="form-label">Evento</label>
+                        <asp:DropDownList ID="ddlEventos" CssClass="form-select" runat="server"></asp:DropDownList>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btnCancelar3" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <asp:Button ID="btnGenerarExcelXEvento" OnClick="btnGenerarExcelXEvento_Click" runat="server" Text="Generar" CssClass="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalOrdenPelea" tabindex="-1" role="dialog" aria-labelledby="modalOrdenPeleaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalOrdenPeleaLabel">Numero de pelea</h5>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:TextBox runat="server" ID="txtOrdenPelea" placeholder="Escribe orden..." onkeypress="javascript:return validarSoloNro(event)" MaxLength="4" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="btnAgregarOrdenPelea" OnClick="btnAgregarOrdenPelea_Click" runat="server" Text="Generar" CssClass="btn btn-success" />
                 </div>
             </div>
         </div>
@@ -244,6 +310,24 @@
                 }
             }
         }
+
+        //valida los campos solo numeros
+        function validarSoloNro(e) {
+            var key;
+            if (window.event) // IE
+            {
+                key = e.keyCode;
+            }
+            else if (e.which) // Netscape/Firefox/Opera
+            {
+                key = e.which;
+            }
+
+            if (key < 48 || key > 57) {
+                return false;
+            }
+            else { return true; }
+        }
     </script>
 
     <script>
@@ -253,6 +337,22 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
+    </script>
+
+    <script>
+        function cerrarModal() {
+            var modal = document.getElementById('modalOrdenPelea');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.hide();
+        }
+
+        function mostrarAlertaExisteNumeroPelea() {
+            alert('El numero de pelea ya existe!');
+        }
+
+        function mostrarAlertaIngreseNumeroValido() {
+            alert('Ingrese un numero de pelea valido!');
+        }
     </script>
 
 </asp:Content>

@@ -14,16 +14,14 @@
             <div class="col-md-12">
                 <div class="widget custom-border">
                     <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar teams..." />
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo dojo">
-                                        <i class="fa-solid fa-plus"></i>
-                                </asp:LinkButton>
+                        <div class="col-md-12">
+                            <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                                <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar teams..." />
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo team">
+        <i class="fa-solid fa-plus"></i>
+                                    </asp:LinkButton>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,22 +72,22 @@
                 </div>
                 <div class="modal-body">
                     <label for="txtNombre" class="form-label">Team</label>
-                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtNombre" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtProfesor" class="form-label">Profesor</label>
-                    <asp:TextBox runat="server" ID="txtProfesor" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtProfesor" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtTelefonoProfesor" class="form-label">Telefono del profesor</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtTelefonoProfesor" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtTelefonoDojo" class="form-label">Telefono del team</label>
-                    <asp:TextBox runat="server" ID="txtTelefonoDojo" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtTelefonoDojo" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtDireccion" class="form-label">Direccion</label>
-                    <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" />
+                    <asp:TextBox runat="server" ID="txtDireccion" class="form-control" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
 
                     <label for="txtObservaciones" class="form-label">Observaciones</label>
-                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" />
+                    <asp:TextBox runat="server" ID="txtObservaciones" MaxLength="255" class="form-control" TextMode="MultiLine" Rows="2" disabled="" style="display: flex; align-items: center; margin-bottom: 5px;"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -108,12 +106,12 @@
                     ¿Estás seguro de que deseas eliminar el dojo?
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" CssClass="btn btn-success" />
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
     <%--Modales--%>
 
@@ -132,10 +130,6 @@
             var bootstrapModal = new bootstrap.Modal(modal);
             bootstrapModal.hide();
         }
-
-        //function mostrarAlertaPeleasRelacionadas() {
-        //    alert('El dojo tiene peleas relacionadas, no puede eliminarlo!');
-        //}
 
         function mostrarAlertaPeleadoresRelacionados() {
             alert('El dojo tiene peleadores relacionados, no puede eliminarlo!');

@@ -88,9 +88,9 @@
                 </div>
 
                 <div class="mb-0">
+                    <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                     <asp:Button ID="btnAgregar" ValidationGroup="ValidarPelea" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success" Text="Agregar" />
                     <asp:Button ID="btnModificar" ValidationGroup="ValidarPelea" OnClick="btnModificar_Click" runat="server" CssClass="btn btn-success" Text="Modificar" Visible="false" />
-                    <asp:Button ID="btnCancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="false" CssClass="btn btn-danger" Text="Cancelar" />
                 </div>
 
             </div>
@@ -120,7 +120,7 @@
                                 <asp:BoundField HeaderText="Team" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:TemplateField HeaderText="Info" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
-                                        <i class="fa-solid fa-info-circle observaciones-icon" title='<%# Eval("Observaciones") %>'></i>
+                                        <i class="fa-solid fa-info-circle observaciones-icon" Title='<%# Eval("Observaciones") %>'></i>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Acción" ItemStyle-Width="50" HeaderStyle-Width="50" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
