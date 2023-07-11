@@ -29,6 +29,8 @@ namespace Gimnasio_Peleas
                     AlertaUserIncorrecto.Visible = true;
                     Session["UsuarioIncorrecto"] = null;
                 }
+
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
             }
             catch (Exception ex)
             {

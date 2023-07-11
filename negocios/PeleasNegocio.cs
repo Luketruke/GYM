@@ -186,8 +186,8 @@ namespace negocios
             try
             {
                 DataTable dt = new DataTable();
-                conexion.setearProcedure("ObtenerPeleadores1PeleaFiltrados");
-                conexion.setearParametro("@IdPeleador", IdPeleador);
+                conexion.setearProcedure("ObtenerPeleadores2PeleaFiltrados");
+                conexion.setearParametro("@IdPeleador1", IdPeleador);
                 conexion.setearParametro("@txtBuscar", txtBuscar);
                 dt.Load(conexion.ejecutarConexion());
 

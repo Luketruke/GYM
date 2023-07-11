@@ -24,12 +24,20 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                     Response.Redirect("/Default.aspx", false);
                 }
 
-                MaintainScrollPositionOnPostBack = true;
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
+                if (IsPostBack)
+                {
+                    var filtroUsuarios = Session["FiltroUsuarios"] != null ? Session["FiltroUsuarios"].ToString() : string.Empty;
+                    Session.Remove("FiltroUsuarios");
+                    ClientScript.RegisterStartupScript(this.GetType(), "SetFiltroUsuarios", $"setFiltroUsuarios('{filtroUsuarios}');", true);
+                }
 
                 if (!IsPostBack || Session["listaUsuarios"] == null)
                 {
                     UsuarioNegocio un = new UsuarioNegocio();
                     Session["listaUsuarios"] = null;
+                    Session.Remove("FiltroUsuarios");
                     Session.Add("listaUsuarios", un.obtenerUsuariosTodos());
                     dgvUsuarios.DataSource = Session["listaUsuarios"];
                     dgvUsuarios.DataBind();
@@ -48,6 +56,8 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdUsuarioEliminar"] = Convert.ToInt32(id);
+
+                Session["FiltroUsuarios"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar')); modalEliminar.show();</script>", false);
             }
             catch (Exception ex)
@@ -90,6 +100,8 @@ namespace Gimnasio_Peleas.Formularios.Usuarios
                 else
                 {
                     Session["IdUsuarioEliminar"] = null;
+
+                    Session["FiltroUsuarios"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
                     Response.Redirect("Usuarios.aspx");
                 }

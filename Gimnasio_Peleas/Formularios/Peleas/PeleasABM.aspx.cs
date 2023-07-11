@@ -28,6 +28,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Response.Redirect("/Default.aspx", false);
                 }
 
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();
                 PeleasNegocio pn = new PeleasNegocio();
@@ -84,8 +86,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Pelea selected = temp.Find(x => x.Id == id);
 
                     DataTable dtDojos = dn.obtenerDojos();
-                    DataTable dtPeleador1 = pn.obtenerPeleadores1();
-                    DataTable dtPeleador2 = pn.obtenerPeleadores2(selected.Peleador1.Id);
+                    DataTable dtPeleador1 = pn.obtenerPeleadorPorId(selected.Peleador1.Id);
+                    DataTable dtPeleador2 = pn.obtenerPeleadorPorId(selected.Peleador2.Id);
 
                     if (!IsPostBack)
                     {
@@ -104,13 +106,13 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                     foreach (DataRow r in dtPeleador1.Rows)
                     {
-                        li = new ListItem(r["DatosDDL"].ToString(), r["Id"].ToString());
+                        li = new ListItem(r["DatosDDL"].ToString(), r["IdPeleador"].ToString());
                         ddlPeleador1.Items.Add(li);
                     }
 
                     foreach (DataRow r in dtPeleador2.Rows)
                     {
-                        li = new ListItem(r["DatosDDL"].ToString(), r["Id"].ToString());
+                        li = new ListItem(r["DatosDDL"].ToString(), r["IdPeleador"].ToString());
                         ddlPeleador2.Items.Add(li);
                     }
 

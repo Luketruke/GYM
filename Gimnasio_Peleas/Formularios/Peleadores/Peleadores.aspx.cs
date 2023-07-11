@@ -25,7 +25,14 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     Response.Redirect("/Formularios/Login/Login.aspx", false);
                 }
 
-                MaintainScrollPositionOnPostBack = true;
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
+                if (IsPostBack)
+                {
+                    var filtroPeleadores = Session["FiltroPeleadores"] != null ? Session["FiltroPeleadores"].ToString() : string.Empty;
+                    Session.Remove("FiltroPeleadores");
+                    ClientScript.RegisterStartupScript(this.GetType(), "SetFiltroPeleadores", $"setFiltroPeleadores('{filtroPeleadores}');", true);
+                }
 
                 if (!IsPostBack || Session["listaPeleadores"] == null)
                 {
@@ -33,6 +40,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     {
                         PeleadoresNegocio pn = new PeleadoresNegocio();
                         Session["listaPeleadores"] = null;
+                        Session.Remove("FiltroPeleadores");
                         Session.Add("listaPeleadores", pn.obtenerPeleadoresTodos());
                         dgvPeleadores.DataSource = Session["listaPeleadores"];
                         dgvPeleadores.DataBind();
@@ -98,6 +106,8 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     string url = "../../Fotos/default_picture.jpg";
                     btnTooltip.Attributes["title"] = $"<img src='{url}' alt='Imagen'>";
                 }
+
+                Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleador = new bootstrap.Modal(document.getElementById('modalPeleador')); modalPeleador.show();</script>", false);
             }
             catch (Exception ex)
@@ -113,6 +123,8 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdPeleadorEliminar"] = Convert.ToInt32(id);
+
+                Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar')); modalEliminar.show();</script>", false);
             }
             catch (Exception ex)
@@ -138,6 +150,8 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     else
                     {
                         Session["IdDojoEliminar"] = null;
+
+                        Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleasRelacionadas();", true);
                     }
@@ -145,6 +159,8 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 else
                 {
                     Session["IdDojoEliminar"] = null;
+
+                    Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
                     Response.Redirect("Dojos.aspx");
                 }
@@ -165,6 +181,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 }
                 else
                 {
+                    Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalNoHayEventoActivo = " +
                         "new bootstrap.Modal(document.getElementById('modalNoHayEventoActivo')); modalNoHayEventoActivo.show();</script>", false);
                 }
@@ -191,6 +208,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
 
                     ddlEventos.Items.Insert(0, new ListItem("Todos los eventos", "0"));
                 }
+                Session["FiltroPeleadores"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresAExcelXEvento = " +
                     "new bootstrap.Modal(document.getElementById('modalPeleadoresAExcelXEvento')); modalPeleadoresAExcelXEvento.show();</script>", false);
             }

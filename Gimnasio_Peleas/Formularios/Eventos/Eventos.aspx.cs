@@ -34,12 +34,20 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                     Response.Redirect("/Default.aspx", false);
                 }
 
-                MaintainScrollPositionOnPostBack = true;
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
+                if (IsPostBack)
+                {
+                    var filtroEventos = Session["FiltroUsuarios"] != null ? Session["FiltroEventos"].ToString() : string.Empty;
+                    Session.Remove("FiltroEventos");
+                    ClientScript.RegisterStartupScript(this.GetType(), "SetFiltroEventos", $"setFiltroEventos('{filtroEventos}');", true);
+                }
 
                 if (!IsPostBack || Session["listaEventos"] == null)
                 {
                     EventosNegocio en = new EventosNegocio();
                     Session["listaEventos"] = null;
+                    Session.Remove("FiltroEventos");
                     Session.Add("listaEventos", en.obtenerEventosTodos());
                     dgvEventos.DataSource = Session["listaEventos"];
                     dgvEventos.DataBind();
@@ -63,11 +71,13 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                     txtHoraAgregarModificar.Text = DateTime.Now.ToString("HH:mm");
                     btnAgregarEvento.Visible = true;
 
+                    Session["FiltroEventos"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalAgregarModificarEvento = " +
                         "new bootstrap.Modal(document.getElementById('modalAgregarModificarEvento')); modalAgregarModificarEvento.show();</script>", false);
                 }
                 else
                 {
+                    Session["FiltroEventos"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalHayEventoPendiente = " +
                         "new bootstrap.Modal(document.getElementById('modalHayEventoPendiente')); modalHayEventoPendiente.show();</script>", false);
                 }
@@ -85,6 +95,8 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdEventoFinalizar"] = Convert.ToInt32(id);
+
+                Session["FiltroEventos"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalFinalizarEvento = " +
                     "new bootstrap.Modal(document.getElementById('modalFinalizarEvento')); modalFinalizarEvento.show();</script>", false);
             }
@@ -109,6 +121,8 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 else
                 {
                     Session["IdEventoFinalizar"] = null;
+
+                    Session["FiltroEventos"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalFinalizarEvento').modal('hide');", true);
                     Response.Redirect("Eventos.aspx");
                 }
@@ -135,6 +149,7 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 txtFechaAgregarModificar.Text = ev.FechaEvento.ToString("yyyy-MM-dd");
                 txtHoraAgregarModificar.Text = ev.FechaEvento.ToString("HH:mm");
 
+                Session["FiltroEventos"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalAgregarModificarEvento = " +
                     "new bootstrap.Modal(document.getElementById('modalAgregarModificarEvento')); modalAgregarModificarEvento.show();</script>", false);
             }
@@ -158,6 +173,7 @@ namespace Gimnasio_Peleas.Formularios.Eventos
                 txtEstadoEventoDetalle.Text = ev.EstadoEvento;
                 txtObservacionesDetalle.Text = ev.Observaciones;
 
+                Session["FiltroEventos"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEvento = " +
                     "new bootstrap.Modal(document.getElementById('modalEvento')); modalEvento.show();</script>", false);
             }

@@ -27,6 +27,8 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                     Response.Redirect("/Default.aspx", false);
                 }
 
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
                 ListItem li;
                 DojosNegocio dn = new DojosNegocio();
 

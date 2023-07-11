@@ -26,12 +26,20 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                     Response.Redirect("/Default.aspx", false);
                 }
 
-                MaintainScrollPositionOnPostBack = true;
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
+                if (IsPostBack)
+                {
+                    var filtroDojos = Session["FiltroDojos"] != null ? Session["FiltroDojos"].ToString() : string.Empty;
+                    Session.Remove("FiltroDojos");
+                    ClientScript.RegisterStartupScript(this.GetType(), "SetFiltroDojos", $"setFiltroDojos('{filtroDojos}');", true);
+                }
 
                 if (!IsPostBack || Session["listaDojos"] == null)
                 {
                     DojosNegocio dn = new DojosNegocio();
                     Session["listaDojos"] = null;
+                    Session.Remove("FiltroDojos");
                     Session.Add("listaDojos", dn.obtenerDojosTodos());
                     dgvDojos.DataSource = Session["listaDojos"];
                     dgvDojos.DataBind();
@@ -59,6 +67,7 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 txtDireccion.Text = d.Direccion.DireccionCompleta;
                 txtObservaciones.Text = d.Observaciones;
 
+                Session["FiltroDojos"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalDojo = new bootstrap.Modal(document.getElementById('modalDojo')); modalDojo.show();</script>", false);
 
             }
@@ -75,6 +84,8 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdDojoEliminar"] = Convert.ToInt32(id);
+
+                Session["FiltroDojos"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar')); modalEliminar.show();</script>", false);
             }
             catch (Exception ex)
@@ -100,6 +111,8 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                     else
                     {
                         Session["IdDojoEliminar"] = null;
+
+                        Session["FiltroDojos"] = txtFiltro.Value.ToString();
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaPeleadoresRelacionados();", true);
                     }
@@ -107,6 +120,8 @@ namespace Gimnasio_Peleas.Formularios.Dojos
                 else
                 {
                     Session["IdDojoEliminar"] = null;
+
+                    Session["FiltroDojos"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
                     Response.Redirect("Dojos.aspx");
                 }

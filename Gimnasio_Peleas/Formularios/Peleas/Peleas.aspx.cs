@@ -33,12 +33,20 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Response.Redirect("/Default.aspx", false);
                 }
 
-                MaintainScrollPositionOnPostBack = true;
+                MaintainScrollPositionOnPostBack = true; //La pagina scrollea a donde estaba luego de un postback
+
+                if (IsPostBack)
+                {
+                    var filtroPeleas = Session["FiltroPeleas"] != null ? Session["FiltroPeleas"].ToString() : string.Empty;
+                    Session.Remove("FiltroPeleas");
+                    ClientScript.RegisterStartupScript(this.GetType(), "SetFiltroPeleas", $"setFiltroPeleas('{filtroPeleas}');", true);
+                }
 
                 if (!IsPostBack || Session["listaPeleas"] == null)
                 {
                     PeleasNegocio pn = new PeleasNegocio();
                     Session["listaPeleas"] = null;
+                    Session.Remove("FiltroPeleas");
                     Session.Add("listaPeleas", pn.obtenerPeleasTodas());
                     dgvPeleas.DataSource = Session["listaPeleas"];
                     dgvPeleas.DataBind();
@@ -60,6 +68,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 }
                 else
                 {
+                    Session["FiltroPeleas"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalNoHayEventoActivo = " +
                         "new bootstrap.Modal(document.getElementById('modalNoHayEventoActivo')); modalNoHayEventoActivo.show();</script>", false);
                 }
@@ -91,6 +100,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 GridView gv = clickedRow.NamingContainer as GridView;
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 Session["IdPeleaEliminar"] = Convert.ToInt32(id);
+
+                Session["FiltroPeleas"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar')); modalEliminar.show();</script>", false);
             }
             catch (Exception ex)
@@ -107,6 +118,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
                 PeleasNegocio pn = new PeleasNegocio();
                 Pelea p = pn.obtenerPeleaPorId(Convert.ToInt32(id));
+                Session["FiltroPeleas"] = txtFiltro.Value.ToString();
 
                 txtPeleador1.Text = p.Peleador1.NombreCompleto;
                 txtTeam1.Text = p.Peleador1.Dojo.Nombre;
@@ -151,6 +163,8 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 else
                 {
                     Session["IdPeleaEliminar"] = null;
+
+                    Session["FiltroPeleas"] = txtFiltro.Value.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
                     Response.Redirect("Peleas.aspx");
                 }
@@ -176,6 +190,7 @@ namespace Gimnasio_Peleas.Formularios.Peleas
 
                     ddlEventos.Items.Insert(0, new ListItem("Todos los eventos", "0"));
                 }
+                Session["FiltroPeleas"] = txtFiltro.Value.ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleasAExcelXEvento = " +
                     "new bootstrap.Modal(document.getElementById('modalPeleasAExcelXEvento')); modalPeleasAExcelXEvento.show();</script>", false);
             }
@@ -206,6 +221,74 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     dt = (DataTable)pn.ExportarPeleasXEventoAExcel(Convert.ToInt32(ddlEventos.SelectedValue));
                     GenerarExcelPeleas(dt);
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnModalOrdenPelea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
+                GridView gv = clickedRow.NamingContainer as GridView;
+                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
+                Session["IdPeleaOrden"] = Convert.ToInt32(id);
+
+                Session["FiltroPeleas"] = txtFiltro.Value.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalOrdenPelea = new bootstrap.Modal(document.getElementById('modalOrdenPelea')); modalOrdenPelea.show();</script>", false);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+        protected void btnAgregarOrdenPelea_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PeleasNegocio pn = new PeleasNegocio();
+                int IdPeleaOrden = Convert.ToInt32(Session["IdPeleaOrden"]);
+                int NumeroPelea = Convert.ToInt32(txtOrdenPelea.Text);
+                if (IdPeleaOrden > 0)
+                {
+                    if (NumeroPelea > -1)
+                    {
+                        if (!pn.VerificarSiExisteNumeroPelea(NumeroPelea))
+                        {
+                            pn.setearNumeroPelea(IdPeleaOrden, NumeroPelea);
+                            Session["listaPeleas"] = null;
+                            Session["IdPeleaOrden"] = null;
+                            Response.Redirect("Peleas.aspx");
+                        }
+                        else
+                        {
+                            Session["IdPeleaOrden"] = null;
+
+                            Session["FiltroPeleas"] = txtFiltro.Value.ToString();
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaExisteNumeroPelea();", true);
+                        }
+                    }
+                    else
+                    {
+                        Session["IdPeleaOrden"] = null;
+
+                        Session["FiltroPeleas"] = txtFiltro.Value.ToString();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaIngreseNumeroValido();", true);
+                    }
+                }
+                else
+                {
+                    Session["IdDojoEliminar"] = null;
+
+                    Session["FiltroPeleas"] = txtFiltro.Value.ToString();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
+                    Response.Redirect("Dojos.aspx");
+                }
+                Session["IdPeleaOrden"] = null;
             }
             catch (Exception ex)
             {
@@ -256,70 +339,6 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
                     Response.BinaryWrite(excelBytes);
                     Response.End();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-        protected void btnModalOrdenPelea_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GridViewRow clickedRow = ((LinkButton)sender).NamingContainer as GridViewRow;
-                GridView gv = clickedRow.NamingContainer as GridView;
-                var id = gv.DataKeys[clickedRow.RowIndex].Values[0].ToString();
-                Session["IdPeleaOrden"] = Convert.ToInt32(id);
-                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalOrdenPelea = new bootstrap.Modal(document.getElementById('modalOrdenPelea')); modalOrdenPelea.show();</script>", false);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-        protected void btnAgregarOrdenPelea_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                PeleasNegocio pn = new PeleasNegocio();
-                int IdPeleaOrden = Convert.ToInt32(Session["IdPeleaOrden"]);
-                int NumeroPelea = Convert.ToInt32(txtOrdenPelea.Text);
-                if (IdPeleaOrden > 0)
-                {
-                    if (NumeroPelea > -1)
-                    {
-                        if (!pn.VerificarSiExisteNumeroPelea(NumeroPelea))
-                        {
-                            pn.setearNumeroPelea(IdPeleaOrden, NumeroPelea);
-                            Session["listaPeleas"] = null;
-                            Session["IdPeleaOrden"] = null;
-                            Response.Redirect("Peleas.aspx");
-                        }
-                        else
-                        {
-                            Session["IdPeleaOrden"] = null;
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaExisteNumeroPelea();", true);
-                        }
-                    }
-                    else
-                    {
-                        Session["IdPeleaOrden"] = null;
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaIngreseNumeroValido();", true);
-                    }
-                }
-                else
-                {
-                    Session["IdDojoEliminar"] = null;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "hideModal", "$('#modalEliminar').modal('hide');", true);
-                    Response.Redirect("Dojos.aspx");
-                }
-                Session["IdPeleaOrden"] = null;
-                if (pn.VerificarSiExisteNumeroPelea(NumeroPelea))
-                {
-
                 }
             }
             catch (Exception ex)

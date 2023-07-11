@@ -17,6 +17,7 @@
                         <div class="col-md-12">
                             <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
                                 <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar peleas..." />
+                                <input type="hidden" id="txtFiltro" runat="server" />
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nueva pelea">
         <i class="fa-solid fa-plus"></i>
@@ -35,7 +36,6 @@
                                     </asp:LinkButton>
                                 </div>--%>
                                 <%----------------------------------------------------------------------------------------%>
-
                             </div>
                         </div>
                     </div>
@@ -87,8 +87,6 @@
                     <h5 class="modal-title" id="miModalLabel">Detalle de la pelea</h5>
                 </div>
                 <div class="modal-body">
-                    <%--Desarrollar--%>
-
                     <div style="display: flex; align-items: center; margin-bottom: 5px;">
                         <div style="flex: 1;">
                             <label for="txtPeleador1" class="form-label">Rincon Rojo</label>
@@ -217,7 +215,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="CerrarModalHayEventoPendiente" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -236,7 +234,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button ID="btnCancelar3" runat="server" Text="Cerrar" CssClass="btn btn-danger" data-bs-dismiss="modal" />
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     <asp:Button ID="btnGenerarExcelXEvento" OnClick="btnGenerarExcelXEvento_Click" runat="server" Text="Generar" CssClass="btn btn-success" />
                 </div>
             </div>
@@ -284,6 +282,19 @@
             return text.replace(/\s+/g, '');
         }
 
+        window.onload = function () {
+            var txtBusqueda = document.getElementById("txtBusqueda");
+            var valor = '<%= Session["FiltroPeleas"] != null ? Session["FiltroPeleas"].ToString() : string.Empty %>';
+            txtBusqueda.value = valor;
+            filterGrid();
+        }
+
+        function setFiltroPeleas(valor) {
+            var txtBusqueda = document.getElementById("txtBusqueda");
+            txtBusqueda.value = valor;
+            filterGrid();
+        }
+
         function filterGrid() {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("txtBusqueda");
@@ -309,6 +320,10 @@
                     tr[i].style.display = "none";
                 }
             }
+
+            // Guardar el valor del filtro en el campo oculto
+            var filtroInput = document.getElementById('<%= txtFiltro.ClientID %>');
+            filtroInput.value = input.value;
         }
 
         //valida los campos solo numeros

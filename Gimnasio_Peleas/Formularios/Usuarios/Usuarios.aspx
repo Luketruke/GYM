@@ -14,6 +14,7 @@
                         <div class="col-md-12">
                             <div class="element-container" style="display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
                                 <input type="text" id="txtBusqueda" class="form-control" onkeyup="filterGrid(event)" placeholder="Filtrar usuarios..." />
+                                <input type="hidden" id="txtFiltro" runat="server" />
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <asp:LinkButton ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" CssClass="btn btn-success btn-lg" onkeypress="return disableEnterKey(event)" data-bs-toggle="tooltip" ToolTip="Nuevo usuario">
         <i class="fa-solid fa-plus"></i>
@@ -94,6 +95,19 @@
             return text.replace(/\s+/g, ''); // Elimina los espacios en blanco
         }
 
+        window.onload = function () {
+            var txtBusqueda = document.getElementById("txtBusqueda");
+            var valor = '<%= Session["FiltroUsuarios"] != null ? Session["FiltroUsuarios"].ToString() : string.Empty %>';
+            txtBusqueda.value = valor;
+            filterGrid();
+        }
+
+        function setFiltroUsuarios(valor) {
+            var txtBusqueda = document.getElementById("txtBusqueda");
+            txtBusqueda.value = valor;
+            filterGrid();
+        }
+
         function filterGrid() {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("txtBusqueda");
@@ -119,6 +133,10 @@
                     tr[i].style.display = "none";
                 }
             }
+
+            // Guardar el valor del filtro en el campo oculto
+            var filtroInput = document.getElementById('<%= txtFiltro.ClientID %>');
+            filtroInput.value = input.value;
         }
     </script>
 
