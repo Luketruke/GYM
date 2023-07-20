@@ -45,7 +45,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                             ddlDojos.DataValueField = "IdDojo";
                             ddlDojos.DataBind();
 
-                            ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                            ddlDojos.Items.Insert(0, new ListItem("Seleccione team...", "0"));
                         }
                         else
                         {
@@ -55,7 +55,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                             ddlDojos.DataValueField = "IdDojo";
                             ddlDojos.DataBind();
 
-                            ddlDojos.Items.Insert(0, new ListItem("Seleccione dojo...", "0"));
+                            ddlDojos.Items.Insert(0, new ListItem("Seleccione team...", "0"));
                         }
                     }
 
