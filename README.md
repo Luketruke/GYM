@@ -7,7 +7,6 @@ Fight Manager is a straightforward project designed for martial arts dojos. It p
 
 **Technologies**
 
-The project is developed using the following technologies:
 - ASP.NET C#
 - JavaScript
 - SQL Server
