@@ -16,6 +16,7 @@ namespace dominios
         public decimal Peso { get; set; }
         public string PesoTexto { get; set; }
         public int Altura { get; set; }
+        public int DNI { get; set; }
         public string AlturaTexto { get; set; }
         public int Edad { get; set; }
         public int CantidadPeleas { get; set; }
@@ -24,5 +25,7 @@ namespace dominios
         public Categoria Categoria { get; set; }
         public Genero Genero { get; set; }
         public string Observaciones { get; set; }
+        public DateTime FechaInformacion { get; set; }
+
     }
 }

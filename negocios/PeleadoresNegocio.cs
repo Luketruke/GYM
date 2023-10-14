@@ -29,6 +29,7 @@ namespace negocios
                     p.Apellido = (string)conexion.Lector["Apellido"];
                     p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
                     p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.DNI = (int)conexion.Lector["DNI"];
                     p.Altura = (int)conexion.Lector["Altura"];
                     p.Edad = (int)conexion.Lector["Edad"];
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
@@ -84,6 +85,7 @@ namespace negocios
                     p.Apellido = (string)conexion.Lector["Apellido"];
                     p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
                     p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.DNI = (int)conexion.Lector["DNI"];
                     p.Altura = (int)conexion.Lector["Altura"];
                     p.Edad = (int)conexion.Lector["Edad"];
                     p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
@@ -136,8 +138,9 @@ namespace negocios
                 p.Nombre = dt.Rows[0]["Nombre"].ToString();
                 p.Apellido = dt.Rows[0]["Apellido"].ToString();
                 p.NombreCompleto = dt.Rows[0]["NombreCompleto"].ToString();
-                p.Peso = Convert.ToInt32(dt.Rows[0]["Peso"]);
+                p.Peso = Convert.ToDecimal(dt.Rows[0]["Peso"]);
                 p.Edad = Convert.ToInt32(dt.Rows[0]["Edad"]);
+                p.DNI = Convert.ToInt32(dt.Rows[0]["DNI"]);
                 p.Altura = Convert.ToInt32(dt.Rows[0]["Altura"]);
                 p.CantidadPeleas = Convert.ToInt32(dt.Rows[0]["CantidadPeleas"]);
                 p.Observaciones = dt.Rows[0]["Observaciones"].ToString();
@@ -178,6 +181,7 @@ namespace negocios
                 conexion.setearProcedure("AgregarPeleador");
                 conexion.setearParametro("@Nombre", p.Nombre);
                 conexion.setearParametro("@Apellido", p.Apellido);
+                conexion.setearParametro("@DNI", p.DNI);
                 conexion.setearParametro("@Peso", p.Peso);
                 conexion.setearParametro("@Altura", p.Altura);
                 conexion.setearParametro("@Edad", p.Edad);
@@ -210,6 +214,7 @@ namespace negocios
                 conexion.setearProcedure("ModificarPeleador");
                 conexion.setearParametro("@IdPeleador", p.Id);
                 conexion.setearParametro("@Nombre", p.Nombre);
+                conexion.setearParametro("@DNI", p.DNI);
                 conexion.setearParametro("@Apellido", p.Apellido);
                 conexion.setearParametro("@Peso", p.Peso);
                 conexion.setearParametro("@Edad", p.Edad);
@@ -243,6 +248,37 @@ namespace negocios
                 DataTable dt = new DataTable();
                 conexion.setearProcedure("VerificarPeleasAlEliminarPeleadores");
                 conexion.setearParametro("@IdPeleador", IdPeleador);
+                dt.Load(conexion.ejecutarConexion());
+
+                if (dt.Rows.Count>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+
+        public bool VerificarExisteDNI(Peleador p)
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                DataTable dt = new DataTable();
+                conexion.setearProcedure("VerificarExisteDNI");
+                conexion.setearParametro("@IdTipoPelea", p.TipoPelea.Id);
+                conexion.setearParametro("@DNI", p.DNI);
                 dt.Load(conexion.ejecutarConexion());
 
                 if (dt.Rows.Count>0)
@@ -351,6 +387,118 @@ namespace negocios
                 dt.Load(conexion.ejecutarConexion());
 
                 return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public List<Peleador> obtenerRankingTodo() //Para llenar el DataGridView
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                List<Peleador> lista = new List<Peleador>();
+                conexion.setearProcedure("obtenerRankingTodo");
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    Peleador p = new Peleador();
+
+                    p.Id = (int)conexion.Lector["PeleadorId"];
+                    p.Codigo = (int)conexion.Lector["Codigo"];
+                    p.Nombre = (string)conexion.Lector["Nombre"];
+                    p.Apellido = (string)conexion.Lector["Apellido"];
+                    p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
+                    p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.DNI = (int)conexion.Lector["DNI"];
+                    p.Altura = (int)conexion.Lector["Altura"];
+                    p.Edad = (int)conexion.Lector["Edad"];
+                    p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
+                    p.Observaciones = (string)conexion.Lector["Observaciones"];
+
+                    p.Categoria = new Categoria();
+                    p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
+                    p.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
+
+                    p.Dojo = new Dojo();
+                    p.Dojo.Id = (int)conexion.Lector["IdDojo"];
+                    p.Dojo.Nombre = (string)conexion.Lector["Dojo"];
+
+                    p.Genero = new Genero();
+                    p.Genero.Id = (int)conexion.Lector["IdGenero"];
+                    p.Genero.GeneroPersona = (string)conexion.Lector["Genero"];
+
+                    lista.Add(p);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                conexion.cerrarConexion();
+            }
+        }
+        public List<Peleador> obtenerHistorialPeleador(int DNI) 
+        {
+            ConexionSQL conexion = new ConexionSQL();
+            try
+            {
+                List<Peleador> lista = new List<Peleador>();
+                conexion.setearProcedure("ObtenerHistorialPeleador");
+                conexion.setearParametro("@DNI", DNI);
+                conexion.ejecutarConexion();
+
+                while (conexion.Lector.Read())
+                {
+                    Peleador p = new Peleador();
+
+                    p.Id = (int)conexion.Lector["Id"];
+                    p.Codigo = (int)conexion.Lector["Codigo"];
+                    p.Nombre = (string)conexion.Lector["Nombre"];
+                    p.Apellido = (string)conexion.Lector["Apellido"];
+                    p.NombreCompleto = (string)conexion.Lector["NombreCompleto"];
+                    p.Peso = (decimal)conexion.Lector["Peso"];
+                    p.DNI = (int)conexion.Lector["DNI"];
+                    p.Altura = (int)conexion.Lector["Altura"];
+                    p.Edad = (int)conexion.Lector["Edad"];
+                    p.CantidadPeleas = (int)conexion.Lector["CantidadPeleas"];
+                    p.Observaciones = (string)conexion.Lector["Observaciones"];
+                    p.FechaInformacion = (DateTime)conexion.Lector["FechaAlta"];
+
+                    p.Categoria = new Categoria();
+                    p.Categoria.Id = (int)conexion.Lector["IdCategoria"];
+                    p.Categoria.Descripcion = (string)conexion.Lector["Categoria"];
+
+                    p.TipoPelea = new TipoPelea();
+                    p.TipoPelea.Id = (int)conexion.Lector["IdTipoPelea"];
+                    p.TipoPelea.Descripcion = (string)conexion.Lector["TipoPelea"];
+
+                    p.Dojo = new Dojo();
+                    p.Dojo.Id = (int)conexion.Lector["IdDojo"];
+                    p.Dojo.Nombre = (string)conexion.Lector["Dojo"];
+
+                    p.Genero = new Genero();
+                    p.Genero.Id = (int)conexion.Lector["IdGenero"];
+                    p.Genero.GeneroPersona = (string)conexion.Lector["Genero"];
+
+                    lista.Add(p);
+                }
+                return lista;
             }
             catch (Exception ex)
             {

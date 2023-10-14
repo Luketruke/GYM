@@ -133,6 +133,7 @@
     <Content Include="Formularios\Peleadores\PeleadoresABM.aspx" />
     <Content Include="Formularios\Peleas\Peleas.aspx" />
     <Content Include="Formularios\Peleas\PeleasABM.aspx" />
+    <Content Include="Formularios\Ranking\Ranking.aspx" />
     <Content Include="Formularios\Usuarios\Usuarios.aspx" />
     <Content Include="Formularios\Usuarios\UsuariosABM.aspx" />
     <Content Include="Global.asax" />
@@ -164,7 +165,6 @@
     <Content Include="Stylesheets\Peleadores.css" />
     <Content Include="Stylesheets\Peleas.css" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
@@ -241,6 +241,13 @@
     <Compile Include="Formularios\Peleas\PeleasABM.aspx.designer.cs">
       <DependentUpon>PeleasABM.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Ranking\Ranking.aspx.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Formularios\Ranking\Ranking.aspx.designer.cs">
+      <DependentUpon>Ranking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Usuarios\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -294,6 +301,7 @@
   <ItemGroup>
     <Content Include="Login.Master" />
     <None Include="packages.config" />
+    <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

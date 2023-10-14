@@ -110,14 +110,14 @@
                         <asp:GridView runat="server" ID="dgvPeleadoresSimilares" DataKeyNames="Id" CssClass="table table-striped-columns" AutoGenerateColumns="false" ClientIDMode="Static">
                             <HeaderStyle CssClass="thead-dark" />
                             <Columns>
-                                <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center word-break-all" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false"/>
                                 <asp:BoundField HeaderText="Peso" DataField="PesoTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Edad" DataField="Edad" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Altura" DataField="AlturaTexto" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField HeaderText="Peleas" DataField="CantidadPeleas" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="Modalidad" DataField="TipoPelea.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
-                                <asp:BoundField HeaderText="Team" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
+                                <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false"/>
+                                <asp:BoundField HeaderText="Modalidad" DataField="TipoPelea.Descripcion" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false"/>
+                                <asp:BoundField HeaderText="Team" DataField="Dojo.Nombre" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="false"/>
                                 <asp:TemplateField HeaderText="Info" ItemStyle-Width="100" HeaderStyle-Width="100" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center">
                                     <ItemTemplate>
                                         <i class="fa-solid fa-info-circle observaciones-icon" Title='<%# Eval("Observaciones") %>'></i>
@@ -224,6 +224,18 @@
                 document.body.style.mozUserSelect = 'none';
                 document.body.style.msUserSelect = 'none';
             }
+        }
+    </script>
+
+    <script>
+        function cerrarModal() { 
+            var modal = document.getElementById('modalEliminar');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.hide();
+        }
+
+        function mostrarAlertaNoSeleccionoPeleador() {
+            alert('Debe seleccionar un peleador previamente para realizar esta accion!');
         }
     </script>
 

@@ -60,6 +60,13 @@
                         ErrorMessage="*" ValidationGroup="ValidarPeleador" InitialValue=0></asp:RequiredFieldValidator>
                 </div>
 
+                <div class="mb-0">
+                    <label for="txtDNI" class="form-label">DNI</label>
+                    <asp:TextBox runat="server" ID="txtDNI" MaxLength="50" class="form-control" onkeypress="javascript:return validarSoloNro(event)"/>
+                    <asp:RequiredFieldValidator Style="color: red; font-size: 15px" runat="server"
+                        ControlToValidate="txtDNI" ErrorMessage="*" ValidationGroup="ValidarPeleador"></asp:RequiredFieldValidator>
+                </div>
+
                 <div class="mb-0" style="display: flex; align-items: center;">
                     <div style="flex: 1;">
                         <label for="txtPeso" class="form-label">Peso</label>
@@ -120,6 +127,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function cerrarModal() {
+            var modal = document.getElementById('modalEliminar');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.hide();
+        }
+
+        function mostrarAlertaDNIExistente() {
+            alert('El DNI de peleador ya existe! Por favor verificar nuevamente.');
+        }
+    </script>
 
     <script>
         //Valida que se puedan escribir solamente numeros

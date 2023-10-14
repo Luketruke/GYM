@@ -370,4 +370,47 @@
         }
     </script>
 
+     <script>
+         var modal = document.getElementById('modalPelea');
+         var header = modal.querySelector('.modal-header');
+         var isDragging = false;
+         var dragStartX;
+         var dragStartY;
+         var initialModalTop;
+         var initialModalLeft;
+
+         header.addEventListener('mousedown', dragStart);
+
+         document.addEventListener('mousemove', function (event) {
+             if (isDragging) {
+                 event.preventDefault(); // Evitar el arrastre predeterminado
+                 var dx = event.clientX - dragStartX;
+                 var dy = event.clientY - dragStartY;
+                 modal.style.top = (initialModalTop + dy) + 'px';
+                 modal.style.left = (initialModalLeft + dx) + 'px';
+             }
+         });
+
+         document.addEventListener('mouseup', function () {
+             isDragging = false;
+         });
+
+         function dragStart(event) {
+             // Verificar si el clic proviene del área del header
+             if (event.target === header || event.target.parentNode === header) {
+                 isDragging = true;
+                 dragStartX = event.clientX;
+                 dragStartY = event.clientY;
+                 initialModalTop = modal.offsetTop;
+                 initialModalLeft = modal.offsetLeft;
+
+                 // Evitar la selección de texto durante el arrastre
+                 document.body.style.userSelect = 'none';
+                 document.body.style.webkitUserSelect = 'none';
+                 document.body.style.mozUserSelect = 'none';
+                 document.body.style.msUserSelect = 'none';
+             }
+         }
+     </script>
+
 </asp:Content>

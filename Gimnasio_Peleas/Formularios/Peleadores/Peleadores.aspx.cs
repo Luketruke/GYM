@@ -85,6 +85,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 Peleador p = pn.obtenerPeleadorPorId(Convert.ToInt32(id));
 
                 miModalLabel.InnerText = p.NombreCompleto.ToString();
+                txtDNI.Text = p.DNI.ToString();
                 txtDojo.Text = p.Dojo.Nombre;
                 txtCategoria.Text = p.Categoria.Descripcion;
                 txtModalidad.Text = p.TipoPelea.Descripcion;

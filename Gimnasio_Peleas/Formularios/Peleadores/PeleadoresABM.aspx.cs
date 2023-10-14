@@ -143,6 +143,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     btnModificar.Visible = true;
                     txtNombre.Text = selected.Nombre;
                     txtApellido.Text = selected.Apellido;
+                    txtDNI.Text = selected.DNI.ToString();
                     txtCantidadPeleas.Text = selected.CantidadPeleas.ToString();
                     txtPeso.Text = selected.Peso.ToString();
                     txtAltura.Text = selected.Altura.ToString();
@@ -171,6 +172,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Altura = Convert.ToInt32(txtAltura.Text);
                 p.Edad = Convert.ToInt32(txtEdad.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
+                p.DNI = Convert.ToInt32(txtDNI.Text);
                 p.Observaciones = txtObservaciones.Text;
 
                 p.Categoria = new Categoria();
@@ -185,35 +187,43 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Genero = new Genero();
                 p.Genero.Id = Convert.ToInt32(ddlGeneros.SelectedValue);
 
-                int IdNuevoPeleador = pn.AgregarPeleador(p);
-
-                if (IdNuevoPeleador > 0)
+                if (pn.VerificarExisteDNI(p))
                 {
-                    if (fileUpload.HasFile)
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaDNIExistente();", true);
+                }
+                else
+                {
+                    int IdNuevoPeleador = pn.AgregarPeleador(p);
+
+                    if (IdNuevoPeleador > 0)
                     {
-                        string rutaArchivoRedimensionado = Server.MapPath("~/Fotos/" + IdNuevoPeleador + Path.GetExtension(this.fileUpload.FileName));
-                        string rutaArchivoOriginal = Server.MapPath("~/Fotos/" + IdNuevoPeleador + "_Original" + Path.GetExtension(this.fileUpload.FileName));
-
-                        if (File.Exists(rutaArchivoOriginal))
-                            File.Delete(rutaArchivoOriginal);
-
-                        fileUpload.SaveAs(rutaArchivoOriginal);
-
-                        using (var imagenOriginal = System.Drawing.Image.FromFile(rutaArchivoOriginal))
+                        if (fileUpload.HasFile)
                         {
-                            using (var imagenRedimensionada = new Bitmap(500, 600)) //Ancho y alto
+                            string rutaArchivoRedimensionado = Server.MapPath("~/Fotos/" + IdNuevoPeleador + Path.GetExtension(this.fileUpload.FileName));
+                            string rutaArchivoOriginal = Server.MapPath("~/Fotos/" + IdNuevoPeleador + "_Original" + Path.GetExtension(this.fileUpload.FileName));
+
+                            if (File.Exists(rutaArchivoOriginal))
+                                File.Delete(rutaArchivoOriginal);
+
+                            fileUpload.SaveAs(rutaArchivoOriginal);
+
+                            using (var imagenOriginal = System.Drawing.Image.FromFile(rutaArchivoOriginal))
                             {
-                                using (var g = Graphics.FromImage(imagenRedimensionada))
+                                using (var imagenRedimensionada = new Bitmap(500, 600)) //Ancho y alto
                                 {
-                                    g.DrawImage(imagenOriginal, 0, 0, 500, 600); //Ancho y alto
+                                    using (var g = Graphics.FromImage(imagenRedimensionada))
+                                    {
+                                        g.DrawImage(imagenOriginal, 0, 0, 500, 600); //Ancho y alto
+                                    }
+                                    imagenRedimensionada.Save(rutaArchivoRedimensionado);
                                 }
-                                imagenRedimensionada.Save(rutaArchivoRedimensionado);
                             }
+                            // Eliminar el archivo nuevo sin redimencionar
+                            File.Delete(rutaArchivoOriginal);
                         }
-                        // Eliminar el archivo nuevo sin redimencionar
-                        File.Delete(rutaArchivoOriginal);
+                        Response.Redirect("Peleadores.aspx");
                     }
-                    Response.Redirect("Peleadores.aspx");
                 }
             }
             catch (Exception ex)
@@ -235,6 +245,7 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                 p.Altura = Convert.ToInt32(txtAltura.Text);
                 p.Peso = Convert.ToDecimal(txtPeso.Text);
                 p.Edad = Convert.ToInt32(txtEdad.Text);
+                p.DNI = Convert.ToInt32(txtDNI.Text);
                 p.Observaciones = txtObservaciones.Text;
 
                 p.Categoria = new Categoria();
@@ -274,9 +285,17 @@ namespace Gimnasio_Peleas.Formularios.Peleadores
                     File.Delete(rutaArchivoOriginal);
                 }
 
-                if (pn.modificarPeleador(p))
+                if (pn.VerificarExisteDNI(p))
                 {
-                    Response.Redirect("Peleadores.aspx");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaDNIExistente();", true);
+                }
+                else
+                {
+                    if (pn.modificarPeleador(p))
+                    {
+                        Response.Redirect("Peleadores.aspx");
+                    }
                 }
             }
             catch (Exception ex)

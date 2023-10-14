@@ -48,6 +48,9 @@
                         <li class="nav-item" id="dojosNavItem">
                             <a class="nav-link" href="/Formularios/Dojos/Dojos.aspx">Teams</a>
                         </li>
+                        <li class="nav-item" id="rankingNavItem">
+                            <a class="nav-link" href="/Formularios/Ranking/Ranking.aspx">Ranking</a>
+                        </li>
                         <li class="nav-item dropdown" id="herramientasNavItem">
                             <a class="nav-link dropdown-toggle" href="#" id="herramientasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Herramientas</a>
                             <ul class="dropdown-menu" aria-labelledby="herramientasDropdown">
@@ -98,6 +101,14 @@
 
     <script>
         if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' != 1) {
+            document.getElementById("peleasNavItem").style.display = "none";
+            document.getElementById("dojosNavItem").style.display = "none";
+            document.getElementById("herramientasNavItem").style.display = "none";
+            document.getElementById("usuariosNavItem").style.display = "none";
+        }
+
+        if ('<%= Convert.ToInt32(Session["IdTipoUsuario"]) %>' == 3) {
+            document.getElementById("peleadoresNavItem").style.display = "none";
             document.getElementById("peleasNavItem").style.display = "none";
             document.getElementById("dojosNavItem").style.display = "none";
             document.getElementById("herramientasNavItem").style.display = "none";

@@ -176,26 +176,26 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                     ddlPeleador2.Items.Insert(0, new ListItem("Seleccione primer peleador primero...", "0"));
                 }
                 else if (ddlPeleador2.Items.Count == 0)
-                    {
-                        DataTable peleadores2 = pn.obtenerPeleadores2Filtrados(Convert.ToInt32(ddlPeleador1.SelectedValue), txtPeleador2.Text);
+                {
+                    DataTable peleadores2 = pn.obtenerPeleadores2Filtrados(Convert.ToInt32(ddlPeleador1.SelectedValue), txtPeleador2.Text);
 
-                        if (peleadores2.Rows.Count>0)
-                        {
-                            ddlPeleador2.DataSource = peleadores2;
-                            ddlPeleador2.DataTextField = "DatosDDL";
-                            ddlPeleador2.DataValueField = "Id";
-                            ddlPeleador2.DataBind();
-                            ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
-                        }
-                        else
-                        {
-                            ddlPeleador2.DataSource = peleadores2;
-                            ddlPeleador2.DataTextField = "DatosDDL";
-                            ddlPeleador2.DataValueField = "Id";
-                            ddlPeleador2.DataBind();
-                            ddlPeleador2.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
-                        }
+                    if (peleadores2.Rows.Count>0)
+                    {
+                        ddlPeleador2.DataSource = peleadores2;
+                        ddlPeleador2.DataTextField = "DatosDDL";
+                        ddlPeleador2.DataValueField = "Id";
+                        ddlPeleador2.DataBind();
+                        ddlPeleador2.Items.Insert(0, new ListItem("Seleccione segundo peleador...", "0"));
                     }
+                    else
+                    {
+                        ddlPeleador2.DataSource = peleadores2;
+                        ddlPeleador2.DataTextField = "DatosDDL";
+                        ddlPeleador2.DataValueField = "Id";
+                        ddlPeleador2.DataBind();
+                        ddlPeleador2.Items.Insert(0, new ListItem("No se encontraron peleadores...", "0"));
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -211,57 +211,66 @@ namespace Gimnasio_Peleas.Formularios.Peleas
                 int FiltrarXPeso, FiltrarXPeleas, FiltrarXEdad, FiltrarXCategoria, FiltrarXModalidad, Edad, CantidadPeleas;
                 decimal Peso;
 
-                if (checkboxPeso.Checked)
+                if (Convert.ToInt32(ddlPeleador1.SelectedValue) == 0)
                 {
-                    FiltrarXPeso = 1;
-                    Peso = Convert.ToDecimal(txtFiltroPeso.Text);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "CerrarModal", "cerrarModal();", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarAlerta", "mostrarAlertaNoSeleccionoPeleador();", true);
                 }
                 else
                 {
-                    FiltrarXPeso = 0;
-                    Peso = 0;
-                }
-                if (checkboxCantidadPeleas.Checked)
-                {
-                    FiltrarXPeleas = 1;
-                    CantidadPeleas = Convert.ToInt32(txtFiltroCantidadPeleas.Text);
-                }
-                else
-                {
-                    FiltrarXPeleas = 0;
-                    CantidadPeleas = 0;
-                }
-                if (checkboxEdad.Checked)
-                {
-                    FiltrarXEdad = 1;
-                    Edad = Convert.ToInt32(txtFiltroEdad.Text);
-                }
-                else
-                {
-                    FiltrarXEdad = 0;
-                    Edad = 0;
-                }
-                if (checkboxCategoria.Checked)
-                {
-                    FiltrarXCategoria = 1;
-                }
-                else
-                {
-                    FiltrarXCategoria = 0;
-                }
-                if (checkboxModalidad.Checked)
-                {
-                    FiltrarXModalidad = 1;
-                }
-                else
-                {
-                    FiltrarXModalidad = 0;
-                }
 
-                dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue), FiltrarXPeso, FiltrarXPeleas, FiltrarXEdad, FiltrarXCategoria, FiltrarXModalidad, Peso, Edad, CantidadPeleas);
-                dgvPeleadoresSimilares.DataBind();
+                    if (checkboxPeso.Checked)
+                    {
+                        FiltrarXPeso = 1;
+                        Peso = Convert.ToDecimal(txtFiltroPeso.Text);
+                    }
+                    else
+                    {
+                        FiltrarXPeso = 0;
+                        Peso = 0;
+                    }
+                    if (checkboxCantidadPeleas.Checked)
+                    {
+                        FiltrarXPeleas = 1;
+                        CantidadPeleas = Convert.ToInt32(txtFiltroCantidadPeleas.Text);
+                    }
+                    else
+                    {
+                        FiltrarXPeleas = 0;
+                        CantidadPeleas = 0;
+                    }
+                    if (checkboxEdad.Checked)
+                    {
+                        FiltrarXEdad = 1;
+                        Edad = Convert.ToInt32(txtFiltroEdad.Text);
+                    }
+                    else
+                    {
+                        FiltrarXEdad = 0;
+                        Edad = 0;
+                    }
+                    if (checkboxCategoria.Checked)
+                    {
+                        FiltrarXCategoria = 1;
+                    }
+                    else
+                    {
+                        FiltrarXCategoria = 0;
+                    }
+                    if (checkboxModalidad.Checked)
+                    {
+                        FiltrarXModalidad = 1;
+                    }
+                    else
+                    {
+                        FiltrarXModalidad = 0;
+                    }
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresSimilares = new bootstrap.Modal(document.getElementById('modalPeleadoresSimilares')); modalPeleadoresSimilares.show();</script>", false);
+                    dgvPeleadoresSimilares.DataSource = pn.obtenerPeleadoresSimilares(Convert.ToInt32(ddlPeleador1.SelectedValue), FiltrarXPeso, FiltrarXPeleas, FiltrarXEdad, FiltrarXCategoria, FiltrarXModalidad, Peso, Edad, CantidadPeleas);
+                    dgvPeleadoresSimilares.DataBind();
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "<script>var modalPeleadoresSimilares = new bootstrap.Modal(document.getElementById('modalPeleadoresSimilares')); modalPeleadoresSimilares.show();</script>", false);
+                }
             }
             catch (Exception ex)
             {
