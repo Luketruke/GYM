@@ -14,10 +14,8 @@ namespace dominios
         public string Apellido { get; set; }
         public string NombreCompleto { get; set; }
         public decimal Peso { get; set; }
-        public string PesoTexto { get; set; }
         public int Altura { get; set; }
         public int DNI { get; set; }
-        public string AlturaTexto { get; set; }
         public int Edad { get; set; }
         public int CantidadPeleas { get; set; }
         public Dojo Dojo { get; set; }

@@ -1,0 +1,251 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|c:\\users\\luketruke\\desktop\\gimnasio net framework\\gym\\dominios\\dojo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\direccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\tipousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\genero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\peleador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\pelea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3EAEABC8-BF7E-4F49-B42B-6E54D064EE74}|..\\dominios\\dominios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\formularios\\dojos\\dojosabm.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|solutionrelative:formularios\\dojos\\dojosabm.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\formularios\\dojos\\dojos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|solutionrelative:formularios\\dojos\\dojos.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\formularios\\peleadores\\peleadoresabm.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|solutionrelative:formularios\\peleadores\\peleadoresabm.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\formularios\\peleadores\\peleadoresabm.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|solutionrelative:formularios\\peleadores\\peleadoresabm.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\formularios\\peleadores\\peleadores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B92894A8-B0BC-4EFA-AC3B-3ACD83BEED16}|Gimnasio_Peleas.csproj|solutionrelative:formularios\\peleadores\\peleadores.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B12A2775-8323-45E3-B433-40E00B5A630F}|..\\negocios\\negocios.csproj|C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\negocios\\conexionsql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TipoUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\TipoUsuario.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\TipoUsuario.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\TipoUsuario.cs",
+              "RelativeToolTip": "..\\dominios\\TipoUsuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:32:56.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Usuario.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Usuario.cs",
+              "RelativeToolTip": "..\\dominios\\Usuario.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:32:51.868Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Genero.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Genero.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Genero.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Genero.cs",
+              "RelativeToolTip": "..\\dominios\\Genero.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:29:32.885Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Peleador.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Peleador.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Peleador.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Peleador.cs",
+              "RelativeToolTip": "..\\dominios\\Peleador.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:27:47.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Pelea.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Pelea.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Pelea.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Pelea.cs",
+              "RelativeToolTip": "..\\dominios\\Pelea.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:27:17.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Direccion.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Direccion.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Direccion.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Direccion.cs",
+              "RelativeToolTip": "..\\dominios\\Direccion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:22:45.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dojo.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Dojo.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Dojo.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Dojo.cs",
+              "RelativeToolTip": "..\\dominios\\Dojo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:22:44.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Evento.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Evento.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Evento.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Evento.cs",
+              "RelativeToolTip": "..\\dominios\\Evento.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:19:49.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Categoria.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Categoria.cs",
+              "RelativeDocumentMoniker": "..\\dominios\\Categoria.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\dominios\\Categoria.cs",
+              "RelativeToolTip": "..\\dominios\\Categoria.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-16T17:19:41.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DojosABM.aspx",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Dojos\\DojosABM.aspx",
+              "RelativeDocumentMoniker": "Formularios\\Dojos\\DojosABM.aspx",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Dojos\\DojosABM.aspx",
+              "RelativeToolTip": "Formularios\\Dojos\\DojosABM.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
+              "WhenOpened": "2023-11-16T03:48:43.043Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Dojos.aspx",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Dojos\\Dojos.aspx",
+              "RelativeDocumentMoniker": "Formularios\\Dojos\\Dojos.aspx",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Dojos\\Dojos.aspx",
+              "RelativeToolTip": "Formularios\\Dojos\\Dojos.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
+              "WhenOpened": "2023-11-16T03:45:32.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PeleadoresABM.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\PeleadoresABM.aspx.cs",
+              "RelativeDocumentMoniker": "Formularios\\Peleadores\\PeleadoresABM.aspx.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\PeleadoresABM.aspx.cs",
+              "RelativeToolTip": "Formularios\\Peleadores\\PeleadoresABM.aspx.cs",
+              "ViewState": "AQIAADUBAAAAAAAAAAAcwEQBAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001384|",
+              "WhenOpened": "2023-11-14T18:04:17.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Peleadores.aspx",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\Peleadores.aspx",
+              "RelativeDocumentMoniker": "Formularios\\Peleadores\\Peleadores.aspx",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\Peleadores.aspx",
+              "RelativeToolTip": "Formularios\\Peleadores\\Peleadores.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
+              "WhenOpened": "2023-11-14T18:03:57.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PeleadoresABM.aspx",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\PeleadoresABM.aspx",
+              "RelativeDocumentMoniker": "Formularios\\Peleadores\\PeleadoresABM.aspx",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\Gimnasio_Peleas\\Formularios\\Peleadores\\PeleadoresABM.aspx",
+              "RelativeToolTip": "Formularios\\Peleadores\\PeleadoresABM.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000192|",
+              "WhenOpened": "2023-11-14T17:33:20.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ConexionSQL.cs",
+              "DocumentMoniker": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\negocios\\ConexionSQL.cs",
+              "RelativeDocumentMoniker": "..\\negocios\\ConexionSQL.cs",
+              "ToolTip": "C:\\Users\\Luketruke\\Desktop\\Gimnasio NET Framework\\GYM\\negocios\\ConexionSQL.cs",
+              "RelativeToolTip": "..\\negocios\\ConexionSQL.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-14T00:40:57.73Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
