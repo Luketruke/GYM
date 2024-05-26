@@ -14,12 +14,6 @@ Fight Manager is a straightforward project designed for martial arts dojos. It p
 - HTML
 - CSS
 
-**Access and Testing**
-
-You can test the application by following this [link](http://zabalettgym.somee.com/Formularios/Login/Login). Use the following login credentials:
-- User: Admin
-- Password: Admin
-
 **Features**
 
 Fight Manager offers a range of features, including:
