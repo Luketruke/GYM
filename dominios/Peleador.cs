@@ -24,6 +24,8 @@ namespace dominios
         public Genero Genero { get; set; }
         public string Observaciones { get; set; }
         public DateTime FechaInformacion { get; set; }
+        public string AlturaTexto { get; set; }
+        public string PesoTexto { get; set; }
 
     }
 }

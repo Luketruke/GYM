@@ -25,11 +25,11 @@ namespace negocios
                 while (conexion.Lector.Read())
                 {
                     Evento e = new Evento();
-
+                    
                     e.Id = (int)conexion.Lector["Id"];
                     e.Descripcion = (string)conexion.Lector["Descripcion"];
                     e.FechaEvento = (DateTime)conexion.Lector["FechaEvento"];
-                    e.IdEstadoEvento = e.Id = (int)conexion.Lector["IdEstadoEvento"];
+                    e.IdEstadoEvento = (int)conexion.Lector["IdEstadoEvento"];
                     e.EstadoEvento = (string)conexion.Lector["EstadoEvento"];
                     e.Observaciones = (string)conexion.Lector["Observaciones"];
 
