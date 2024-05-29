@@ -1,0 +1,6 @@
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\bin\Debug\dominios.dll
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\bin\Debug\dominios.pdb
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\obj\Debug\dominios.csproj.AssemblyReference.cache
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\obj\Debug\dominios.csproj.CoreCompileInputs.cache
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\obj\Debug\dominios.dll
+C:\Users\Lucas Zabalett\Desktop\Gimnasio NET Framework\GYM\dominios\obj\Debug\dominios.pdb
